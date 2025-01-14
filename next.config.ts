@@ -14,8 +14,10 @@ const nextConfig: NextConfig = {
   eslint: {
     dirs: ['.'],
   },
+  output: 'standalone',
   poweredByHeader: false,
   reactStrictMode: true,
+  serverExternalPackages: ['@node-rs/argon2'],
 };
 
 export default bundleAnalyzer(

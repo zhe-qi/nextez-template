@@ -1,11 +1,9 @@
-import { PrismaClient } from '@prisma/client';
+import { type Prisma, PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 async function main() {
-  const operations = [
-    // createMany
-  ];
+  const operations: Prisma.PrismaPromise<Prisma.BatchPayload>[] = [];
 
   Promise.allSettled(operations).then((results) => {
     results.forEach((result, index) => {
