@@ -12,9 +12,9 @@ export default async function Layout(props: {
   });
 
   return (
-    <div>
+    <>
       {t('test')}
       {props.children}
-    </div>
+    </>
   );
 }

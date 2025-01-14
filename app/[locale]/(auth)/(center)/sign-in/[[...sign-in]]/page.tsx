@@ -16,7 +16,7 @@ export default function Page() {
       <div className="mt-4 text-center text-sm">
         Don&apos;t have an account?
         {' '}
-        <Link className="underline" href="/signup">
+        <Link className="underline" href="/sign-up">
           Sign up
         </Link>
       </div>
