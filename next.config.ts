@@ -18,6 +18,9 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   serverExternalPackages: ['@node-rs/argon2'],
+  experimental: {
+    reactCompiler: true,
+  },
 };
 
 export default bundleAnalyzer(
