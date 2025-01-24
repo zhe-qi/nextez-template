@@ -1,28 +1,29 @@
-import type { NextConfig } from 'next';
+import type { NextConfig } from "next";
 
-import withBundleAnalyzer from '@next/bundle-analyzer';
-import createNextIntlPlugin from 'next-intl/plugin';
-import './lib/env';
+import withBundleAnalyzer from "@next/bundle-analyzer";
+import createNextIntlPlugin from "next-intl/plugin";
+import "./src/env";
 
-const withNextIntl = createNextIntlPlugin('./lib/i18n.ts');
+const withNextIntl = createNextIntlPlugin("./src/lib/i18n.ts");
 
 const bundleAnalyzer = withBundleAnalyzer({
-  enabled: process.env.ANALYZE === 'true',
+  enabled: process.env.ANALYZE === "true",
 });
 
 const nextConfig: NextConfig = {
   eslint: {
-    dirs: ['.'],
+    dirs: ["."],
   },
-  output: 'standalone',
-  poweredByHeader: false,
-  reactStrictMode: true,
-  serverExternalPackages: ['@node-rs/argon2'],
   experimental: {
     reactCompiler: true,
   },
+  poweredByHeader: false,
+  reactStrictMode: true,
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
 };
 
-export default bundleAnalyzer(
-  withNextIntl(nextConfig),
-);
+export default bundleAnalyzer(withNextIntl(nextConfig));

@@ -20,8 +20,7 @@
     "allowUnreachableCode": false,
     "noFallthroughCasesInSwitch": true,
 
-    "target": "es2017",
-    "outDir": "out",
+    "target": "ES2017",
     "sourceMap": true,
 
     "esModuleInterop": true,
@@ -39,8 +38,7 @@
     // Path aliases
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
-      "@/public/*": ["./public/*"]
+      "@/*": ["./src/*"]
     },
 
     // Editor support
@@ -50,18 +48,12 @@
       }
     ]
   },
-  "exclude": [
-    "./out/**/*",
-    "./node_modules/**/*",
-    "**/*.spec.ts",
-    "**/*.e2e.ts"
-  ],
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".storybook/*.ts",
     ".next/types/**/*.ts",
-    "**/*.mts"
-  ]
+    "src/env.ts"
+  ],
+  "exclude": ["node_modules"]
 }

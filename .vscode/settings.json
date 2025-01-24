@@ -6,32 +6,30 @@
   },
 
   // TypeScript
-  "typescript.tsdk": "node_modules/typescript/lib", // Use the workspace version of TypeScript
-  "typescript.enablePromptUseWorkspaceTsdk": true, // For security reasons it's require that users opt into using the workspace version of typescript
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.preferences.autoImportFileExcludePatterns": [
-    // useRouter should be imported from `next/navigation` instead of `next/router`
     "next/router.d.ts",
     "next/dist/client/router.d.ts",
-    // give priority for Link to next/link instead of lucide-react
     "lucide-react"
   ],
-  "typescript.preferences.preferTypeOnlyAutoImports": true, // Prefer type-only imports
+  "typescript.preferences.preferTypeOnlyAutoImports": true,
 
   // I18n
   "i18n-ally.localesPaths": ["locales"],
   "i18n-ally.keystyle": "nested",
 
-  // Disable the default formatter, use ESLint instead
+  // 禁用默认格式化工具，使用 ESLint
   "prettier.enable": false,
   "editor.formatOnSave": false,
 
-  // Auto fix with ESLint on save
+  // 保存时自动修复
   "editor.codeActionsOnSave": [
     "source.addMissingImports",
     "source.fixAll.eslint"
   ],
 
-  // Enable eslint for all supported languages
+  // 为所有支持的语言启用 ESLint
   "eslint.format.enable": true,
   "eslint.validate": [
     "javascript",
@@ -55,5 +53,19 @@
     "pcss",
     "postcss",
     "github-actions-workflow"
+  ],
+
+  // 文件相关配置
+  "files.eol": "\n",
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  },
+
+  // 拼写检查
+  "cSpell.words": [
+    "Aliyun",
+    "nextez",
+    "prismadb",
+    "sonner"
   ]
 }

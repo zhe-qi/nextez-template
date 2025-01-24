@@ -1,0 +1,46 @@
+"use server";
+
+import type { DataResult } from "@/types/types";
+
+import type { z } from "zod";
+
+import { createTokenApi } from "@/lib/auth";
+
+import prismadb from "@/lib/prismadb";
+import { has } from "@/lib/rbac";
+import { validateSchemaAction } from "@/lib/validate-schema-action";
+import { tokenCreateServerActionSchema } from "@/schemas/tokens";
+
+import { revalidatePath } from "next/cache";
+
+type FormData = z.infer<typeof tokenCreateServerActionSchema>;
+
+async function handler(formData: FormData): Promise<DataResult<FormData>> {
+  try {
+    const isAuthorized = await has({ role: "admin" });
+
+    if (!isAuthorized) {
+      return { success: false, message: "Unauthorized" };
+    }
+
+    const { name, userId } = formData;
+
+    const { token, hashedToken, partialToken } = await createTokenApi();
+
+    await prismadb.token.create({
+      data: { name, hashedToken, partialToken, userId },
+    });
+
+    revalidatePath(`/admin/tokens/`);
+
+    return { success: true, data: { token } };
+  } catch (error) {
+    console.error("Error creating token:", error);
+    return { success: false, message: "Something went wrong" };
+  }
+}
+
+export const createToken = validateSchemaAction(
+  tokenCreateServerActionSchema,
+  handler,
+);

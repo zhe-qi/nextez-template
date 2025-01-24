@@ -1,13 +1,45 @@
 {
   "recommendations": [
+    // ESLint
     "dbaeumer.vscode-eslint",
+
+    // 环境变量
     "mikestead.dotenv",
+
+    // PostCSS
     "csstools.postcss",
+
+    // Tailwind CSS IntelliSense
     "bradlc.vscode-tailwindcss",
+
+    // REST Client
     "humao.rest-client",
+
+    // Pretty TypeScript Errors
     "yoavbls.pretty-ts-errors",
+
+    // Playwright
     "ms-playwright.playwright",
+
+    // GitHub Actions
     "github.vscode-github-actions",
-    "lokalise.i18n-ally"
+
+    // i18n Ally
+    "lokalise.i18n-ally",
+
+    // Prisma
+    "Prisma.prisma",
+
+    // ES7+ React/Redux/React-Native snippets
+    "dsznajder.es7-react-js-snippets",
+
+    // Error Lens
+    "usernamehw.errorlens",
+
+    // Console Ninja
+    "WallabyJs.console-ninja",
+
+    // Code Spell Checker
+    "streetsidesoftware.code-spell-checker"
   ]
 }

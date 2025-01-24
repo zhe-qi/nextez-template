@@ -1,20 +1,72 @@
-import { type Prisma, PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 async function main() {
-  const operations: Prisma.PrismaPromise<Prisma.BatchPayload>[] = [];
-
-  Promise.allSettled(operations).then((results) => {
-    results.forEach((result, index) => {
-      if (result.status === 'rejected') {
-        console.error(`Operation ${index + 1} failed:`, result.reason);
-      }
-    });
+  const permission = await prisma.permission.upsert({
+    where: { key: "admin:all" },
+    update: {},
+    create: {
+      name: "Admin permission",
+      description: "Permission to access the admin section",
+      key: "admin:all",
+      isActive: true,
+    },
   });
 
-  // eslint-disable-next-line no-console
-  console.log('Seed data inserted successfully');
+  const role = await prisma.role.upsert({
+    where: { key: "admin" },
+    update: {},
+    create: {
+      name: "Admin",
+      description: "Admin role",
+      key: "admin",
+      isActive: true,
+    },
+  });
+
+  await prisma.rolePermission.create({
+    data: {
+      permission: {
+        connect: {
+          id: permission.id,
+        },
+      },
+      role: {
+        connect: {
+          id: role.id,
+        },
+      },
+    },
+  });
+
+  const tool = await prisma.tool.upsert({
+    where: { name: "Admin" },
+    update: {},
+    create: {
+      name: "Admin",
+      href: "/admin",
+      icon: "shield-check",
+      description: "Admin tool",
+    },
+  });
+
+  await prisma.roleTool.create({
+    data: {
+      tool: {
+        connect: {
+          id: tool.id,
+        },
+      },
+      role: {
+        connect: {
+          id: role.id,
+        },
+      },
+    },
+  });
+
+  console.log({ permission, role });
 }
 
 main()
