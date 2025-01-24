@@ -104,7 +104,7 @@
     "typescript": "5.7.3"
   },
   "lint-staged": {
-    "*.{js,jsx,mjs,ts,tsx,mts}": "eslint . --fix"
+    "*.{js,jsx,mjs,ts,tsx,mts}": ["eslint --fix"]
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
