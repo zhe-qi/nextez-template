@@ -1,10 +1,10 @@
-"use server";
+'use server';
 
-import type { DataResult } from "@/types/types";
+import type { DataResult } from '@/types/types';
 
-import { auth } from "@/auth";
+import { auth } from '@/auth';
 
-import prismadb from "@/lib/prismadb";
+import prismadb from '@/lib/prismadb';
 
 type FormDataDeleteAccount = {
   userEmail: string;
@@ -23,8 +23,8 @@ export async function deleteAccount({
   try {
     const email = session?.user?.email;
 
-    if (confirmString != "delete my account") {
-      errors.confirmString.push("Please type 'delete my account'");
+    if (confirmString != 'delete my account') {
+      errors.confirmString.push('Please type \'delete my account\'');
     }
 
     if (email) {
@@ -39,7 +39,7 @@ export async function deleteAccount({
           });
           return { success: true };
         } else {
-          errors.userEmail.push("Wrong email");
+          errors.userEmail.push('Wrong email');
         }
       }
     }

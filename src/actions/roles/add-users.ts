@@ -1,11 +1,11 @@
-"use server";
+'use server';
 
-import type { DataResult } from "@/types/types";
+import type { DataResult } from '@/types/types';
 
-import prismadb from "@/lib/prismadb";
+import prismadb from '@/lib/prismadb';
 
-import { has } from "@/lib/rbac";
-import { revalidatePath } from "next/cache";
+import { has } from '@/lib/rbac';
+import { revalidatePath } from 'next/cache';
 
 type IRole = {
   roleId: number;
@@ -17,10 +17,10 @@ export async function addUsersToRoles({
   userIds,
 }: IRole): Promise<DataResult<IRole>> {
   try {
-    const isAuthorized = await has({ role: "admin" });
+    const isAuthorized = await has({ role: 'admin' });
 
     if (!isAuthorized) {
-      return { success: false, message: "Unauthorized" };
+      return { success: false, message: 'Unauthorized' };
     }
 
     const currentUsers = await prismadb.userRole.findMany({
@@ -28,14 +28,14 @@ export async function addUsersToRoles({
       select: { userId: true },
     });
 
-    const currentUserIds = new Set(currentUsers.map((user) => user.userId));
-    const newUserIds = new Set(userIds?.map((userId) => userId) || []);
+    const currentUserIds = new Set(currentUsers.map(user => user.userId));
+    const newUserIds = new Set(userIds?.map(userId => userId) || []);
     const usersToDelete = currentUsers.filter(
-      (user) => !newUserIds.has(user.userId),
+      user => !newUserIds.has(user.userId),
     );
-    const usersToAdd =
-      userIds?.filter((userId) => !currentUserIds.has(userId)) || [];
-    const dataToInsert = usersToAdd.map((userId) => ({
+    const usersToAdd
+      = userIds?.filter(userId => !currentUserIds.has(userId)) || [];
+    const dataToInsert = usersToAdd.map(userId => ({
       roleId,
       userId,
     }));
@@ -44,7 +44,7 @@ export async function addUsersToRoles({
       where: {
         roleId,
         userId: {
-          in: usersToDelete.map((user) => user.userId),
+          in: usersToDelete.map(user => user.userId),
         },
       },
     });
@@ -55,7 +55,7 @@ export async function addUsersToRoles({
 
     return { success: true };
   } catch (error) {
-    console.error("Error adding user:", error);
-    return { success: false, message: "Something went wrong" };
+    console.error('Error adding user:', error);
+    return { success: false, message: 'Something went wrong' };
   }
 }

@@ -1,8 +1,8 @@
-import type { Option } from "@/components/ui/multiple-selector";
+import type { Option } from '@/components/ui/multiple-selector';
 
-import prismadb from "@/lib/prismadb";
+import prismadb from '@/lib/prismadb';
 
-import "server-only";
+import 'server-only';
 
 export const getPermissionById = async (id: number) => {
   try {
@@ -17,7 +17,7 @@ export const getPermissionById = async (id: number) => {
 export const getAllPermissions = async () => {
   try {
     const permissions = await prismadb.permission.findMany({
-      orderBy: { updatedAt: "desc" },
+      orderBy: { updatedAt: 'desc' },
     });
 
     return permissions;
@@ -30,13 +30,13 @@ export const getAllPermissions = async () => {
 export const getPermissionOptions = async (search?: string) => {
   try {
     const permissions = await prismadb.permission.findMany({
-      where: { name: { contains: search, mode: "insensitive" } },
+      where: { name: { contains: search, mode: 'insensitive' } },
       skip: 0,
       take: 10,
-      orderBy: { name: "asc" },
+      orderBy: { name: 'asc' },
     });
 
-    const options: Option[] = permissions.map((permission) => ({
+    const options: Option[] = permissions.map(permission => ({
       value: permission.id.toString(),
       label: permission.name,
     }));

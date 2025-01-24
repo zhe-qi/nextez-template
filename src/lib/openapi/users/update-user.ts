@@ -1,11 +1,11 @@
-import type { ZodOpenApiOperationObject } from "zod-openapi";
+import type { ZodOpenApiOperationObject } from 'zod-openapi';
 
 import {
   userOutputSchema,
   userPathParamSchema,
   userUpdatePartialSchema,
   userUpdateSchema,
-} from "@/schemas/users";
+} from '@/schemas/users';
 
 import {
   badRequestErrorSchema,
@@ -13,156 +13,156 @@ import {
   internalServerErrorSchema,
   unauthorizedErrorSchema,
   validationErrorSchema,
-} from "../responses";
+} from '../responses';
 
 export const updateUser: ZodOpenApiOperationObject = {
-  operationId: "updateUser",
-  summary: "Update a user by ID",
+  operationId: 'updateUser',
+  summary: 'Update a user by ID',
   description:
-    "Update the details of an existing user. This operation allows for updating all the fields of the user.",
+    'Update the details of an existing user. This operation allows for updating all the fields of the user.',
   requestParams: { path: userPathParamSchema },
   requestBody: {
     content: {
-      "application/json": {
+      'application/json': {
         schema: userUpdateSchema,
       },
     },
   },
   responses: {
     200: {
-      description: "User updated",
-      content: { "application/json": { schema: userOutputSchema } },
+      description: 'User updated',
+      content: { 'application/json': { schema: userOutputSchema } },
     },
     400: {
-      description: "Bad Request",
+      description: 'Bad Request',
       content: {
-        "application/json": {
+        'application/json': {
           schema: badRequestErrorSchema,
           example: {
-            message: "Invalid ID supplied",
+            message: 'Invalid ID supplied',
           },
         },
       },
     },
     401: {
-      description: "Unauthorized Error",
+      description: 'Unauthorized Error',
       content: {
-        "application/json": {
+        'application/json': {
           schema: unauthorizedErrorSchema,
         },
       },
     },
     409: {
-      description: "Conflict Error",
+      description: 'Conflict Error',
       content: {
-        "application/json": {
+        'application/json': {
           schema: conflictErrorSchema,
           examples: {
             nameConflict: {
-              summary: "Email conflict",
-              value: { message: "A user with that email already exists." },
+              summary: 'Email conflict',
+              value: { message: 'A user with that email already exists.' },
             },
             keyConflict: {
-              summary: "Username conflict",
-              value: { message: "A user with that username already exists." },
+              summary: 'Username conflict',
+              value: { message: 'A user with that username already exists.' },
             },
           },
         },
       },
     },
     422: {
-      description: "Validation Error",
+      description: 'Validation Error',
       content: {
-        "application/json": {
+        'application/json': {
           schema: validationErrorSchema,
         },
       },
     },
     500: {
-      description: "Internal Server Error",
+      description: 'Internal Server Error',
       content: {
-        "application/json": {
+        'application/json': {
           schema: internalServerErrorSchema,
         },
       },
     },
   },
-  tags: ["Users"],
+  tags: ['Users'],
   security: [{ BearerAuth: [] }],
 };
 
 export const updatePartialUser: ZodOpenApiOperationObject = {
-  operationId: "updatePartialUser",
-  summary: "Partially update a user by ID",
+  operationId: 'updatePartialUser',
+  summary: 'Partially update a user by ID',
   description:
-    "Partially update the details of an existing user. This operation allows for updating one or more fields of the user without requiring all fields to be provided, enabling more flexible updates.",
+    'Partially update the details of an existing user. This operation allows for updating one or more fields of the user without requiring all fields to be provided, enabling more flexible updates.',
   requestParams: { path: userPathParamSchema },
   requestBody: {
     content: {
-      "application/json": {
+      'application/json': {
         schema: userUpdatePartialSchema,
       },
     },
   },
   responses: {
     200: {
-      description: "User updated",
-      content: { "application/json": { schema: userOutputSchema } },
+      description: 'User updated',
+      content: { 'application/json': { schema: userOutputSchema } },
     },
     400: {
-      description: "Bad Request",
+      description: 'Bad Request',
       content: {
-        "application/json": {
+        'application/json': {
           schema: badRequestErrorSchema,
           example: {
-            message: "Invalid ID supplied",
+            message: 'Invalid ID supplied',
           },
         },
       },
     },
     401: {
-      description: "Unauthorized Error",
+      description: 'Unauthorized Error',
       content: {
-        "application/json": {
+        'application/json': {
           schema: unauthorizedErrorSchema,
         },
       },
     },
     409: {
-      description: "Conflict Error",
+      description: 'Conflict Error',
       content: {
-        "application/json": {
+        'application/json': {
           schema: conflictErrorSchema,
           examples: {
             nameConflict: {
-              summary: "Email conflict",
-              value: { message: "A user with that email already exists." },
+              summary: 'Email conflict',
+              value: { message: 'A user with that email already exists.' },
             },
             keyConflict: {
-              summary: "Username conflict",
-              value: { message: "A user with that username already exists." },
+              summary: 'Username conflict',
+              value: { message: 'A user with that username already exists.' },
             },
           },
         },
       },
     },
     422: {
-      description: "Validation Error",
+      description: 'Validation Error',
       content: {
-        "application/json": {
+        'application/json': {
           schema: validationErrorSchema,
         },
       },
     },
     500: {
-      description: "Internal Server Error",
+      description: 'Internal Server Error',
       content: {
-        "application/json": {
+        'application/json': {
           schema: internalServerErrorSchema,
         },
       },
     },
   },
-  tags: ["Users"],
+  tags: ['Users'],
   security: [{ BearerAuth: [] }],
 };

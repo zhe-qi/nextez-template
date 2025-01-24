@@ -1,4 +1,4 @@
-import type { SortingState } from "@tanstack/react-table";
+import type { SortingState } from '@tanstack/react-table';
 
 export type IDataTableSearchParamsSSR = {
   q?: string;
@@ -25,16 +25,16 @@ export function getSearchParamsSSR(
   const sortState: SortingState = createSortingState(sort);
   const orderBy: {
     [x: string]: string;
-  }[] = sortState.map((sortObject) => ({
-    [sortObject.id]: sortObject.desc ? "desc" : "asc",
+  }[] = sortState.map(sortObject => ({
+    [sortObject.id]: sortObject.desc ? 'desc' : 'asc',
   }));
 
   return { search, currentPage, limit, offset, sort, orderBy, sortState };
 }
 
 function createSortingState(sort: string): SortingState {
-  const sortObjects: SortingState = sort.split(",").map((sortField) => {
-    const desc: boolean = sortField.startsWith("-");
+  const sortObjects: SortingState = sort.split(',').map((sortField) => {
+    const desc: boolean = sortField.startsWith('-');
     const id: string = desc ? sortField.substring(1) : sortField;
     return { id, desc };
   });

@@ -1,6 +1,6 @@
-import { deleteTool } from "@/actions/tools";
+import { deleteTool } from '@/actions/tools';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -8,8 +8,8 @@ import {
   FormField,
   FormItem,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 import {
   ResponsiveDialog,
   ResponsiveDialogClose,
@@ -18,15 +18,15 @@ import {
   ResponsiveDialogFooter,
   ResponsiveDialogHeader,
   ResponsiveDialogTitle,
-} from "@/components/ui/responsive-dialog";
-import { zodResolver } from "@hookform/resolvers/zod";
+} from '@/components/ui/responsive-dialog';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Loader2 } from "lucide-react";
+import { Loader2 } from 'lucide-react';
 
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { z } from "zod";
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+import { z } from 'zod';
 
 export default function DeleteToolDialog({
   toolId,
@@ -43,23 +43,23 @@ export default function DeleteToolDialog({
 
   const formSchema = z.object({
     confirmString: z.literal(toolName, {
-      errorMap: () => ({ message: "Incorrect tool name" }),
+      errorMap: () => ({ message: 'Incorrect tool name' }),
     }),
   });
 
   type FormData = z.infer<typeof formSchema>;
 
   const form = useForm<FormData>({
-    defaultValues: { confirmString: "" },
+    defaultValues: { confirmString: '' },
     resolver: zodResolver(formSchema),
   });
 
   const onSubmit = async () => {
     const result = await deleteTool(toolId);
     if (result.success) {
-      toast.success("Tool deleted successfully!", { duration: 4000 });
+      toast.success('Tool deleted successfully!', { duration: 4000 });
       setIsOpen(false);
-      router.push("/admin/tools");
+      router.push('/admin/tools');
     } else {
       toast.error(result.message);
     }
@@ -76,7 +76,7 @@ export default function DeleteToolDialog({
     <ResponsiveDialog open={isOpen} onOpenChange={handleOpenChange}>
       <ResponsiveDialogContent
         className="sm:max-w-[425px]"
-        onCloseAutoFocus={(e) => e.preventDefault()}
+        onCloseAutoFocus={e => e.preventDefault()}
       >
         <ResponsiveDialogHeader className="text-left">
           <ResponsiveDialogTitle>Delete tool?</ResponsiveDialogTitle>
@@ -96,7 +96,11 @@ export default function DeleteToolDialog({
               render={({ field }) => (
                 <FormItem>
                   <FormDescription>
-                    Enter the tool name <b>{toolName}</b> to continue.
+                    Enter the tool name
+                    {' '}
+                    <b>{toolName}</b>
+                    {' '}
+                    to continue.
                   </FormDescription>
                   <FormControl>
                     <Input

@@ -1,11 +1,11 @@
 /* eslint-disable react-refresh/only-export-components */
-"use server";
+'use server';
 
-import { auth } from "@/auth";
+import { auth } from '@/auth';
 
-import prismadb from "@/lib/prismadb";
+import prismadb from '@/lib/prismadb';
 
-import { redirect } from "next/navigation";
+import { redirect } from 'next/navigation';
 
 type RolesCheck = { role: string; permission?: never };
 type PermissionsCheck = { permission: string; role?: never };
@@ -28,7 +28,7 @@ async function getUserRoles(userId: number) {
         },
       },
     })
-    .then((userRoles) => userRoles.map((userRole) => userRole.role.key));
+    .then(userRoles => userRoles.map(userRole => userRole.role.key));
 
   return userRoles;
 }
@@ -58,11 +58,11 @@ async function getUserPermissions(userId: number) {
         },
       },
     })
-    .then((userRoles) =>
-      userRoles.flatMap((userRole) => userRole.role.permissions),
+    .then(userRoles =>
+      userRoles.flatMap(userRole => userRole.role.permissions),
     )
-    .then((permissions) =>
-      permissions.map((permission) => permission.permission.key),
+    .then(permissions =>
+      permissions.map(permission => permission.permission.key),
     );
 
   return userPermissions;
@@ -121,7 +121,7 @@ export async function protectPage({ role, permission }: Opts) {
     }
   }
 
-  redirect("/auth/error/?error=AccessUnauthorized");
+  redirect('/auth/error/?error=AccessUnauthorized');
 }
 
 export async function ProtectComponent({
@@ -131,17 +131,17 @@ export async function ProtectComponent({
   fallback,
 }:
   | {
-      children: React.ReactNode;
-      requiredRole: string;
-      requiredPermission?: never;
-      fallback?: React.ReactElement;
-    }
+    children: React.ReactNode;
+    requiredRole: string;
+    requiredPermission?: never;
+    fallback?: React.ReactElement;
+  }
   | {
-      children: React.ReactNode;
-      requiredRole?: never;
-      requiredPermission: string;
-      fallback?: React.ReactElement;
-    }) {
+    children: React.ReactNode;
+    requiredRole?: never;
+    requiredPermission: string;
+    fallback?: React.ReactElement;
+  }) {
   if (requiredRole) {
     const hasRoles = await hasRequiredRole(requiredRole);
     if (hasRoles) {

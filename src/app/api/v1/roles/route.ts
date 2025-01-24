@@ -1,23 +1,23 @@
-import { ApiError, getPagination, parseRequestBody } from "@/lib/api";
+import { ApiError, getPagination, parseRequestBody } from '@/lib/api';
 
-import { withAdmin } from "@/lib/auth";
-import prismadb from "@/lib/prismadb";
+import { withAdmin } from '@/lib/auth';
+import prismadb from '@/lib/prismadb';
 
-import { getZodSchemaFields } from "@/lib/zod/utils";
-import { roleCreateSchema, roleOutputSchema } from "@/schemas/roles";
-import { Prisma } from "@prisma/client";
-import { NextResponse } from "next/server";
+import { getZodSchemaFields } from '@/lib/zod/utils';
+import { roleCreateSchema, roleOutputSchema } from '@/schemas/roles';
+import { Prisma } from '@prisma/client';
+import { NextResponse } from 'next/server';
 
-import { ZodError } from "zod";
+import { ZodError } from 'zod';
 
 const allowedOrderByFields = [
-  "id",
-  "name",
-  "description",
-  "key",
-  "isActive",
-  "createdAt",
-  "updatedAt",
+  'id',
+  'name',
+  'description',
+  'key',
+  'isActive',
+  'createdAt',
+  'updatedAt',
 ];
 
 const outputFields = getZodSchemaFields(roleOutputSchema);
@@ -28,25 +28,25 @@ export const GET = withAdmin(async ({ context }) => {
     const filter: Prisma.RoleWhereInput = {};
     if (search) {
       filter.OR = [
-        { name: { contains: search, mode: "insensitive" } },
-        { description: { contains: search, mode: "insensitive" } },
-        { key: { contains: search, mode: "insensitive" } },
+        { name: { contains: search, mode: 'insensitive' } },
+        { description: { contains: search, mode: 'insensitive' } },
+        { key: { contains: search, mode: 'insensitive' } },
       ];
     }
 
     const orderBy: Prisma.RoleOrderByWithRelationInput[] = [];
     if (sort) {
-      const fields = sort.split(",");
+      const fields = sort.split(',');
       fields.forEach((field) => {
-        const isDesc = field.startsWith("-");
+        const isDesc = field.startsWith('-');
         const fieldName = isDesc ? field.substring(1) : field;
 
         if (allowedOrderByFields.includes(fieldName)) {
-          orderBy.push({ [fieldName]: isDesc ? "desc" : "asc" });
+          orderBy.push({ [fieldName]: isDesc ? 'desc' : 'asc' });
         }
       });
     } else {
-      orderBy.push({ id: "asc" });
+      orderBy.push({ id: 'asc' });
     }
 
     const [roles, totalRows, totalRowsFiltered] = await prismadb.$transaction([
@@ -74,19 +74,19 @@ export const GET = withAdmin(async ({ context }) => {
     const pageCount: number = Math.ceil(totalRowsFiltered / limit);
 
     const headers = {
-      "total-count": totalRows.toString(),
-      "total-count-filtered": String(totalRowsFiltered),
-      "pagination-pages": String(pageCount),
+      'total-count': totalRows.toString(),
+      'total-count-filtered': String(totalRowsFiltered),
+      'pagination-pages': String(pageCount),
     };
 
     const data = roles.map((role) => {
       return {
         ...role,
-        tools: role.tools.map((tool) => ({
+        tools: role.tools.map(tool => ({
           id: tool.tool.id,
           name: tool.tool.name,
         })),
-        permissions: role.permissions.map((permission) => ({
+        permissions: role.permissions.map(permission => ({
           id: permission.permission.id,
           name: permission.permission.name,
           key: permission.permission.key,
@@ -96,9 +96,9 @@ export const GET = withAdmin(async ({ context }) => {
 
     return NextResponse.json(data, { status: 200, headers });
   } catch (error) {
-    console.error("Error:", error);
+    console.error('Error:', error);
     return NextResponse.json(
-      { message: "Internal Server Error" },
+      { message: 'Internal Server Error' },
       { status: 500 },
     );
   }
@@ -117,12 +117,12 @@ export const POST = withAdmin(async ({ req }) => {
         key,
         isActive,
         tools: {
-          create: tools?.map((toolId) => ({
+          create: tools?.map(toolId => ({
             tool: { connect: { id: toolId } },
           })),
         },
         permissions: {
-          create: permissions?.map((permissionId) => ({
+          create: permissions?.map(permissionId => ({
             permission: { connect: { id: permissionId } },
           })),
         },
@@ -140,11 +140,11 @@ export const POST = withAdmin(async ({ req }) => {
 
     const data = {
       ...newRole,
-      tools: newRole.tools.map((tool) => ({
+      tools: newRole.tools.map(tool => ({
         id: tool.tool.id,
         name: tool.tool.name,
       })),
-      permissions: newRole.permissions.map((permission) => ({
+      permissions: newRole.permissions.map(permission => ({
         id: permission.permission.id,
         name: permission.permission.name,
         key: permission.permission.key,
@@ -153,7 +153,7 @@ export const POST = withAdmin(async ({ req }) => {
 
     return NextResponse.json(data, { status: 201 });
   } catch (error) {
-    console.error("Error:", error);
+    console.error('Error:', error);
     if (error instanceof ApiError) {
       return NextResponse.json(
         { message: error.message },
@@ -165,10 +165,10 @@ export const POST = withAdmin(async ({ req }) => {
       return NextResponse.json({ errors: errorsValidation }, { status: 422 });
     }
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      if (error.code === "P2002" && error.meta) {
+      if (error.code === 'P2002' && error.meta) {
         const meta = error.meta as { target?: string[] };
         const target = meta.target;
-        if (target && target[0] === "name") {
+        if (target && target[0] === 'name') {
           return NextResponse.json(
             {
               message: `A role with the name already exists.`,
@@ -176,7 +176,7 @@ export const POST = withAdmin(async ({ req }) => {
             { status: 409 },
           );
         }
-        if (target && target[0] === "key") {
+        if (target && target[0] === 'key') {
           return NextResponse.json(
             {
               message: `A role with the key already exists.`,
@@ -185,22 +185,22 @@ export const POST = withAdmin(async ({ req }) => {
           );
         }
       }
-      if (error.code === "P2025") {
-        const cause = (error.meta?.cause as string) || "";
+      if (error.code === 'P2025') {
+        const cause = (error.meta?.cause as string) || '';
 
-        if (cause.includes("No 'Permission' record")) {
+        if (cause.includes('No \'Permission\' record')) {
           return NextResponse.json(
             {
-              message: "One or more Permissions not found.",
+              message: 'One or more Permissions not found.',
             },
             { status: 404 },
           );
         }
 
-        if (cause.includes("No 'Tool' record")) {
+        if (cause.includes('No \'Tool\' record')) {
           return NextResponse.json(
             {
-              message: "One or more Tools not found.",
+              message: 'One or more Tools not found.',
             },
             { status: 404 },
           );
@@ -208,7 +208,7 @@ export const POST = withAdmin(async ({ req }) => {
       }
     }
     return NextResponse.json(
-      { message: "Internal Server Error" },
+      { message: 'Internal Server Error' },
       { status: 500 },
     );
   }

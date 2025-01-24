@@ -1,6 +1,6 @@
-import { deletePermission } from "@/actions/permissions";
+import { deletePermission } from '@/actions/permissions';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -8,8 +8,8 @@ import {
   FormField,
   FormItem,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 import {
   ResponsiveDialog,
   ResponsiveDialogClose,
@@ -18,15 +18,15 @@ import {
   ResponsiveDialogFooter,
   ResponsiveDialogHeader,
   ResponsiveDialogTitle,
-} from "@/components/ui/responsive-dialog";
-import { zodResolver } from "@hookform/resolvers/zod";
+} from '@/components/ui/responsive-dialog';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Loader2 } from "lucide-react";
+import { Loader2 } from 'lucide-react';
 
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { z } from "zod";
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+import { z } from 'zod';
 
 export default function DeletePermissionDialog({
   permissionId,
@@ -43,23 +43,23 @@ export default function DeletePermissionDialog({
 
   const formSchema = z.object({
     confirmString: z.literal(permissionKey, {
-      errorMap: () => ({ message: "Incorrect permission key" }),
+      errorMap: () => ({ message: 'Incorrect permission key' }),
     }),
   });
 
   type FormData = z.infer<typeof formSchema>;
 
   const form = useForm<FormData>({
-    defaultValues: { confirmString: "" },
+    defaultValues: { confirmString: '' },
     resolver: zodResolver(formSchema),
   });
 
   const onSubmit = async () => {
     const result = await deletePermission(permissionId);
     if (result.success) {
-      toast.success("Permission deleted successfully!");
+      toast.success('Permission deleted successfully!');
       setIsOpen(false);
-      router.push("/admin/permissions");
+      router.push('/admin/permissions');
     } else {
       toast.error(result.message);
     }
@@ -76,7 +76,7 @@ export default function DeletePermissionDialog({
     <ResponsiveDialog open={isOpen} onOpenChange={handleOpenChange}>
       <ResponsiveDialogContent
         className="sm:max-w-[425px]"
-        onCloseAutoFocus={(e) => e.preventDefault()}
+        onCloseAutoFocus={e => e.preventDefault()}
       >
         <ResponsiveDialogHeader className="text-left">
           <ResponsiveDialogTitle>Delete permission?</ResponsiveDialogTitle>
@@ -96,7 +96,11 @@ export default function DeletePermissionDialog({
               render={({ field }) => (
                 <FormItem>
                   <FormDescription>
-                    Enter the permission key <b>{permissionKey}</b> to continue.
+                    Enter the permission key
+                    {' '}
+                    <b>{permissionKey}</b>
+                    {' '}
+                    to continue.
                   </FormDescription>
                   <FormControl>
                     <Input
@@ -125,7 +129,7 @@ export default function DeletePermissionDialog({
                 {form.formState.isSubmitting && (
                   <Loader2 className="mr-2 size-4 animate-spin" />
                 )}
-                {form.formState.isSubmitting ? "Deleting..." : "Delete"}
+                {form.formState.isSubmitting ? 'Deleting...' : 'Delete'}
               </Button>
             </ResponsiveDialogFooter>
           </form>

@@ -1,11 +1,11 @@
-import { PageHeader } from "@/components/page-header";
+import { PageHeader } from '@/components/page-header';
 
-import { protectPage } from "@/lib/rbac";
+import { protectPage } from '@/lib/rbac';
 
-import CreateRoleForm from "./_components/create-role-form";
+import CreateRoleForm from './_components/create-role-form';
 
 export default async function NewRolePage() {
-  await protectPage({ permission: "admin:all" });
+  await protectPage({ permission: 'admin:all' });
 
   return (
     <>

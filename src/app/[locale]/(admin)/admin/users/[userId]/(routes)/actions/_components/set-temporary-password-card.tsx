@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { setTemporaryPassword } from "@/actions/users/password-reset";
+import { setTemporaryPassword } from '@/actions/users/password-reset';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 
 import {
   Card,
@@ -10,7 +10,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
 import {
   Dialog,
   DialogContent,
@@ -18,26 +18,26 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 
-import { Input } from "@/components/ui/input";
+import { Input } from '@/components/ui/input';
 
-import { Label } from "@/components/ui/label";
-import { Loader2 } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { toast } from "sonner";
+import { Label } from '@/components/ui/label';
+import { Loader2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { toast } from 'sonner';
 
 export function SetTemporaryPasswordCard({ userId }: { userId: number }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [temporaryPassword, setTempPassword] = useState("");
+  const [temporaryPassword, setTempPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
 
   const handleSetTemporaryPassword = async () => {
     if (!temporaryPassword) {
-      toast.error("Please enter a temporary password.");
+      toast.error('Please enter a temporary password.');
       return;
     }
 
@@ -45,20 +45,20 @@ export function SetTemporaryPasswordCard({ userId }: { userId: number }) {
     try {
       await setTemporaryPassword(userId, temporaryPassword);
       setIsOpen(false);
-      toast.success("Temporary password has been set successfully!");
+      toast.success('Temporary password has been set successfully!');
       router.refresh();
     } catch {
-      toast.error("Failed to set temporary password. Please try again.");
+      toast.error('Failed to set temporary password. Please try again.');
     } finally {
       setIsLoading(false);
-      setTempPassword("");
+      setTempPassword('');
     }
   };
 
   const handleOpenChange = (open: boolean) => {
     setIsOpen(open);
     if (!open) {
-      setTempPassword("");
+      setTempPassword('');
     }
   };
 
@@ -87,7 +87,7 @@ export function SetTemporaryPasswordCard({ userId }: { userId: number }) {
                   type="password"
                   className="col-span-3"
                   value={temporaryPassword}
-                  onChange={(e) => setTempPassword(e.target.value)}
+                  onChange={e => setTempPassword(e.target.value)}
                   aria-label="Temporary Password"
                   disabled={isLoading}
                 />
@@ -101,14 +101,16 @@ export function SetTemporaryPasswordCard({ userId }: { userId: number }) {
                 onClick={handleSetTemporaryPassword}
                 disabled={!temporaryPassword || isLoading}
               >
-                {isLoading ? (
-                  <>
-                    <Loader2 className="mr-2 size-4 animate-spin" />
-                    Setting...
-                  </>
-                ) : (
-                  "Set password"
-                )}
+                {isLoading
+                  ? (
+                      <>
+                        <Loader2 className="mr-2 size-4 animate-spin" />
+                        Setting...
+                      </>
+                    )
+                  : (
+                      'Set password'
+                    )}
               </Button>
             </DialogFooter>
           </DialogContent>

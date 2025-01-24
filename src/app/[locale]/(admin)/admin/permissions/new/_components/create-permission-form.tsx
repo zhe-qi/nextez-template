@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import type { z } from "zod";
-import { createPermission } from "@/actions/permissions";
+import type { z } from 'zod';
+import { createPermission } from '@/actions/permissions';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -11,22 +11,22 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Switch } from "@/components/ui/switch";
-import { Textarea } from "@/components/ui/textarea";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Switch } from '@/components/ui/switch';
+import { Textarea } from '@/components/ui/textarea';
 
-import { addServerErrors } from "@/lib/utils";
+import { addServerErrors } from '@/lib/utils';
 
-import { permissionCreateSchema } from "@/schemas/permissions";
+import { permissionCreateSchema } from '@/schemas/permissions';
 
-import { zodResolver } from "@hookform/resolvers/zod";
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Loader2 } from "lucide-react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
+import { Loader2 } from 'lucide-react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 
 type FormData = z.infer<typeof permissionCreateSchema>;
 
@@ -35,27 +35,27 @@ export default function CreatePermissionForm() {
 
   const form = useForm<FormData>({
     defaultValues: {
-      name: "",
-      description: "",
-      key: "",
+      name: '',
+      description: '',
+      key: '',
       isActive: false,
     },
     resolver: zodResolver(permissionCreateSchema),
-    mode: "onChange",
+    mode: 'onChange',
   });
 
   const onSubmitCreate = async (data: FormData) => {
     const result = await createPermission(data);
     if (result.success) {
-      router.push("/admin/permissions");
-      toast.success("Permission created successfully!");
+      router.push('/admin/permissions');
+      toast.success('Permission created successfully!');
     } else {
       if (result.errors) {
         addServerErrors(result.errors, form.setError);
       } else if (result.message) {
         toast.error(result.message);
       } else {
-        toast.error("Something went wrong");
+        toast.error('Something went wrong');
       }
     }
   };
@@ -147,7 +147,7 @@ export default function CreatePermissionForm() {
             {form.formState.isSubmitting && (
               <Loader2 className="mr-2 size-4 animate-spin" />
             )}
-            {form.formState.isSubmitting ? "Creating..." : "Create"}
+            {form.formState.isSubmitting ? 'Creating...' : 'Create'}
           </Button>
           <Button
             size="sm"

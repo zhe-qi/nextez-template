@@ -1,22 +1,22 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { useCopyToClipboard } from "@/lib/hooks/use-copy-to-clipboard";
-import { cn } from "@/lib/utils";
-import { Check, Copy } from "lucide-react";
-import { toast } from "sonner";
-import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+import { Button } from '@/components/ui/button';
+import { useCopyToClipboard } from '@/lib/hooks/use-copy-to-clipboard';
+import { cn } from '@/lib/utils';
+import { Check, Copy } from 'lucide-react';
+import { toast } from 'sonner';
+import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
 
 type IProps = {
   textToCopy: string;
   label?: string;
   successMessage?: string;
-} & React.ComponentProps<"div">;
+} & React.ComponentProps<'div'>;
 
 export function CopyButtonData({
   textToCopy,
-  label = "Copy",
-  successMessage = "Copied to clipboard!",
+  label = 'Copy',
+  successMessage = 'Copied to clipboard!',
   className,
   ...props
 }: IProps) {
@@ -33,14 +33,14 @@ export function CopyButtonData({
         duration: 2000,
       });
     } catch {
-      toast.error("Failed to copy. Please try again.", {
+      toast.error('Failed to copy. Please try again.', {
         duration: 3000,
       });
     }
   };
 
   return (
-    <div className={cn("flex items-center justify-end", className)} {...props}>
+    <div className={cn('flex items-center justify-end', className)} {...props}>
       <Tooltip>
         <TooltipTrigger asChild>
           <Button
@@ -49,11 +49,13 @@ export function CopyButtonData({
             onClick={onCopy}
             aria-label={`Copy ${textToCopy}`}
           >
-            {isCopied ? (
-              <Check className="size-3" />
-            ) : (
-              <Copy className="size-3" />
-            )}
+            {isCopied
+              ? (
+                  <Check className="size-3" />
+                )
+              : (
+                  <Copy className="size-3" />
+                )}
           </Button>
         </TooltipTrigger>
         <TooltipContent>{label}</TooltipContent>

@@ -1,9 +1,9 @@
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
-import BackLinkButton from "./back-link-button";
-import { CopyButtonData } from "./copy-clipboard-button";
-import { Separator } from "./ui/separator";
-import { Skeleton } from "./ui/skeleton";
+import BackLinkButton from './back-link-button';
+import { CopyButtonData } from './copy-clipboard-button';
+import { Separator } from './ui/separator';
+import { Skeleton } from './ui/skeleton';
 
 type PageHeaderProps = {
   title: string;
@@ -25,7 +25,7 @@ export function PageHeader({
   copySuccessMessage,
 }: PageHeaderProps) {
   return (
-    <header className={cn("mb-6", linkBack ? "mt-4" : "mt-14")}>
+    <header className={cn('mb-6', linkBack ? 'mt-4' : 'mt-14')}>
       {linkBack && <BackLinkButton link={linkBack} />}
       <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-x-4 sm:space-y-0">
         <div className="space-y-1">

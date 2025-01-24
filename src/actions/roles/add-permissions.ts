@@ -1,11 +1,11 @@
-"use server";
+'use server';
 
-import type { DataResult } from "@/types/types";
+import type { DataResult } from '@/types/types';
 
-import prismadb from "@/lib/prismadb";
+import prismadb from '@/lib/prismadb';
 
-import { has } from "@/lib/rbac";
-import { revalidatePath } from "next/cache";
+import { has } from '@/lib/rbac';
+import { revalidatePath } from 'next/cache';
 
 type IRole = {
   roleId: number;
@@ -17,10 +17,10 @@ export async function addPermissionsToRoles({
   permissionIds,
 }: IRole): Promise<DataResult<IRole>> {
   try {
-    const isAuthorized = await has({ role: "admin" });
+    const isAuthorized = await has({ role: 'admin' });
 
     if (!isAuthorized) {
-      return { success: false, message: "Unauthorized" };
+      return { success: false, message: 'Unauthorized' };
     }
 
     const currentPermissions = await prismadb.rolePermission.findMany({
@@ -29,19 +29,19 @@ export async function addPermissionsToRoles({
     });
 
     const currentPermissionIds = new Set(
-      currentPermissions.map((permission) => permission.permissionId),
+      currentPermissions.map(permission => permission.permissionId),
     );
     const newPermissionIds = new Set(
-      permissionIds?.map((permissionId) => permissionId) || [],
+      permissionIds?.map(permissionId => permissionId) || [],
     );
     const permissionsToDelete = currentPermissions.filter(
-      (permission) => !newPermissionIds.has(permission.permissionId),
+      permission => !newPermissionIds.has(permission.permissionId),
     );
-    const permissionsToAdd =
-      permissionIds?.filter(
-        (permissionId) => !currentPermissionIds.has(permissionId),
+    const permissionsToAdd
+      = permissionIds?.filter(
+        permissionId => !currentPermissionIds.has(permissionId),
       ) || [];
-    const dataToInsert = permissionsToAdd.map((permissionId) => ({
+    const dataToInsert = permissionsToAdd.map(permissionId => ({
       roleId,
       permissionId,
     }));
@@ -50,7 +50,7 @@ export async function addPermissionsToRoles({
       where: {
         roleId,
         permissionId: {
-          in: permissionsToDelete.map((permission) => permission.permissionId),
+          in: permissionsToDelete.map(permission => permission.permissionId),
         },
       },
     });
@@ -61,7 +61,7 @@ export async function addPermissionsToRoles({
 
     return { success: true };
   } catch (error) {
-    console.error("Error adding permission:", error);
-    return { success: false, message: "Something went wrong" };
+    console.error('Error adding permission:', error);
+    return { success: false, message: 'Something went wrong' };
   }
 }

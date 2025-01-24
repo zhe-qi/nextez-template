@@ -1,6 +1,6 @@
-import { PageHeader } from "@/components/page-header";
+import { PageHeader } from '@/components/page-header';
 
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from '@/components/ui/skeleton';
 
 export default function LoadingCreateRolePage() {
   return (

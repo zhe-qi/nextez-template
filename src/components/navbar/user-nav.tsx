@@ -1,4 +1,4 @@
-import type { Dispatch, JSX, SetStateAction } from "react";
+import type { Dispatch, JSX, SetStateAction } from 'react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,20 +7,20 @@ import {
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from '@/components/ui/dropdown-menu';
 
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
-import { LayoutGrid, LogOut, Settings, User } from "lucide-react";
-import { useSession } from "next-auth/react";
+import { LayoutGrid, LogOut, Settings, User } from 'lucide-react';
+import { useSession } from 'next-auth/react';
 
-import Link from "next/link";
+import Link from 'next/link';
 
-import { usePathname, useRouter } from "next/navigation";
-import React from "react";
+import { usePathname, useRouter } from 'next/navigation';
+import React from 'react';
 
-import { Skeleton } from "../ui/skeleton";
-import UserAvatar from "./user-avatar";
+import { Skeleton } from '../ui/skeleton';
+import UserAvatar from './user-avatar';
 
 type IMenu = {
   name: string;
@@ -31,30 +31,30 @@ type IMenu = {
 };
 const menu: IMenu[] = [
   {
-    name: "My tools",
-    href: "/tools",
+    name: 'My tools',
+    href: '/tools',
     separator: false,
     icon: <LayoutGrid className="mr-2 size-4" aria-hidden="true" />,
   },
   {
-    name: "Profile",
-    href: "/profile",
+    name: 'Profile',
+    href: '/profile',
     separator: false,
-    shortcut: "⇧⌘P",
+    shortcut: '⇧⌘P',
     icon: <User className="mr-2 size-4" aria-hidden="true" />,
   },
   {
-    name: "Settings",
-    href: "/settings",
+    name: 'Settings',
+    href: '/settings',
     separator: false,
-    shortcut: "⇧⌘S",
+    shortcut: '⇧⌘S',
     icon: <Settings className="mr-2 size-4" aria-hidden="true" />,
   },
   {
-    name: "Log out",
-    href: "/auth/logout",
+    name: 'Log out',
+    href: '/auth/logout',
     separator: true,
-    shortcut: "⇧⌘Q",
+    shortcut: '⇧⌘Q',
     icon: <LogOut className="mr-2 size-4" aria-hidden="true" />,
   },
 ];
@@ -68,7 +68,7 @@ export default function UserNav({
   const pathname = usePathname();
   const { data: session, status } = useSession();
 
-  if (status != "authenticated") {
+  if (status != 'authenticated') {
     return (
       <div className="flex items-center">
         <Skeleton className="size-8 gap-x-6 rounded-full" />
@@ -104,7 +104,7 @@ export default function UserNav({
                 <DropdownMenuItem
                   key={`menu_dropdown_${index}`}
                   onClick={() => router.push(item.href)}
-                  className={cn(pathname === item.href && "bg-muted")}
+                  className={cn(pathname === item.href && 'bg-muted')}
                 >
                   {item.icon}
                   {item.name}
@@ -127,8 +127,8 @@ export default function UserNav({
                 href={item.href}
                 onClick={() => setOpenSheet?.(false)}
                 className={cn(
-                  "-mx-3 block px-3 py-2 text-sm font-medium transition-colors hover:text-primary",
-                  pathname != item.href && "text-muted-foreground",
+                  '-mx-3 block px-3 py-2 text-sm font-medium transition-colors hover:text-primary',
+                  pathname != item.href && 'text-muted-foreground',
                 )}
               >
                 <div className="flex items-center">

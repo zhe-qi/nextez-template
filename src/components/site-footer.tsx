@@ -1,8 +1,8 @@
-import { CommandMenu } from "./command-menu";
-import HealthStatusButton from "./health-status-button";
-import Logo from "./logo";
-import MaxWidthWrapper from "./max-width-wrapper";
-import ThemeSwitch from "./theme-switch";
+import { CommandMenu } from './command-menu';
+import HealthStatusButton from './health-status-button';
+import Logo from './logo';
+import MaxWidthWrapper from './max-width-wrapper';
+import ThemeSwitch from './theme-switch';
 
 export function SiteFooter() {
   return (

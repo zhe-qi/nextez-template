@@ -1,4 +1,4 @@
-import { listQuerySchema } from "@/schemas/api";
+import { listQuerySchema } from '@/schemas/api';
 
 export const getPagination = (searchParams: Record<string, string>) => {
   const parsedParams = listQuerySchema.parse(searchParams);

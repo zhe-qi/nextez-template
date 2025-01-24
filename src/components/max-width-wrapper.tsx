@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
 export default function MaxWidthWrapper({
   children,
@@ -8,7 +8,7 @@ export default function MaxWidthWrapper({
   return (
     <div
       className={cn(
-        "container mx-auto max-w-screen-xl px-4 py-6 sm:px-6 lg:px-8",
+        'container mx-auto max-w-screen-xl px-4 py-6 sm:px-6 lg:px-8',
         className,
       )}
       {...props}

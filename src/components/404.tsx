@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import { ArrowLeft } from "lucide-react";
-import Image from "next/image";
+import { ArrowLeft } from 'lucide-react';
+import Image from 'next/image';
 
-import Link from "next/link";
+import Link from 'next/link';
 
-import React from "react";
+import React from 'react';
 
-import Logo from "./logo";
-import MaxWidthWrapper from "./max-width-wrapper";
-import { Button } from "./ui/button";
+import Logo from './logo';
+import MaxWidthWrapper from './max-width-wrapper';
+import { Button } from './ui/button';
 
 export default function NotFound404({
   message,

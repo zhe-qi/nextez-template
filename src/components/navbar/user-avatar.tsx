@@ -1,6 +1,6 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
-import { useSession } from "next-auth/react";
+import { useSession } from 'next-auth/react';
 
 export default function UserAvatar() {
   const { data: session } = useSession();

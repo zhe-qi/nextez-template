@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import type { Role, UserRole } from "@prisma/client";
+import type { Role, UserRole } from '@prisma/client';
 
-import type { ColumnDef } from "@tanstack/react-table";
-import { DataTableColumnHeader } from "@/components/ui/data-tables/data-table-column-header";
+import type { ColumnDef } from '@tanstack/react-table';
+import { DataTableColumnHeader } from '@/components/ui/data-tables/data-table-column-header';
 
-import Link from "next/link";
+import Link from 'next/link';
 
-import CellActions from "./cell-actions";
+import CellActions from './cell-actions';
 
 export type IColumns = {
   role: Role;
@@ -15,8 +15,8 @@ export type IColumns = {
 
 export const columns: ColumnDef<IColumns>[] = [
   {
-    id: "name",
-    accessorKey: "role.name",
+    id: 'name',
+    accessorKey: 'role.name',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Name" disableColumnHide />
     ),
@@ -31,7 +31,7 @@ export const columns: ColumnDef<IColumns>[] = [
     enableGlobalFilter: true,
   },
   {
-    id: "actions",
+    id: 'actions',
     cell: ({ row }) => {
       return <CellActions row={row.original} />;
     },

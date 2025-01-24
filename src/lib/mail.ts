@@ -1,8 +1,8 @@
-"use server";
+'use server';
 
-import type SMTPTransport from "nodemailer/lib/smtp-transport";
-import { env } from "@/env";
-import nodemailer from "nodemailer";
+import type SMTPTransport from 'nodemailer/lib/smtp-transport';
+import { env } from '@/env';
+import nodemailer from 'nodemailer';
 
 export async function sendMail(toEmail: string, subject: string, html: string) {
   const transporter = nodemailer.createTransport({

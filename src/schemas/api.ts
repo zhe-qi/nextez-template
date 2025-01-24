@@ -1,5 +1,5 @@
-import { z } from "zod";
-import { extendZodWithOpenApi } from "zod-openapi";
+import { z } from 'zod';
+import { extendZodWithOpenApi } from 'zod-openapi';
 
 extendZodWithOpenApi(z);
 
@@ -13,62 +13,62 @@ export const listQuerySchema = z.object({
     .number()
     .min(DEFAULT_PAGE, `The page must be at least ${DEFAULT_PAGE}.`)
     .default(DEFAULT_PAGE)
-    .describe("Page number for pagination.")
+    .describe('Page number for pagination.')
     .openapi({
       default: DEFAULT_PAGE,
-      type: "integer",
+      type: 'integer',
     }),
   limit: z.coerce
     .number()
     .min(MIN_LIMIT, `The limit must be at least ${MIN_LIMIT}.`)
     .max(MAX_LIMIT, `The limit must be at most ${MAX_LIMIT}.`)
     .default(DEFAULT_LIMIT)
-    .describe("Number of items per page for pagination.")
+    .describe('Number of items per page for pagination.')
     .openapi({
       default: DEFAULT_LIMIT,
-      type: "integer",
+      type: 'integer',
       maximum: MAX_LIMIT,
       minimum: MIN_LIMIT,
-      title: "Limit",
+      title: 'Limit',
     }),
   q: z
     .string()
     .optional()
-    .transform((val) => val?.trim() || undefined)
-    .describe("Search term to filter results based on various fields."),
+    .transform(val => val?.trim() || undefined)
+    .describe('Search term to filter results based on various fields.'),
   sort: z
     .string()
     .optional()
-    .transform((val) => val?.trim() || undefined)
+    .transform(val => val?.trim() || undefined)
     .describe(
-      "Sort order for the results. Use comma-separated fields with optional '-' for descending order. Example: 'name,-createdAt'.",
+      'Sort order for the results. Use comma-separated fields with optional \'-\' for descending order. Example: \'name,-createdAt\'.',
     )
     .openapi({
       param: {
         examples: {
-          default: {
-            summary: "Default sort",
+          'default': {
+            summary: 'Default sort',
             description:
-              "Applies no specific sort order.Results will be returned in the order they were originally retrieved or stored.",
-            value: "",
+              'Applies no specific sort order.Results will be returned in the order they were originally retrieved or stored.',
+            value: '',
           },
-          asc: {
-            summary: "Ascending order",
+          'asc': {
+            summary: 'Ascending order',
             description:
-              "Sorts the results in ascending order based on the specified field.",
-            value: "id",
+              'Sorts the results in ascending order based on the specified field.',
+            value: 'id',
           },
-          desc: {
-            summary: "Descending order",
+          'desc': {
+            summary: 'Descending order',
             description:
-              "Sorts the results in descending order based on the specified field.The symbol '-' is used before the field name to indicate descending order.",
-            value: "-id",
+              'Sorts the results in descending order based on the specified field.The symbol \'-\' is used before the field name to indicate descending order.',
+            value: '-id',
           },
-          "multiple fields": {
-            summary: "Multiple fields sorting",
+          'multiple fields': {
+            summary: 'Multiple fields sorting',
             description:
-              "Sorts the results based on multiple fields.Separate field names by commas, and use '-' before a field name to specify descending order for that field.",
-            value: "field_1,-field_2",
+              'Sorts the results based on multiple fields.Separate field names by commas, and use \'-\' before a field name to specify descending order for that field.',
+            value: 'field_1,-field_2',
           },
         },
       },

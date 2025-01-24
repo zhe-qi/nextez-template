@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { cn } from "@/lib/utils";
-import { useMotionValueEvent, useScroll } from "motion/react";
-import { useTranslations } from "next-intl";
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { cn } from '@/lib/utils';
+import { useMotionValueEvent, useScroll } from 'motion/react';
+import { useTranslations } from 'next-intl';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useMemo, useState } from 'react';
 
 export default function Logo({
   disableScale,
@@ -14,7 +14,7 @@ export default function Logo({
   disableScale?: boolean;
   disableName?: boolean;
 }) {
-  const t = useTranslations("RootLayout");
+  const t = useTranslations('RootLayout');
 
   const { scrollY } = useScroll();
   const [y, setY] = useState(0);
@@ -26,12 +26,12 @@ export default function Logo({
     if (!mounted) {
       setMounted(true);
     } else {
-      const isNavTabsUsed = document.querySelector("#nav-tabs") !== null;
+      const isNavTabsUsed = document.querySelector('#nav-tabs') !== null;
       setShowStickyNav(!isNavTabsUsed);
     }
   }, [mounted]);
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
+  useMotionValueEvent(scrollY, 'change', (latest) => {
     setY(latest);
   });
 
@@ -43,8 +43,8 @@ export default function Logo({
     outMax: number,
   ) => {
     const mappedValue = useMemo(() => {
-      const newValue =
-        ((num - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
+      const newValue
+        = ((num - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
       const largest = Math.max(outMin, outMax);
       const smallest = Math.min(outMin, outMax);
       return Math.min(Math.max(newValue, smallest), largest);
@@ -68,8 +68,8 @@ export default function Logo({
             width={size}
             height={size}
             className={cn(
-              "z-50 block dark:hidden",
-              !disableScale && "fixed left-6 top-3",
+              'z-50 block dark:hidden',
+              !disableScale && 'fixed left-6 top-3',
             )}
             style={{
               width: `${size * logoScale}px`,
@@ -84,8 +84,8 @@ export default function Logo({
             width={size}
             height={size}
             className={cn(
-              "z-50 hidden dark:block",
-              !disableScale && "fixed left-6 top-3",
+              'z-50 hidden dark:block',
+              !disableScale && 'fixed left-6 top-3',
             )}
             style={{
               width: `${size * logoScale}px`,
@@ -94,15 +94,15 @@ export default function Logo({
               }px)`,
             }}
           />
-          <span className="sr-only">{t("title")}</span>
+          <span className="sr-only">{t('title')}</span>
           {!disableName && (
             <p
               className={cn(
-                "hidden pl-12 font-bold text-primary antialiased sm:text-sm md:block md:text-2xl lg:text-2xl",
-                disableScale && "pl-3",
+                'hidden pl-12 font-bold text-primary antialiased sm:text-sm md:block md:text-2xl lg:text-2xl',
+                disableScale && 'pl-3',
               )}
             >
-              {t("title")}
+              {t('title')}
             </p>
           )}
         </div>

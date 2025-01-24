@@ -1,18 +1,18 @@
-import { PageHeader } from "@/components/page-header";
+import { PageHeader } from '@/components/page-header';
 
-import { getToolById } from "@/data/tools";
+import { getToolById } from '@/data/tools';
 
-import { protectPage } from "@/lib/rbac";
+import { protectPage } from '@/lib/rbac';
 
-import { notFound } from "next/navigation";
+import { notFound } from 'next/navigation';
 
-import DeleteToolButton from "../_components/delete-tool-button";
-import ToolForm from "../_components/tool-form";
+import DeleteToolButton from '../_components/delete-tool-button';
+import ToolForm from '../_components/tool-form';
 
 type Params = Promise<{ toolId: number }>;
 
 export default async function EditToolPage(props: { params: Params }) {
-  await protectPage({ permission: "admin:all" });
+  await protectPage({ permission: 'admin:all' });
 
   const params = await props.params;
   const id = Number(params.toolId);

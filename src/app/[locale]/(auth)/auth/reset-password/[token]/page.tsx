@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import type { z } from "zod";
-import AuthTemplate from "@/components/auth/auth-template";
+import type { z } from 'zod';
+import AuthTemplate from '@/components/auth/auth-template';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 
 import {
   Form,
@@ -12,19 +12,19 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { resetPasswordSchema } from "@/schemas/auth";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2 } from "lucide-react";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { resetPasswordSchema } from '@/schemas/auth';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Loader2 } from 'lucide-react';
 
-import Link from "next/link";
+import Link from 'next/link';
 
-import { useRouter } from "next/navigation";
-import { use } from "react";
-import { useForm } from "react-hook-form";
+import { useRouter } from 'next/navigation';
+import { use } from 'react';
+import { useForm } from 'react-hook-form';
 
-import { toast } from "sonner";
+import { toast } from 'sonner';
 
 type FormData = z.infer<typeof resetPasswordSchema>;
 
@@ -37,8 +37,8 @@ export default function ResetPasswordTokenPage(props: { params: Params }) {
 
   const form = useForm<FormData>({
     defaultValues: {
-      password: "",
-      confirmPassword: "",
+      password: '',
+      confirmPassword: '',
     },
     resolver: zodResolver(resetPasswordSchema),
   });
@@ -46,27 +46,27 @@ export default function ResetPasswordTokenPage(props: { params: Params }) {
   const onSubmit = async (data: FormData) => {
     try {
       const response = await fetch(`/api/auth/reset-password/${params.token}`, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
       });
 
       if (!response.ok) {
         if (response.status === 401) {
-          router.push("/auth/reset-password");
+          router.push('/auth/reset-password');
           const errorData = await response.json();
           toast.error(errorData.message);
           return;
         }
-        throw new Error("请求失败");
+        throw new Error('请求失败');
       }
 
-      toast.success("Password updated");
-      router.push("/auth/login");
+      toast.success('Password updated');
+      router.push('/auth/login');
     } catch {
-      toast.error("Something went wrong");
+      toast.error('Something went wrong');
     }
   };
 

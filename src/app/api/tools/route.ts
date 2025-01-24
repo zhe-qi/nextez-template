@@ -1,8 +1,8 @@
-import { getCurrentUser } from "@/actions/users/get-current-user";
+import { getCurrentUser } from '@/actions/users/get-current-user';
 
-import { getUserTools } from "@/data/user";
+import { getUserTools } from '@/data/user';
 
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 
 export async function GET() {
   const currentUser = await getCurrentUser();
@@ -13,5 +13,5 @@ export async function GET() {
     return NextResponse.json(data, { status: 200 });
   }
 
-  return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+  return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
 }

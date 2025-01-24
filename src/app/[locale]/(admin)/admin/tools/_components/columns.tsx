@@ -1,26 +1,26 @@
-"use client";
+'use client';
 
-import type { Tool } from "@prisma/client";
+import type { Tool } from '@prisma/client';
 
-import type { ColumnDef } from "@tanstack/react-table";
-import { DataTableColumnHeader } from "@/components/ui/data-tables/data-table-column-header";
-import { format } from "date-fns";
+import type { ColumnDef } from '@tanstack/react-table';
+import { DataTableColumnHeader } from '@/components/ui/data-tables/data-table-column-header';
+import { format } from 'date-fns';
 
-import Link from "next/link";
+import Link from 'next/link';
 
-import CellActions from "./cell-actions";
+import CellActions from './cell-actions';
 
 export type IColumns = {} & Tool;
 
 export const columns: ColumnDef<IColumns>[] = [
   {
-    id: "ID",
-    accessorKey: "id",
+    id: 'ID',
+    accessorKey: 'id',
     header: ({ column }) => <DataTableColumnHeader column={column} title="#" />,
     enableGlobalFilter: true,
   },
   {
-    accessorKey: "name",
+    accessorKey: 'name',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Name" />
     ),
@@ -35,26 +35,26 @@ export const columns: ColumnDef<IColumns>[] = [
     enableGlobalFilter: true,
   },
   {
-    accessorKey: "description",
+    accessorKey: 'description',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Description" />
     ),
     enableGlobalFilter: true,
   },
   {
-    id: "Created At",
-    accessorKey: "createdAt",
+    id: 'Created At',
+    accessorKey: 'createdAt',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Created At" />
     ),
     cell: ({ row }) => {
       const formattedDate = format(
         new Date(row.original.createdAt),
-        "dd-MM-yyyy",
+        'dd-MM-yyyy',
       );
       const formattedTime = format(
         new Date(row.original.createdAt),
-        "HH:mm:ss",
+        'HH:mm:ss',
       );
 
       return (
@@ -66,19 +66,19 @@ export const columns: ColumnDef<IColumns>[] = [
     },
   },
   {
-    id: "Updated At",
-    accessorKey: "updatedAt",
+    id: 'Updated At',
+    accessorKey: 'updatedAt',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Updated At" />
     ),
     cell: ({ row }) => {
       const formattedDate = format(
         new Date(row.original.updatedAt),
-        "dd-MM-yyyy",
+        'dd-MM-yyyy',
       );
       const formattedTime = format(
         new Date(row.original.updatedAt),
-        "HH:mm:ss",
+        'HH:mm:ss',
       );
 
       return (
@@ -90,7 +90,7 @@ export const columns: ColumnDef<IColumns>[] = [
     },
   },
   {
-    id: "actions",
+    id: 'actions',
     cell: ({ row }) => {
       return <CellActions row={row.original} />;
     },

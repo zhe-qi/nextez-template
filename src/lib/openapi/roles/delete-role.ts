@@ -1,62 +1,62 @@
-import type { ZodOpenApiOperationObject } from "zod-openapi";
+import type { ZodOpenApiOperationObject } from 'zod-openapi';
 
-import { rolePathParamSchema } from "@/schemas/roles";
+import { rolePathParamSchema } from '@/schemas/roles';
 import {
   badRequestErrorSchema,
   internalServerErrorSchema,
   notFoundErrorSchema,
   unauthorizedErrorSchema,
-} from "../responses";
+} from '../responses';
 
 export const deleteRole: ZodOpenApiOperationObject = {
-  operationId: "deleteRole",
-  summary: "Delete a role by ID",
+  operationId: 'deleteRole',
+  summary: 'Delete a role by ID',
   description:
-    "Deletes a specific role from the system. Ensure the provided role ID exists. Deleting a role will remove it from all associated roles and users, potentially affecting access controls.",
+    'Deletes a specific role from the system. Ensure the provided role ID exists. Deleting a role will remove it from all associated roles and users, potentially affecting access controls.',
   requestParams: { path: rolePathParamSchema },
   responses: {
     204: {
-      description: "Role deleted",
+      description: 'Role deleted',
     },
     400: {
-      description: "Bad Request",
+      description: 'Bad Request',
       content: {
-        "application/json": {
+        'application/json': {
           schema: badRequestErrorSchema,
           example: {
-            message: "Invalid ID supplied",
+            message: 'Invalid ID supplied',
           },
         },
       },
     },
     401: {
-      description: "Unauthorized Error",
+      description: 'Unauthorized Error',
       content: {
-        "application/json": {
+        'application/json': {
           schema: unauthorizedErrorSchema,
         },
       },
     },
     404: {
-      description: "Not Found",
+      description: 'Not Found',
       content: {
-        "application/json": {
+        'application/json': {
           schema: notFoundErrorSchema,
           example: {
-            message: "Role not found.",
+            message: 'Role not found.',
           },
         },
       },
     },
     500: {
-      description: "Internal Server Error",
+      description: 'Internal Server Error',
       content: {
-        "application/json": {
+        'application/json': {
           schema: internalServerErrorSchema,
         },
       },
     },
   },
-  tags: ["Roles"],
+  tags: ['Roles'],
   security: [{ BearerAuth: [] }],
 };

@@ -1,25 +1,25 @@
-import { auth } from "@/auth";
+import { auth } from '@/auth';
 
-import TableLoading from "@/components/admin/table-loading";
+import TableLoading from '@/components/admin/table-loading';
 
-import { PageHeader } from "@/components/page-header";
+import { PageHeader } from '@/components/page-header';
 
-import { protectPage } from "@/lib/rbac";
+import { protectPage } from '@/lib/rbac';
 
-import { redirect } from "next/navigation";
-import { Suspense } from "react";
+import { redirect } from 'next/navigation';
+import { Suspense } from 'react';
 
-import CreateRoleButton from "./_components/create-role-button";
-import RolesTable from "./_components/roles-table";
+import CreateRoleButton from './_components/create-role-button';
+import RolesTable from './_components/roles-table';
 
 export default async function RolesAdminPage() {
   const session = await auth();
 
   if (!session) {
-    redirect("/auth/login?callbackUrl=/admin/roles");
+    redirect('/auth/login?callbackUrl=/admin/roles');
   }
 
-  await protectPage({ permission: "admin:all" });
+  await protectPage({ permission: 'admin:all' });
 
   return (
     <>

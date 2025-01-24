@@ -1,6 +1,6 @@
-import type { DataResult } from "@/types/types";
+import type { DataResult } from '@/types/types';
 
-import type { z } from "zod";
+import type { z } from 'zod';
 
 export const validateSchemaAction = <T>(
   schema: z.Schema<T>,
@@ -10,7 +10,7 @@ export const validateSchemaAction = <T>(
     const validationResult = schema.safeParse(data);
     if (!validationResult.success) {
       const errorsValidation = validationResult.error.flatten()
-        .fieldErrors as DataResult<T>["errors"];
+        .fieldErrors as DataResult<T>['errors'];
       return { success: false, errors: errorsValidation };
     }
     return handler(data);

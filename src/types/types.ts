@@ -8,7 +8,7 @@ export type DataResult<T> = {
 export type NavItem = {
   title: string;
   href: string;
-  type: "parent" | "child";
+  type: 'parent' | 'child';
 };
 
 export type ITool = {

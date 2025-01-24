@@ -1,18 +1,18 @@
-import { ApiError, getIdInputOrThrow, parseRequestBody } from "@/lib/api";
+import { ApiError, getIdInputOrThrow, parseRequestBody } from '@/lib/api';
 
-import { withAdmin } from "@/lib/auth";
-import prismadb from "@/lib/prismadb";
+import { withAdmin } from '@/lib/auth';
+import prismadb from '@/lib/prismadb';
 
-import { getZodSchemaFields } from "@/lib/zod/utils";
+import { getZodSchemaFields } from '@/lib/zod/utils';
 import {
   userOutputSchema,
   userUpdatePartialSchema,
   userUpdateSchema,
-} from "@/schemas/users";
-import { Prisma } from "@prisma/client";
-import { NextResponse } from "next/server";
+} from '@/schemas/users';
+import { Prisma } from '@prisma/client';
+import { NextResponse } from 'next/server';
 
-import { ZodError } from "zod";
+import { ZodError } from 'zod';
 
 const outputFields = getZodSchemaFields(userOutputSchema);
 
@@ -21,7 +21,7 @@ export const GET = withAdmin(async ({ context }) => {
     const { userId } = context.params;
 
     if (!userId) {
-      throw new ApiError({ message: "User ID is required", code: 400 });
+      throw new ApiError({ message: 'User ID is required', code: 400 });
     }
 
     const id: number = getIdInputOrThrow(userId);
@@ -33,7 +33,7 @@ export const GET = withAdmin(async ({ context }) => {
 
     return NextResponse.json(user, { status: 200 });
   } catch (error) {
-    console.error("Error:", error);
+    console.error('Error:', error);
     if (error instanceof ApiError) {
       return NextResponse.json(
         { message: error.message },
@@ -41,15 +41,15 @@ export const GET = withAdmin(async ({ context }) => {
       );
     }
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      if (error.code === "P2025") {
+      if (error.code === 'P2025') {
         return NextResponse.json(
-          { message: "User not found" },
+          { message: 'User not found' },
           { status: 404 },
         );
       }
     }
     return NextResponse.json(
-      { message: "Internal Server Error" },
+      { message: 'Internal Server Error' },
       { status: 500 },
     );
   }
@@ -60,7 +60,7 @@ export const DELETE = withAdmin(async ({ context }) => {
     const { userId } = context.params;
 
     if (!userId) {
-      throw new ApiError({ message: "User ID is required", code: 400 });
+      throw new ApiError({ message: 'User ID is required', code: 400 });
     }
 
     const id: number = getIdInputOrThrow(userId);
@@ -71,7 +71,7 @@ export const DELETE = withAdmin(async ({ context }) => {
 
     return new NextResponse(null, { status: 204 });
   } catch (error) {
-    console.error("Error:", error);
+    console.error('Error:', error);
     if (error instanceof ApiError) {
       return NextResponse.json(
         { message: error.message },
@@ -79,15 +79,15 @@ export const DELETE = withAdmin(async ({ context }) => {
       );
     }
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      if (error.code === "P2025") {
+      if (error.code === 'P2025') {
         return NextResponse.json(
-          { message: "User not found" },
+          { message: 'User not found' },
           { status: 404 },
         );
       }
     }
     return NextResponse.json(
-      { message: "Internal Server Error" },
+      { message: 'Internal Server Error' },
       { status: 500 },
     );
   }
@@ -99,11 +99,11 @@ export const PUT = withAdmin(async ({ req, context }) => {
     const { userId } = context.params;
 
     if (!userId) {
-      throw new ApiError({ message: "User ID is required", code: 400 });
+      throw new ApiError({ message: 'User ID is required', code: 400 });
     }
 
     const id: number = getIdInputOrThrow(userId);
-    const isPartial = req.method === "PATCH";
+    const isPartial = req.method === 'PATCH';
 
     const schema = isPartial ? userUpdatePartialSchema : userUpdateSchema;
 
@@ -119,7 +119,7 @@ export const PUT = withAdmin(async ({ req, context }) => {
 
     return NextResponse.json(updatedUser, { status: 200 });
   } catch (error) {
-    console.error("Error:", error);
+    console.error('Error:', error);
     if (error instanceof ApiError) {
       return NextResponse.json(
         { message: error.message },
@@ -131,35 +131,35 @@ export const PUT = withAdmin(async ({ req, context }) => {
       return NextResponse.json({ errors: errorsValidation }, { status: 422 });
     }
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      if (error.code === "P2002" && error.meta) {
+      if (error.code === 'P2002' && error.meta) {
         const meta = error.meta as { target?: string[] };
         const target = meta.target;
-        if (target && target[0] === "email") {
+        if (target && target[0] === 'email') {
           return NextResponse.json(
             {
-              message: "A user with that email already exists.",
+              message: 'A user with that email already exists.',
             },
             { status: 409 },
           );
         }
-        if (target && target[0] === "username") {
+        if (target && target[0] === 'username') {
           return NextResponse.json(
             {
-              message: "A user with that username already exists.",
+              message: 'A user with that username already exists.',
             },
             { status: 409 },
           );
         }
       }
-      if (error.code === "P2025") {
+      if (error.code === 'P2025') {
         return NextResponse.json(
-          { message: "User not found" },
+          { message: 'User not found' },
           { status: 404 },
         );
       }
     }
     return NextResponse.json(
-      { message: "Internal Server Error" },
+      { message: 'Internal Server Error' },
       { status: 500 },
     );
   }

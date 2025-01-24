@@ -1,8 +1,8 @@
-import type { IColumns } from "./columns";
+import type { IColumns } from './columns';
 
-import { removeUser } from "@/actions/roles";
+import { removeUser } from '@/actions/roles';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -11,7 +11,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 
 import {
   DropdownMenu,
@@ -20,13 +20,13 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from '@/components/ui/dropdown-menu';
 
-import { Loader2, MoreHorizontal } from "lucide-react";
-import { useRouter } from "next/navigation";
-import React, { useState, useTransition } from "react";
+import { Loader2, MoreHorizontal } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import React, { useState, useTransition } from 'react';
 
-import { toast } from "sonner";
+import { toast } from 'sonner';
 
 export default function CellActions({ row }: { row: IColumns }) {
   const router = useRouter();
@@ -42,7 +42,7 @@ export default function CellActions({ row }: { row: IColumns }) {
       const result = await removeUser({ roleId, userId });
       if (result.success) {
         setIsOpen(false);
-        toast.success("User removed successfully!");
+        toast.success('User removed successfully!');
       } else {
         toast.error(result.message);
       }
@@ -83,7 +83,8 @@ export default function CellActions({ row }: { row: IColumns }) {
         <DialogHeader>
           <DialogTitle>Remove user</DialogTitle>
           <DialogDescription>
-            Are you sure to remove this user:{" "}
+            Are you sure to remove this user:
+            {' '}
             <span className="font-bold">{email}</span>
           </DialogDescription>
         </DialogHeader>

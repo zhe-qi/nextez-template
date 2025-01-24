@@ -1,11 +1,11 @@
-import { getUserByEmail } from "@/data/user";
+import { getUserByEmail } from '@/data/user';
 
-import { verifyUserToken } from "@/lib/jwt";
+import { verifyUserToken } from '@/lib/jwt';
 
-import prismadb from "@/lib/prismadb";
-import bcrypt from "bcrypt";
+import prismadb from '@/lib/prismadb';
+import bcrypt from 'bcrypt';
 
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 
 type Params = Promise<{ token: string }>;
 
@@ -21,7 +21,7 @@ export async function POST(req: Request, segmentData: { params: Params }) {
 
     if (!email) {
       return NextResponse.json(
-        { message: "Token is invalid or expired" },
+        { message: 'Token is invalid or expired' },
         { status: 401 },
       );
     }
@@ -30,7 +30,7 @@ export async function POST(req: Request, segmentData: { params: Params }) {
 
     if (!existingUser) {
       return NextResponse.json(
-        { error: "Email does not exists" },
+        { error: 'Email does not exists' },
         { status: 404 },
       );
     }
@@ -45,7 +45,7 @@ export async function POST(req: Request, segmentData: { params: Params }) {
         password: hashedPassword,
       },
     });
-    return NextResponse.json({ message: "Password updated" }, { status: 200 });
+    return NextResponse.json({ message: 'Password updated' }, { status: 200 });
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }

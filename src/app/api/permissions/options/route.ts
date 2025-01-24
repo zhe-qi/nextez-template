@@ -1,8 +1,8 @@
-import { getPermissionOptions } from "@/data/permission";
+import { getPermissionOptions } from '@/data/permission';
 
-import { withAdmin } from "@/lib/auth";
+import { withAdmin } from '@/lib/auth';
 
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 
 /**
  * Handles GET requests to retrieve permission options for a permissions multiple selector in the role page.
@@ -19,9 +19,9 @@ export const GET = withAdmin(async ({ context }) => {
 
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
-    console.error("Error fetching permissions:", error);
+    console.error('Error fetching permissions:', error);
     return NextResponse.json(
-      { message: "Internal Server Error" },
+      { message: 'Internal Server Error' },
       { status: 500 },
     );
   }

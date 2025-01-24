@@ -1,9 +1,9 @@
-import { nanoid } from "nanoid";
-import { hashToken } from "./hash-token";
+import { nanoid } from 'nanoid';
+import { hashToken } from './hash-token';
 
-import "server-only";
+import 'server-only';
 
-const PREFIX_TOKEN = "qrk_";
+const PREFIX_TOKEN = 'qrk_';
 
 type TokenResult = {
   token: string;
@@ -26,7 +26,7 @@ export async function createTokenApi(): Promise<TokenResult> {
 
     return { token, hashedToken, partialToken };
   } catch (error) {
-    console.error("Error creating token:", error);
-    throw new Error("Failed to create token");
+    console.error('Error creating token:', error);
+    throw new Error('Failed to create token');
   }
 }

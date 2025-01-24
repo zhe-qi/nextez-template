@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import type { Dispatch, SetStateAction } from "react";
-import type { z } from "zod";
+import type { Dispatch, SetStateAction } from 'react';
+import type { z } from 'zod';
 
-import { createToken } from "@/actions/tokens";
-import { CopyButtonData } from "@/components/copy-clipboard-button";
-import { Button } from "@/components/ui/button";
+import { createToken } from '@/actions/tokens';
+import { CopyButtonData } from '@/components/copy-clipboard-button';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -13,10 +13,10 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 
-import { Label } from "@/components/ui/label";
+import { Label } from '@/components/ui/label';
 
 import {
   ResponsiveDialog,
@@ -26,7 +26,7 @@ import {
   ResponsiveDialogFooter,
   ResponsiveDialogHeader,
   ResponsiveDialogTitle,
-} from "@/components/ui/responsive-dialog";
+} from '@/components/ui/responsive-dialog';
 
 import {
   Select,
@@ -34,19 +34,19 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from '@/components/ui/select';
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { tokenCreateServerActionSchema } from "@/schemas/tokens";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2, Plus } from "lucide-react";
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+} from '@/components/ui/tooltip';
+import { tokenCreateServerActionSchema } from '@/schemas/tokens';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Loader2, Plus } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 
-import { toast } from "sonner";
+import { toast } from 'sonner';
 
 type FormData = z.infer<typeof tokenCreateServerActionSchema>;
 
@@ -104,11 +104,11 @@ function CreateTokenDialog({
     <ResponsiveDialog open={isOpen} onOpenChange={setIsOpen}>
       <ResponsiveDialogContent
         className="sm:max-w-[425px]"
-        onCloseAutoFocus={(e) => e.preventDefault()}
-        onEscapeKeyDown={token ? (e) => e.preventDefault() : undefined}
-        onPointerDownOutside={token ? (e) => e.preventDefault() : undefined}
-        onPointerDown={token ? (e) => e.preventDefault() : undefined}
-        onInteractOutside={token ? (e) => e.preventDefault() : undefined}
+        onCloseAutoFocus={e => e.preventDefault()}
+        onEscapeKeyDown={token ? e => e.preventDefault() : undefined}
+        onPointerDownOutside={token ? e => e.preventDefault() : undefined}
+        onPointerDown={token ? e => e.preventDefault() : undefined}
+        onInteractOutside={token ? e => e.preventDefault() : undefined}
       >
         <CreateTokenForm
           setIsOpen={setIsOpen}
@@ -134,7 +134,7 @@ function CreateTokenForm({
 
   const form = useForm<FormData>({
     defaultValues: {
-      name: "",
+      name: '',
       userId: undefined,
     },
     resolver: zodResolver(tokenCreateServerActionSchema),
@@ -143,10 +143,10 @@ function CreateTokenForm({
   const onSubmitCreate = async (data: FormData) => {
     const result = await createToken(data);
     if (result.success) {
-      toast.success("Token created successfully!");
+      toast.success('Token created successfully!');
       setToken(result.data?.token!);
     } else {
-      toast.error("Something went wrong");
+      toast.error('Something went wrong');
     }
   };
 
@@ -165,7 +165,7 @@ function CreateTokenForm({
         );
 
         if (!response.ok) {
-          throw new Error("Failed to fetch users");
+          throw new Error('Failed to fetch users');
         }
 
         const fetchedUsers = await response.json();
@@ -181,8 +181,8 @@ function CreateTokenForm({
 
       setUsers(allUsers);
     } catch (error) {
-      console.error("Error fetching users:", error);
-      toast.error("Failed to load users");
+      console.error('Error fetching users:', error);
+      toast.error('Failed to load users');
     } finally {
       setIsLoadingUsers(false);
     }
@@ -194,104 +194,108 @@ function CreateTokenForm({
 
   return (
     <>
-      {token ? (
-        <TokenDisplay token={token} setIsOpen={setIsOpen} />
-      ) : (
-        <>
-          <ResponsiveDialogHeader className="text-left">
-            <ResponsiveDialogTitle>Create token</ResponsiveDialogTitle>
-            <ResponsiveDialogDescription>
-              Create a token access to the API.
-            </ResponsiveDialogDescription>
-          </ResponsiveDialogHeader>
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onSubmitCreate)}
-              className="flex w-full flex-col gap-4 px-4 sm:px-0"
-            >
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Name</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        placeholder=""
-                        autoComplete="no"
-                        disabled={form.formState.isSubmitting}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="userId"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>User</FormLabel>
-                    <Select
-                      onValueChange={(value) => field.onChange(Number(value))}
-                      value={field.value?.toString()}
+      {token
+        ? (
+            <TokenDisplay token={token} setIsOpen={setIsOpen} />
+          )
+        : (
+            <>
+              <ResponsiveDialogHeader className="text-left">
+                <ResponsiveDialogTitle>Create token</ResponsiveDialogTitle>
+                <ResponsiveDialogDescription>
+                  Create a token access to the API.
+                </ResponsiveDialogDescription>
+              </ResponsiveDialogHeader>
+              <Form {...form}>
+                <form
+                  onSubmit={form.handleSubmit(onSubmitCreate)}
+                  className="flex w-full flex-col gap-4 px-4 sm:px-0"
+                >
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Name</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            placeholder=""
+                            autoComplete="no"
+                            disabled={form.formState.isSubmitting}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="userId"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>User</FormLabel>
+                        <Select
+                          onValueChange={value => field.onChange(Number(value))}
+                          value={field.value?.toString()}
+                        >
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select a user" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            {isLoadingUsers
+                              ? (
+                                  <SelectItem key="loading" value="loading" disabled>
+                                    <div className="flex items-center">
+                                      <Loader2 className="mr-2 size-4 animate-spin" />
+                                      <span>Loading users...</span>
+                                    </div>
+                                  </SelectItem>
+                                )
+                              : (
+                                  users.map(user => (
+                                    <SelectItem
+                                      key={user.id}
+                                      value={user.id.toString()}
+                                    >
+                                      {user.email}
+                                    </SelectItem>
+                                  ))
+                                )}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <ResponsiveDialogFooter className="flex flex-col-reverse px-0 pt-0 sm:flex-row">
+                    <Button
+                      variant="outline"
+                      type="button"
+                      onClick={() => {
+                        setIsOpen(false);
+                      }}
                     >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select a user" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {isLoadingUsers ? (
-                          <SelectItem key="loading" value="loading" disabled>
-                            <div className="flex items-center">
-                              <Loader2 className="mr-2 size-4 animate-spin" />
-                              <span>Loading users...</span>
-                            </div>
-                          </SelectItem>
-                        ) : (
-                          users.map((user) => (
-                            <SelectItem
-                              key={user.id}
-                              value={user.id.toString()}
-                            >
-                              {user.email}
-                            </SelectItem>
-                          ))
-                        )}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <ResponsiveDialogFooter className="flex flex-col-reverse px-0 pt-0 sm:flex-row">
-                <Button
-                  variant="outline"
-                  type="button"
-                  onClick={() => {
-                    setIsOpen(false);
-                  }}
-                >
-                  Cancel
-                </Button>
-                <Button
-                  disabled={
-                    form.formState.isSubmitting || !form.formState.isDirty
-                  }
-                  type="submit"
-                >
-                  {form.formState.isSubmitting && (
-                    <Loader2 className="mr-2 size-4 animate-spin" />
-                  )}
-                  {form.formState.isSubmitting ? "Creating..." : "Create"}
-                </Button>
-              </ResponsiveDialogFooter>
-            </form>
-          </Form>
-        </>
-      )}
+                      Cancel
+                    </Button>
+                    <Button
+                      disabled={
+                        form.formState.isSubmitting || !form.formState.isDirty
+                      }
+                      type="submit"
+                    >
+                      {form.formState.isSubmitting && (
+                        <Loader2 className="mr-2 size-4 animate-spin" />
+                      )}
+                      {form.formState.isSubmitting ? 'Creating...' : 'Create'}
+                    </Button>
+                  </ResponsiveDialogFooter>
+                </form>
+              </Form>
+            </>
+          )}
     </>
   );
 }

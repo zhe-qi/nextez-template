@@ -1,8 +1,8 @@
-import prismadb from "@/lib/prismadb";
+import prismadb from '@/lib/prismadb';
 
-import bcrypt from "bcrypt";
+import bcrypt from 'bcrypt';
 
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
   try {
@@ -17,13 +17,13 @@ export async function POST(req: Request) {
     });
 
     if (usernameExists) {
-      errors.push({ message: "Username already exists", field: "username" });
+      errors.push({ message: 'Username already exists', field: 'username' });
     }
 
     const emailExists = await prismadb.user.findUnique({ where: { email } });
 
     if (emailExists) {
-      errors.push({ message: "Email already exists", field: "email" });
+      errors.push({ message: 'Email already exists', field: 'email' });
     }
 
     if (errors.length) {
@@ -42,12 +42,12 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json(
-      { message: "User created successfully" },
+      { message: 'User created successfully' },
       { status: 201 },
     );
   } catch {
     return NextResponse.json(
-      { error: "Something went wrong" },
+      { error: 'Something went wrong' },
       { status: 500 },
     );
   }

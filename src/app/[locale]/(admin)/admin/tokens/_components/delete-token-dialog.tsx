@@ -1,5 +1,5 @@
-import { deleteToken } from "@/actions/tokens";
-import { Button } from "@/components/ui/button";
+import { deleteToken } from '@/actions/tokens';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -7,8 +7,8 @@ import {
   FormField,
   FormItem,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 import {
   ResponsiveDialog,
   ResponsiveDialogClose,
@@ -17,14 +17,14 @@ import {
   ResponsiveDialogFooter,
   ResponsiveDialogHeader,
   ResponsiveDialogTitle,
-} from "@/components/ui/responsive-dialog";
+} from '@/components/ui/responsive-dialog';
 
-import { zodResolver } from "@hookform/resolvers/zod";
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Loader2 } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { z } from "zod";
+import { Loader2 } from 'lucide-react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+import { z } from 'zod';
 
 export default function DeleteTokenDialog({
   tokenId,
@@ -37,25 +37,25 @@ export default function DeleteTokenDialog({
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }) {
-  const PHRASE_DELETE: string = "delete token";
+  const PHRASE_DELETE: string = 'delete token';
 
   const formSchema = z.object({
     confirmString: z.literal(PHRASE_DELETE, {
-      errorMap: () => ({ message: "Incorrect phrase. Please try again." }),
+      errorMap: () => ({ message: 'Incorrect phrase. Please try again.' }),
     }),
   });
 
   type FormData = z.infer<typeof formSchema>;
 
   const form = useForm<FormData>({
-    defaultValues: { confirmString: "" },
+    defaultValues: { confirmString: '' },
     resolver: zodResolver(formSchema),
   });
 
   const onSubmit = async () => {
     const result = await deleteToken(tokenId);
     if (result.success) {
-      toast.success("Token deleted successfully!", { duration: 4000 });
+      toast.success('Token deleted successfully!', { duration: 4000 });
       setIsOpen(false);
     } else {
       toast.error(result.message);
@@ -73,7 +73,7 @@ export default function DeleteTokenDialog({
     <ResponsiveDialog open={isOpen} onOpenChange={handleOpenChange}>
       <ResponsiveDialogContent
         className="sm:max-w-[425px]"
-        onCloseAutoFocus={(e) => e.preventDefault()}
+        onCloseAutoFocus={e => e.preventDefault()}
       >
         <ResponsiveDialogHeader className="text-left">
           <ResponsiveDialogTitle>Delete token?</ResponsiveDialogTitle>
@@ -82,7 +82,9 @@ export default function DeleteTokenDialog({
             the API.
             <br />
             <br />
-            Name: {tokenName}
+            Name:
+            {' '}
+            {tokenName}
           </ResponsiveDialogDescription>
         </ResponsiveDialogHeader>
         <Form {...form}>
@@ -96,7 +98,11 @@ export default function DeleteTokenDialog({
               render={({ field }) => (
                 <FormItem>
                   <FormDescription>
-                    Enter the phrase <b>{PHRASE_DELETE}</b> to continue.
+                    Enter the phrase
+                    {' '}
+                    <b>{PHRASE_DELETE}</b>
+                    {' '}
+                    to continue.
                   </FormDescription>
                   <FormControl>
                     <Input
@@ -125,7 +131,7 @@ export default function DeleteTokenDialog({
                 {form.formState.isSubmitting && (
                   <Loader2 className="mr-2 size-4 animate-spin" />
                 )}
-                {form.formState.isSubmitting ? "Deleting..." : "Delete"}
+                {form.formState.isSubmitting ? 'Deleting...' : 'Delete'}
               </Button>
             </ResponsiveDialogFooter>
           </form>

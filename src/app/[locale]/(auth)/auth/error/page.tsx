@@ -1,26 +1,26 @@
-import Logo from "@/components/logo";
-import MaxWidthWrapper from "@/components/max-width-wrapper";
-import { Button } from "@/components/ui/button";
+import Logo from '@/components/logo';
+import MaxWidthWrapper from '@/components/max-width-wrapper';
+import { Button } from '@/components/ui/button';
 
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft } from 'lucide-react';
 
-import Image from "next/image";
+import Image from 'next/image';
 
-import Link from "next/link";
-import { redirect } from "next/navigation";
+import Link from 'next/link';
+import { redirect } from 'next/navigation';
 
 const errorTypes: { [key: string]: { message: string; img?: string } } = {
   AccessDenied: {
-    message: "Oops! This user account is blocked",
-    img: "calling-help",
+    message: 'Oops! This user account is blocked',
+    img: 'calling-help',
   },
   AccessUnauthorized: {
-    message: "Oops! Access Unauthorized",
-    img: "calling-help",
+    message: 'Oops! Access Unauthorized',
+    img: 'calling-help',
   },
-  ConfirmEmail: { message: "Please confirm your email" },
-  TokenExpired: { message: "Oops! Token expired", img: "crashed-error" },
-  Default: { message: "Something went wrong!", img: "crashed-error" },
+  ConfirmEmail: { message: 'Please confirm your email' },
+  TokenExpired: { message: 'Oops! Token expired', img: 'crashed-error' },
+  Default: { message: 'Something went wrong!', img: 'crashed-error' },
 };
 
 type SearchParams = Promise<{ error: string }>;
@@ -29,13 +29,13 @@ export default async function Error(props: { searchParams: SearchParams }) {
   const searchParams = await props.searchParams;
 
   const errorParam: string | null = searchParams.error;
-  const errorMessage =
-    errorParam && errorTypes[errorParam]
+  const errorMessage
+    = errorParam && errorTypes[errorParam]
       ? errorTypes[errorParam]
       : errorTypes.Default;
 
-  if (errorParam === "ConfirmEmail") {
-    redirect("/auth/confirm");
+  if (errorParam === 'ConfirmEmail') {
+    redirect('/auth/confirm');
   }
 
   return (

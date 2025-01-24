@@ -1,10 +1,10 @@
-"use server";
+'use server';
 
-import { auth } from "@/auth";
+import { auth } from '@/auth';
 
-import prismadb from "@/lib/prismadb";
+import prismadb from '@/lib/prismadb';
 
-import { redirect } from "next/navigation";
+import { redirect } from 'next/navigation';
 
 export async function getCurrentUser(redirectPage?: string) {
   const session = await auth();

@@ -1,10 +1,10 @@
-"use server";
+'use server';
 
-import type { DataResult } from "@/types/types";
+import type { DataResult } from '@/types/types';
 
-import { auth } from "@/auth";
+import { auth } from '@/auth';
 
-import prismadb from "@/lib/prismadb";
+import prismadb from '@/lib/prismadb';
 
 type FormDataUsername = {
   username: string;
@@ -47,7 +47,7 @@ export async function updateUsername({
           } else {
             return {
               success: false,
-              errors: { username: ["Username already exists"] },
+              errors: { username: ['Username already exists'] },
             };
           }
         } else {
@@ -55,7 +55,7 @@ export async function updateUsername({
             success: false,
             errors: {
               username: [
-                "It hasn't been 30 days since the last username update",
+                'It hasn\'t been 30 days since the last username update',
               ],
             },
           };

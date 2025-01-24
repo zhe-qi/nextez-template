@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import type { Tool } from "@prisma/client";
+import type { Tool } from '@prisma/client';
 
-import { addToolsToRoles } from "@/actions/roles/add-tools";
+import { addToolsToRoles } from '@/actions/roles/add-tools';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -13,24 +13,24 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from '@/components/ui/form';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Skeleton } from "@/components/ui/skeleton";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2, Trash } from "lucide-react";
+} from '@/components/ui/select';
+import { Skeleton } from '@/components/ui/skeleton';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Loader2, Trash } from 'lucide-react';
 
-import Link from "next/link";
+import Link from 'next/link';
 
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { z } from "zod";
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+import { z } from 'zod';
 
 const formSchema = z.object({
   toolId: z.string().optional(),
@@ -57,14 +57,14 @@ export default function ToolsSelect({
   });
 
   async function onSubmit(data: FormData) {
-    const toolsIds = data.toolId === "" ? undefined : [Number(data.toolId)];
+    const toolsIds = data.toolId === '' ? undefined : [Number(data.toolId)];
 
     const result = await addToolsToRoles({
       roleId,
       toolsIds,
     });
     if (result.success) {
-      toast.success("Tools updated successfully!");
+      toast.success('Tools updated successfully!');
       form.reset({ toolId: data.toolId }, { keepDirty: false });
     } else {
       toast.error(result.message);
@@ -88,45 +88,47 @@ export default function ToolsSelect({
             <FormItem>
               <FormLabel>Tools</FormLabel>
               <div className="flex items-center justify-between gap-1">
-                {!mounted ? (
-                  <Skeleton className="h-10 w-full" />
-                ) : (
-                  <>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                      value={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue
-                            placeholder="Select a tool"
-                            defaultValue={field.value}
-                          />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {tools.map((tool) => (
-                          <SelectItem key={tool.id} value={String(tool.id)}>
-                            {tool.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    {field.value && (
-                      <Button
-                        type="button"
-                        size="icon"
-                        variant="ghost"
-                        onClick={() => {
-                          form.setValue(field.name, "", { shouldDirty: true });
-                        }}
-                      >
-                        <Trash className="size-4 text-muted-foreground" />
-                      </Button>
+                {!mounted
+                  ? (
+                      <Skeleton className="h-10 w-full" />
+                    )
+                  : (
+                      <>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                          value={field.value}
+                        >
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue
+                                placeholder="Select a tool"
+                                defaultValue={field.value}
+                              />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            {tools.map(tool => (
+                              <SelectItem key={tool.id} value={String(tool.id)}>
+                                {tool.name}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        {field.value && (
+                          <Button
+                            type="button"
+                            size="icon"
+                            variant="ghost"
+                            onClick={() => {
+                              form.setValue(field.name, '', { shouldDirty: true });
+                            }}
+                          >
+                            <Trash className="size-4 text-muted-foreground" />
+                          </Button>
+                        )}
+                      </>
                     )}
-                  </>
-                )}
               </div>
               <FormDescription>
                 Can you assign the role to a specific tool, or would you prefer

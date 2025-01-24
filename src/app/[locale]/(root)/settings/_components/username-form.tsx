@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { updateUsername } from "@/actions/users/update-username";
-import { Button } from "@/components/ui/button";
+import { updateUsername } from '@/actions/users/update-username';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -9,24 +9,24 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 
-import { addServerErrors } from "@/lib/utils";
+import { addServerErrors } from '@/lib/utils';
 
-import { zodResolver } from "@hookform/resolvers/zod";
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Loader2 } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { z } from "zod";
+import { Loader2 } from 'lucide-react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+import { z } from 'zod';
 
 const formSchema = z.object({
   username: z.string().trim().min(1).max(60),
@@ -46,12 +46,12 @@ export default function UsernameForm({ username }: { username: string }) {
     const result = await updateUsername(data);
     if (result.success) {
       form.reset({ username: data.username });
-      toast.success("Username update succesfully!");
+      toast.success('Username update succesfully!');
     } else {
       if (result.errors) {
         addServerErrors(result.errors, form.setError);
       } else {
-        toast.error("Something went wrong");
+        toast.error('Something went wrong');
       }
     }
   };

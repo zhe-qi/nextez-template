@@ -1,9 +1,9 @@
-import Logo from "@/components/logo";
+import Logo from '@/components/logo';
 
-import MaxWidthWrapper from "@/components/max-width-wrapper";
+import MaxWidthWrapper from '@/components/max-width-wrapper';
 
-import { Loader2 } from "lucide-react";
-import Image from "next/image";
+import { Loader2 } from 'lucide-react';
+import Image from 'next/image';
 
 export default function LoadingChangeEmail() {
   return (

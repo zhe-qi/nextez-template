@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import type { ITool } from "@/types/types";
+import type { ITool } from '@/types/types';
 import {
   AddFavTool,
   RemoveFavTool,
-} from "@/actions/users/update-tool-favorite";
-import { useOptimistic, useTransition } from "react";
-import { toast } from "sonner";
-import FavoritesSection from "./favorites-section";
-import GridCard from "./grid-card";
-import ListCard from "./list-card";
+} from '@/actions/users/update-tool-favorite';
+import { useOptimistic, useTransition } from 'react';
+import { toast } from 'sonner';
+import FavoritesSection from './favorites-section';
+import GridCard from './grid-card';
+import ListCard from './list-card';
 
 export default function ToolsCards({
   tools,
@@ -25,7 +25,7 @@ export default function ToolsCards({
   const [optimisticFavorites, addOptimisticFavorite] = useOptimistic(
     favorites || [],
     (state: ITool[], newTool: ITool) => {
-      const oldValues = state.filter((tool) => tool.id != newTool.id);
+      const oldValues = state.filter(tool => tool.id != newTool.id);
       if (newTool.isFavorite) {
         const newState = [...oldValues, newTool].sort((a, b) => a.id - b.id);
         return newState;
@@ -38,7 +38,7 @@ export default function ToolsCards({
   const [optimisticTools, addOptimisticTool] = useOptimistic(
     tools || [],
     (state: ITool[], newTool: ITool) => {
-      const newState = state.map((tool) =>
+      const newState = state.map(tool =>
         tool.id === newTool.id ? newTool : tool,
       );
       return newState;
@@ -66,35 +66,37 @@ export default function ToolsCards({
 
   return (
     <>
-      {optimisticFavorites.length > 0 ? (
-        <FavoritesSection
-          favorites={optimisticFavorites}
-          view={view}
-          handleFavorite={handleFavorite}
-        />
-      ) : null}
-      {view === "grid" && (
+      {optimisticFavorites.length > 0
+        ? (
+            <FavoritesSection
+              favorites={optimisticFavorites}
+              view={view}
+              handleFavorite={handleFavorite}
+            />
+          )
+        : null}
+      {view === 'grid' && (
         <div className="my-6 grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-3">
-          {optimisticTools &&
-            optimisticTools.map((tool) => (
-              <GridCard
-                key={`grid_${tool.id}`}
-                tool={tool}
-                handleFavorite={handleFavorite}
-              />
-            ))}
+          {optimisticTools
+          && optimisticTools.map(tool => (
+            <GridCard
+              key={`grid_${tool.id}`}
+              tool={tool}
+              handleFavorite={handleFavorite}
+            />
+          ))}
         </div>
       )}
-      {view === "list" && (
+      {view === 'list' && (
         <div className="my-6 grid gap-5">
-          {optimisticTools &&
-            optimisticTools.map((tool) => (
-              <ListCard
-                key={`list_${tool.id}`}
-                tool={tool}
-                handleFavorite={handleFavorite}
-              />
-            ))}
+          {optimisticTools
+          && optimisticTools.map(tool => (
+            <ListCard
+              key={`list_${tool.id}`}
+              tool={tool}
+              handleFavorite={handleFavorite}
+            />
+          ))}
         </div>
       )}
     </>

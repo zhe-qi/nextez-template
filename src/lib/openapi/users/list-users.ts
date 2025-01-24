@@ -1,43 +1,43 @@
-import type { ZodOpenApiOperationObject } from "zod-openapi";
-import { userListQuerySchema, userOutputSchema } from "@/schemas/users";
+import type { ZodOpenApiOperationObject } from 'zod-openapi';
+import { userListQuerySchema, userOutputSchema } from '@/schemas/users';
 
-import { z } from "zod";
+import { z } from 'zod';
 
 import {
   internalServerErrorSchema,
   unauthorizedErrorSchema,
-} from "../responses";
+} from '../responses';
 
 export const listUsers: ZodOpenApiOperationObject = {
-  operationId: "listUsers",
-  summary: "List users",
+  operationId: 'listUsers',
+  summary: 'List users',
   description:
-    "Retrieve a list of users with optional pagination, search, and sorting capabilities.",
+    'Retrieve a list of users with optional pagination, search, and sorting capabilities.',
   requestParams: {
     query: userListQuerySchema,
   },
   responses: {
     200: {
-      description: "List Users",
-      content: { "application/json": { schema: z.array(userOutputSchema) } },
+      description: 'List Users',
+      content: { 'application/json': { schema: z.array(userOutputSchema) } },
     },
     401: {
-      description: "Unauthorized Error",
+      description: 'Unauthorized Error',
       content: {
-        "application/json": {
+        'application/json': {
           schema: unauthorizedErrorSchema,
         },
       },
     },
     500: {
-      description: "Internal Server Error",
+      description: 'Internal Server Error',
       content: {
-        "application/json": {
+        'application/json': {
           schema: internalServerErrorSchema,
         },
       },
     },
   },
-  tags: ["Users"],
+  tags: ['Users'],
   security: [{ BearerAuth: [] }],
 };

@@ -1,25 +1,25 @@
-"use server";
+'use server';
 
-import type { DataResult } from "@/types/types";
+import type { DataResult } from '@/types/types';
 
-import type { z } from "zod";
+import type { z } from 'zod';
 
-import prismadb from "@/lib/prismadb";
+import prismadb from '@/lib/prismadb';
 
-import { has } from "@/lib/rbac";
-import { validateSchemaAction } from "@/lib/validate-schema-action";
-import { tokenUpdateServerActionSchema } from "@/schemas/tokens";
+import { has } from '@/lib/rbac';
+import { validateSchemaAction } from '@/lib/validate-schema-action';
+import { tokenUpdateServerActionSchema } from '@/schemas/tokens';
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath } from 'next/cache';
 
 type FormData = z.infer<typeof tokenUpdateServerActionSchema>;
 
 async function handler(formData: FormData): Promise<DataResult<FormData>> {
   try {
-    const isAuthorized = await has({ role: "admin" });
+    const isAuthorized = await has({ role: 'admin' });
 
     if (!isAuthorized) {
-      return { success: false, message: "Unauthorized" };
+      return { success: false, message: 'Unauthorized' };
     }
 
     const { id, name } = formData;
@@ -30,8 +30,8 @@ async function handler(formData: FormData): Promise<DataResult<FormData>> {
 
     return { success: true };
   } catch (error) {
-    console.error("Error editing token:", error);
-    return { success: false, message: "Something went wrong" };
+    console.error('Error editing token:', error);
+    return { success: false, message: 'Something went wrong' };
   }
 }
 

@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 
-import { Input } from "@/components/ui/input";
+import { Input } from '@/components/ui/input';
 
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Loader2, SearchIcon, XCircleIcon } from "lucide-react";
+} from '@/components/ui/tooltip';
+import { Loader2, SearchIcon, XCircleIcon } from 'lucide-react';
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useRef, useTransition } from "react";
-import { useDebouncedCallback } from "use-debounce";
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useRef, useTransition } from 'react';
+import { useDebouncedCallback } from 'use-debounce';
 
 type DataTableFilterProps = {
   searchField: string;
@@ -34,10 +34,10 @@ export function DataTableFiltersSSR({
     startTransition(() => {
       const params = new URLSearchParams(searchParams);
       if (query) {
-        params.set("q", query);
-        params.delete("page");
+        params.set('q', query);
+        params.delete('page');
       } else {
-        params.delete("q");
+        params.delete('q');
       }
       replace(`${pathname}?${params.toString()}`);
     });
@@ -45,19 +45,21 @@ export function DataTableFiltersSSR({
 
   const handleClearInput = () => {
     if (inputRef.current) {
-      inputRef.current.value = "";
-      handleSearch("");
+      inputRef.current.value = '';
+      handleSearch('');
     }
   };
 
   return (
     <div className="flex items-center justify-between">
       <div className="relative h-8 items-center">
-        {isSearching ? (
-          <Loader2 className="absolute left-2 top-2 size-4 animate-spin text-muted-foreground" />
-        ) : (
-          <SearchIcon className="absolute left-2 top-2 size-4 text-muted-foreground" />
-        )}
+        {isSearching
+          ? (
+              <Loader2 className="absolute left-2 top-2 size-4 animate-spin text-muted-foreground" />
+            )
+          : (
+              <SearchIcon className="absolute left-2 top-2 size-4 text-muted-foreground" />
+            )}
 
         <Input
           className="h-8 w-[180px] pl-8 lg:w-[250px]"
@@ -67,7 +69,7 @@ export function DataTableFiltersSSR({
           }}
           defaultValue={query}
           onKeyDown={(e) => {
-            if (e.key === "Escape") {
+            if (e.key === 'Escape') {
               inputRef?.current?.blur();
             }
           }}

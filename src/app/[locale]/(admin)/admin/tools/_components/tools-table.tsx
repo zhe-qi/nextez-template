@@ -1,13 +1,13 @@
-import { DataTable } from "@/components/ui/data-tables/data-table";
+import { DataTable } from '@/components/ui/data-tables/data-table';
 
-import prismadb from "@/lib/prismadb";
+import prismadb from '@/lib/prismadb';
 
-import { columns } from "./columns";
-import ToolsEmptyStateTable from "./tools-empty-state-table";
+import { columns } from './columns';
+import ToolsEmptyStateTable from './tools-empty-state-table';
 
 export default async function ToolsTable() {
   const data = await prismadb.tool.findMany({
-    orderBy: { updatedAt: "desc" },
+    orderBy: { updatedAt: 'desc' },
   });
 
   return (
@@ -16,7 +16,7 @@ export default async function ToolsTable() {
       data={data}
       searchFieldLabel="tools"
       emptyState={<ToolsEmptyStateTable />}
-      hiddenColumns={{ ID: false, "Created At": false, "Updated At": false }}
+      hiddenColumns={{ 'ID': false, 'Created At': false, 'Updated At': false }}
     />
   );
 }

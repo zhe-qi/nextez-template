@@ -1,16 +1,16 @@
-import { auth } from "@/auth";
+import { auth } from '@/auth';
 
-import MaxWidthWrapper from "@/components/max-width-wrapper";
+import MaxWidthWrapper from '@/components/max-width-wrapper';
 
-import { redirect } from "next/navigation";
+import { redirect } from 'next/navigation';
 
-import { Suspense } from "react";
+import { Suspense } from 'react';
 
-import AddToolButton from "./_components/add-tool-button";
-import CardSkeleton from "./_components/card-skeleton";
-import ToolSearch from "./_components/tool-search";
-import ToolsSection from "./_components/tools-section";
-import ViewSwitch from "./_components/view-switch";
+import AddToolButton from './_components/add-tool-button';
+import CardSkeleton from './_components/card-skeleton';
+import ToolSearch from './_components/tool-search';
+import ToolsSection from './_components/tools-section';
+import ViewSwitch from './_components/view-switch';
 
 type SearchParams = Promise<{ q?: string; view?: string }>;
 
@@ -18,12 +18,12 @@ export default async function ToolsPage(props: { searchParams: SearchParams }) {
   const session = await auth();
 
   if (!session) {
-    redirect("/auth/login?callbackUrl=/tools");
+    redirect('/auth/login?callbackUrl=/tools');
   }
 
   const searchParams = await props.searchParams;
-  const search = searchParams?.q || "";
-  const view = searchParams?.view || "grid";
+  const search = searchParams?.q || '';
+  const view = searchParams?.view || 'grid';
 
   return (
     <>

@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { addPermissionsToRoles } from "@/actions/roles";
-import { ComboboxMulti } from "@/components/combobox-multi";
+import { addPermissionsToRoles } from '@/actions/roles';
+import { ComboboxMulti } from '@/components/combobox-multi';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -12,19 +12,19 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { addServerErrors } from "@/lib/utils";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2 } from "lucide-react";
+} from '@/components/ui/form';
+import { addServerErrors } from '@/lib/utils';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Loader2 } from 'lucide-react';
 
-import Link from "next/link";
+import Link from 'next/link';
 
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
 
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 
-import { z } from "zod";
+import { z } from 'zod';
 
 const formSchema = z.object({
   roleId: z.number(),
@@ -64,14 +64,14 @@ export default function AddPermissionForm({
     const result = await addPermissionsToRoles(data);
     if (result.success) {
       router.push(`/admin/roles/${roleId}/permissions`);
-      toast.success("Permissions updated successfully!");
+      toast.success('Permissions updated successfully!');
     } else {
       if (result.errors) {
         addServerErrors(result.errors, form.setError);
       } else if (result.message) {
         toast.error(result.message);
       } else {
-        toast.error("Something went wrong");
+        toast.error('Something went wrong');
       }
     }
   };

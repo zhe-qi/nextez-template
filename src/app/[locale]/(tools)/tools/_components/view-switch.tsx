@@ -1,27 +1,27 @@
-"use client";
+'use client';
 
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { LayoutGridIcon, RowsIcon } from "lucide-react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+} from '@/components/ui/tooltip';
+import { LayoutGridIcon, RowsIcon } from 'lucide-react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
-const toggleGroupItemClasses =
-  "data-[state=on]:bg-muted-foreground/20 data-[state=on]:text-black data-[state=on]:dark:text-white";
+const toggleGroupItemClasses
+  = 'data-[state=on]:bg-muted-foreground/20 data-[state=on]:text-black data-[state=on]:dark:text-white';
 
 export default function ViewSwitch() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  const [value, setValue] = useState("grid");
+  const [value, setValue] = useState('grid');
 
   useEffect(() => {
-    const view = searchParams.get("view");
+    const view = searchParams.get('view');
 
     if (view) {
       setValue(view);
@@ -31,9 +31,9 @@ export default function ViewSwitch() {
   const handleSearch = (view: string) => {
     const params = new URLSearchParams(searchParams);
     if (view) {
-      params.set("view", view);
+      params.set('view', view);
     } else {
-      params.delete("view");
+      params.delete('view');
     }
     replace(`${pathname}?${params.toString()}`);
   };

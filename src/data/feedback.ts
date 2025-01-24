@@ -1,6 +1,6 @@
-import prismadb from "@/lib/prismadb";
+import prismadb from '@/lib/prismadb';
 
-import "server-only";
+import 'server-only';
 
 export const getFeedbacksSSR = async (
   offset: number,
@@ -13,7 +13,7 @@ export const getFeedbacksSSR = async (
   try {
     // Get data
     const data = await prismadb.feedback.findMany({
-      where: { feedback: { contains: search, mode: "insensitive" } },
+      where: { feedback: { contains: search, mode: 'insensitive' } },
       skip: offset,
       take: limit,
       orderBy,

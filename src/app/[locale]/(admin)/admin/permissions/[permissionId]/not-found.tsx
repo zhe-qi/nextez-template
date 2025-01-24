@@ -1,4 +1,4 @@
-import NotFound404 from "@/components/404";
+import NotFound404 from '@/components/404';
 
 export default function PermissionNotFound() {
   return (

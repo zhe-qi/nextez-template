@@ -1,66 +1,66 @@
-import type { ZodOpenApiOperationObject } from "zod-openapi";
+import type { ZodOpenApiOperationObject } from 'zod-openapi';
 
 import {
   permissionOutputSchema,
   permissionPathParamSchema,
-} from "@/schemas/permissions";
+} from '@/schemas/permissions';
 
 import {
   badRequestErrorSchema,
   internalServerErrorSchema,
   notFoundErrorSchema,
   unauthorizedErrorSchema,
-} from "../responses";
+} from '../responses';
 
 export const readPermission: ZodOpenApiOperationObject = {
-  operationId: "readPermission",
-  summary: "Read a permission by ID",
-  description: "Retrieve details of a specific permission using its ID.",
+  operationId: 'readPermission',
+  summary: 'Read a permission by ID',
+  description: 'Retrieve details of a specific permission using its ID.',
   requestParams: { path: permissionPathParamSchema },
   responses: {
     200: {
-      description: "Read Permission",
-      content: { "application/json": { schema: permissionOutputSchema } },
+      description: 'Read Permission',
+      content: { 'application/json': { schema: permissionOutputSchema } },
     },
     400: {
-      description: "Bad Request",
+      description: 'Bad Request',
       content: {
-        "application/json": {
+        'application/json': {
           schema: badRequestErrorSchema,
           example: {
-            message: "Invalid ID supplied",
+            message: 'Invalid ID supplied',
           },
         },
       },
     },
     401: {
-      description: "Unauthorized Error",
+      description: 'Unauthorized Error',
       content: {
-        "application/json": {
+        'application/json': {
           schema: unauthorizedErrorSchema,
         },
       },
     },
     404: {
-      description: "Not Found",
+      description: 'Not Found',
       content: {
-        "application/json": {
+        'application/json': {
           schema: notFoundErrorSchema,
           example: {
-            message: "Permission not found.",
+            message: 'Permission not found.',
           },
         },
       },
     },
     500: {
-      description: "Internal Server Error",
+      description: 'Internal Server Error',
       content: {
-        "application/json": {
+        'application/json': {
           schema: internalServerErrorSchema,
         },
       },
     },
   },
-  tags: ["Permissions"],
+  tags: ['Permissions'],
   security: [{ BearerAuth: [] }],
 };

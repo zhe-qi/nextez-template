@@ -1,7 +1,7 @@
-import { ChevronLeft } from "lucide-react";
-import Link from "next/link";
-import React from "react";
-import { Button } from "./ui/button";
+import { ChevronLeft } from 'lucide-react';
+import Link from 'next/link';
+import React from 'react';
+import { Button } from './ui/button';
 
 export default function BackLinkButton({ link }: { link: string }) {
   return (

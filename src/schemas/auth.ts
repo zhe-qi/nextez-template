@@ -1,25 +1,25 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 const emailFieldSchema = z
-  .string({ required_error: "Email is required" })
-  .email({ message: "Invalid email address" });
+  .string({ required_error: 'Email is required' })
+  .email({ message: 'Invalid email address' });
 
 const usernameFieldSchema = z
-  .string({ required_error: "Username is required" })
+  .string({ required_error: 'Username is required' })
   .trim()
-  .min(1, { message: "Username is required" })
-  .max(60, { message: "Username must not exceed 60 characters" });
+  .min(1, { message: 'Username is required' })
+  .max(60, { message: 'Username must not exceed 60 characters' });
 
 const basicPasswordFieldSchema = z.string({
-  required_error: "Password is required",
+  required_error: 'Password is required',
 });
 
 const passwordFieldSchema = basicPasswordFieldSchema
-  .min(8, "Password must be at least 8 characters")
-  .max(60, "Password must not exceed 60 characters");
+  .min(8, 'Password must be at least 8 characters')
+  .max(60, 'Password must not exceed 60 characters');
 
 const confirmPasswordFieldSchema = z.string({
-  required_error: "Please confirm your password",
+  required_error: 'Please confirm your password',
 });
 
 const passwordMatchValidation = (
@@ -29,8 +29,8 @@ const passwordMatchValidation = (
   if (data.password !== data.confirmPassword) {
     context.addIssue({
       code: z.ZodIssueCode.custom,
-      message: "Passwords don't match",
-      path: ["confirmPassword"],
+      message: 'Passwords don\'t match',
+      path: ['confirmPassword'],
     });
   }
 };

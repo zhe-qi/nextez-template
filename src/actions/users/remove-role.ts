@@ -1,9 +1,9 @@
-"use server";
+'use server';
 
-import prismadb from "@/lib/prismadb";
+import prismadb from '@/lib/prismadb';
 
-import { has } from "@/lib/rbac";
-import { revalidatePath } from "next/cache";
+import { has } from '@/lib/rbac';
+import { revalidatePath } from 'next/cache';
 
 type IDeleteRoleUser = {
   roleId: number;
@@ -12,10 +12,10 @@ type IDeleteRoleUser = {
 
 export async function removeRolToUser({ roleId, userId }: IDeleteRoleUser) {
   try {
-    const isAuthorized = await has({ role: "admin" });
+    const isAuthorized = await has({ role: 'admin' });
 
     if (!isAuthorized) {
-      return { success: false, message: "Unauthorized" };
+      return { success: false, message: 'Unauthorized' };
     }
 
     await prismadb.userRole.deleteMany({
@@ -26,7 +26,7 @@ export async function removeRolToUser({ roleId, userId }: IDeleteRoleUser) {
 
     return { success: true };
   } catch (error) {
-    console.error("Error removing role:", error);
-    return { success: false, message: "Something went wrong" };
+    console.error('Error removing role:', error);
+    return { success: false, message: 'Something went wrong' };
   }
 }

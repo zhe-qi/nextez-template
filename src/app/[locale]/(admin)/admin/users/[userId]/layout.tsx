@@ -1,37 +1,37 @@
-import type { NavItem } from "@/types/types";
+import type { NavItem } from '@/types/types';
 
-import { SidebarNav } from "@/components/admin/sidebar-nav";
+import { SidebarNav } from '@/components/admin/sidebar-nav';
 
-import { PageHeader } from "@/components/page-header";
+import { PageHeader } from '@/components/page-header';
 
-import { getUserById } from "@/data/user";
-import { notFound } from "next/navigation";
+import { getUserById } from '@/data/user';
+import { notFound } from 'next/navigation';
 
-import DeleteUserButton from "./_components/delete-user-button";
+import DeleteUserButton from './_components/delete-user-button';
 
 const getSideBarNavItems = (id: number): NavItem[] => {
   const baseHref = `/admin/users/${id}`;
 
   return [
     {
-      title: "Settings",
+      title: 'Settings',
       href: `${baseHref}`,
-      type: "parent",
+      type: 'parent',
     },
     {
-      title: "Roles",
+      title: 'Roles',
       href: `${baseHref}/roles`,
-      type: "child",
+      type: 'child',
     },
     {
-      title: "Actions",
+      title: 'Actions',
       href: `${baseHref}/actions`,
-      type: "child",
+      type: 'child',
     },
     {
-      title: "Metadata",
+      title: 'Metadata',
       href: `${baseHref}/metadata`,
-      type: "child",
+      type: 'child',
     },
   ];
 };

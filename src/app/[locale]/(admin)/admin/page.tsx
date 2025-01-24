@@ -1,17 +1,17 @@
-import { PageHeader } from "@/components/page-header";
+import { PageHeader } from '@/components/page-header';
 
-import prismadb from "@/lib/prismadb";
+import prismadb from '@/lib/prismadb';
 
-import { protectPage } from "@/lib/rbac";
-import { KeySquare, UnlockIcon, User } from "lucide-react";
+import { protectPage } from '@/lib/rbac';
+import { KeySquare, UnlockIcon, User } from 'lucide-react';
 
-import { Suspense } from "react";
+import { Suspense } from 'react';
 
-import CardKpi from "./_components/card-kpi";
-import CardKpiLoading from "./_components/card-kpi-loading";
+import CardKpi from './_components/card-kpi';
+import CardKpiLoading from './_components/card-kpi-loading';
 
 export default async function AdminPage() {
-  await protectPage({ permission: "admin:all" });
+  await protectPage({ permission: 'admin:all' });
 
   const totalUsers = await prismadb.user.count();
   const totalRoles = await prismadb.role.count();

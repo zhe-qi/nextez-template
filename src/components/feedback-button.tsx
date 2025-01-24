@@ -1,41 +1,41 @@
-"use client";
+'use client';
 
-import type { z } from "zod";
-import { addFeedback } from "@/actions/feedback";
-import { Button } from "@/components/ui/button";
+import type { z } from 'zod';
+import { addFeedback } from '@/actions/feedback';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from "@/components/ui/form";
+} from '@/components/ui/form';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import { Textarea } from "@/components/ui/textarea";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { feedbackSchema } from "@/schemas/feedbacks";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Angry, Frown, Loader2, Meh, Smile, SmilePlus } from "lucide-react";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
+} from '@/components/ui/popover';
+import { Textarea } from '@/components/ui/textarea';
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
+import { feedbackSchema } from '@/schemas/feedbacks';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Angry, Frown, Loader2, Meh, Smile, SmilePlus } from 'lucide-react';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 
-const toggleGroupItemClasses =
-  "p-2 rounded-full data-[state=on]:bg-primary/20 ";
+const toggleGroupItemClasses
+  = 'p-2 rounded-full data-[state=on]:bg-primary/20 ';
 
 type FormData = z.infer<typeof feedbackSchema>;
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const FEEDBACK_ITEMS = [
-  { value: "1", Icon: Angry, label: "Select I'm furious emoji" },
-  { value: "2", Icon: Frown, label: "Select Not happy emoji" },
-  { value: "3", Icon: Meh, label: "Select Meh, it's okay emoji" },
-  { value: "4", Icon: Smile, label: "Select Pretty happy emoji" },
-  { value: "5", Icon: SmilePlus, label: "Select Absolutely love it emoji" },
+  { value: '1', Icon: Angry, label: 'Select I\'m furious emoji' },
+  { value: '2', Icon: Frown, label: 'Select Not happy emoji' },
+  { value: '3', Icon: Meh, label: 'Select Meh, it\'s okay emoji' },
+  { value: '4', Icon: Smile, label: 'Select Pretty happy emoji' },
+  { value: '5', Icon: SmilePlus, label: 'Select Absolutely love it emoji' },
 ];
 
 export default function FeedbackButton() {
@@ -44,7 +44,7 @@ export default function FeedbackButton() {
   const form = useForm<FormData>({
     resolver: zodResolver(feedbackSchema),
     defaultValues: {
-      feedback: "",
+      feedback: '',
       nps: undefined,
     },
   });
@@ -52,11 +52,11 @@ export default function FeedbackButton() {
   const onSubmit = async (data: FormData) => {
     const result = await addFeedback(data);
     if (result.success) {
-      toast.success("Thank you for your feedback!");
+      toast.success('Thank you for your feedback!');
       setOpen(false);
       form.reset();
     } else {
-      toast.error("Error sending your feedback.");
+      toast.error('Error sending your feedback.');
     }
   };
 
@@ -130,8 +130,8 @@ export default function FeedbackButton() {
                   size="sm"
                   type="submit"
                   disabled={
-                    form.formState.isSubmitting ||
-                    !form.formState.dirtyFields.feedback
+                    form.formState.isSubmitting
+                    || !form.formState.dirtyFields.feedback
                   }
                 >
                   {form.formState.isSubmitting && (

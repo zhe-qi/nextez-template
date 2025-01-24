@@ -1,6 +1,6 @@
-import prismadb from "@/lib/prismadb";
+import prismadb from '@/lib/prismadb';
 
-import "server-only";
+import 'server-only';
 
 export const getToolById = async (id: number) => {
   try {

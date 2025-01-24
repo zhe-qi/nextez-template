@@ -1,10 +1,10 @@
 /* eslint-disable react-web-api/no-leaked-timeout */
-"use client";
+'use client';
 
-import type { z } from "zod";
-import AuthTemplate from "@/components/auth/auth-template";
+import type { z } from 'zod';
+import AuthTemplate from '@/components/auth/auth-template';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -12,21 +12,21 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { loginSchema } from "@/schemas/auth";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2 } from "lucide-react";
-import { signIn } from "next-auth/react";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { loginSchema } from '@/schemas/auth';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Loader2 } from 'lucide-react';
+import { signIn } from 'next-auth/react';
 
-import Link from "next/link";
+import Link from 'next/link';
 
-import { useRouter, useSearchParams } from "next/navigation";
-import { Suspense, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Suspense, useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 
-import { FaGithub, FaGoogle } from "react-icons/fa6";
-import { toast } from "sonner";
+import { FaGithub, FaGoogle } from 'react-icons/fa6';
+import { toast } from 'sonner';
 
 type FormData = z.infer<typeof loginSchema>;
 
@@ -36,36 +36,36 @@ function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
 
   const searchParams = useSearchParams();
-  const callbackUrl: string =
-    (searchParams.get("callbackUrl") as string) ?? "/tools";
-  const activated = searchParams?.get("activated") ?? null;
-  const updatedEmail = searchParams?.get("updatedEmail") ?? null;
+  const callbackUrl: string
+    = (searchParams.get('callbackUrl') as string) ?? '/tools';
+  const activated = searchParams?.get('activated') ?? null;
+  const updatedEmail = searchParams?.get('updatedEmail') ?? null;
 
   useEffect(() => {
     setTimeout(() => {
-      if (activated === "1") {
-        toast.success("Account activated", { id: activated });
+      if (activated === '1') {
+        toast.success('Account activated', { id: activated });
       }
     }, 100);
   }, [activated]);
 
   useEffect(() => {
     setTimeout(() => {
-      if (updatedEmail === "1") {
-        toast.info("Please login with your new email", { id: updatedEmail });
+      if (updatedEmail === '1') {
+        toast.info('Please login with your new email', { id: updatedEmail });
       }
     }, 100);
   }, [updatedEmail]);
 
   const form = useForm<FormData>({
-    defaultValues: { email: "", password: "" },
+    defaultValues: { email: '', password: '' },
     resolver: zodResolver(loginSchema),
   });
 
   const onSubmit = (data: FormData) => {
     setIsLoading(true);
 
-    signIn("credentials", {
+    signIn('credentials', {
       ...data,
       redirect: false,
     }).then((callback) => {
@@ -76,13 +76,13 @@ function LoginForm() {
       }
 
       if (callback?.error) {
-        if (callback?.error === "AccessDenied") {
-          router.push("/auth/error/?error=AccessDenied");
+        if (callback?.error === 'AccessDenied') {
+          router.push('/auth/error/?error=AccessDenied');
         }
-        if (callback?.error === "ConfirmEmail") {
-          router.push("/auth/error/?error=ConfirmEmail");
+        if (callback?.error === 'ConfirmEmail') {
+          router.push('/auth/error/?error=ConfirmEmail');
         } else {
-          toast.error("Invalid credentials");
+          toast.error('Invalid credentials');
         }
       }
     });
@@ -92,7 +92,8 @@ function LoginForm() {
     <AuthTemplate>
       <h1 className="text-2xl font-bold tracking-tight md:text-3xl">Log in</h1>
       <p className="text-sm text-muted-foreground">
-        New to Nextez?{" "}
+        New to Nextez?
+        {' '}
         <Link
           className="font-semibold leading-6 text-purple-600 hover:text-green-400"
           href="/auth/register"
@@ -168,7 +169,7 @@ function LoginForm() {
           variant="outline"
           size="sm"
           disabled={isLoading}
-          onClick={() => signIn("google", { callbackUrl })}
+          onClick={() => signIn('google', { callbackUrl })}
         >
           <FaGoogle className="size-4" />
           <span>Google</span>
@@ -177,7 +178,7 @@ function LoginForm() {
           variant="outline"
           size="sm"
           disabled={isLoading}
-          onClick={() => signIn("github", { callbackUrl })}
+          onClick={() => signIn('github', { callbackUrl })}
         >
           <FaGithub className="size-4" />
           <span>GitHub</span>

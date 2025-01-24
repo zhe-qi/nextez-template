@@ -1,6 +1,6 @@
-import { deleteUser } from "@/actions/users/delete-user";
+import { deleteUser } from '@/actions/users/delete-user';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -8,8 +8,8 @@ import {
   FormField,
   FormItem,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 import {
   ResponsiveDialog,
   ResponsiveDialogClose,
@@ -18,15 +18,15 @@ import {
   ResponsiveDialogFooter,
   ResponsiveDialogHeader,
   ResponsiveDialogTitle,
-} from "@/components/ui/responsive-dialog";
-import { zodResolver } from "@hookform/resolvers/zod";
+} from '@/components/ui/responsive-dialog';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Loader2 } from "lucide-react";
+import { Loader2 } from 'lucide-react';
 
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { z } from "zod";
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+import { z } from 'zod';
 
 export default function DeleteUserDialog({
   userId,
@@ -43,23 +43,23 @@ export default function DeleteUserDialog({
 
   const formSchema = z.object({
     confirmString: z.literal(userEmail, {
-      errorMap: () => ({ message: "Incorrect user email" }),
+      errorMap: () => ({ message: 'Incorrect user email' }),
     }),
   });
 
   type FormData = z.infer<typeof formSchema>;
 
   const form = useForm<FormData>({
-    defaultValues: { confirmString: "" },
+    defaultValues: { confirmString: '' },
     resolver: zodResolver(formSchema),
   });
 
   const onSubmit = async () => {
     const result = await deleteUser(userId);
     if (result.success) {
-      toast.success("User deleted successfully!");
+      toast.success('User deleted successfully!');
       setIsOpen(false);
-      router.push("/admin/users");
+      router.push('/admin/users');
     } else {
       toast.error(result.message);
     }
@@ -93,7 +93,11 @@ export default function DeleteUserDialog({
               render={({ field }) => (
                 <FormItem>
                   <FormDescription>
-                    Enter <b>{userEmail}</b> to continue.
+                    Enter
+                    {' '}
+                    <b>{userEmail}</b>
+                    {' '}
+                    to continue.
                   </FormDescription>
                   <FormControl>
                     <Input
@@ -123,7 +127,7 @@ export default function DeleteUserDialog({
                 {form.formState.isSubmitting && (
                   <Loader2 className="mr-2 size-4 animate-spin" />
                 )}
-                {form.formState.isSubmitting ? "Deleting..." : "Delete"}
+                {form.formState.isSubmitting ? 'Deleting...' : 'Delete'}
               </Button>
             </ResponsiveDialogFooter>
           </form>

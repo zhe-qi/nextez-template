@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
+} from '@/components/ui/tooltip';
 
-import { Plus } from "lucide-react";
-import { useState } from "react";
+import { Plus } from 'lucide-react';
+import { useState } from 'react';
 
-import ToolDialog from "./tool-dialog";
+import ToolDialog from './tool-dialog';
 
 export default function CreateToolButton() {
   const [isOpen, setIsOpen] = useState(false);

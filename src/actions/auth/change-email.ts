@@ -1,9 +1,9 @@
-"use server";
+'use server';
 
-import { verifyUserToken } from "@/lib/jwt";
+import { verifyUserToken } from '@/lib/jwt';
 
-import prismadb from "@/lib/prismadb";
-import { redirect } from "next/navigation";
+import prismadb from '@/lib/prismadb';
+import { redirect } from 'next/navigation';
 
 type IPros = {
   token: string;
@@ -12,7 +12,7 @@ type IPros = {
 export async function changeEmail({ token }: IPros) {
   let result: { success: boolean; error?: string } = {
     success: false,
-    error: "Default",
+    error: 'Default',
   };
   try {
     const userEmail = verifyUserToken(token);
@@ -40,14 +40,14 @@ export async function changeEmail({ token }: IPros) {
         });
         result = { success: true };
       } else {
-        result = { success: false, error: "TokenExpired" };
+        result = { success: false, error: 'TokenExpired' };
       }
     }
   } catch {
     redirect(`/auth/error`);
   } finally {
     if (result.success) {
-      redirect("/auth/logout?callbackUrl=/auth/login?updatedEmail=1");
+      redirect('/auth/logout?callbackUrl=/auth/login?updatedEmail=1');
     } else {
       redirect(`/auth/error?error=${result.error}`);
     }

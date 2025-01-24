@@ -1,14 +1,14 @@
-import { PageSection } from "@/components/page-header";
+import { PageSection } from '@/components/page-header';
 
-import { protectPage } from "@/lib/rbac";
+import { protectPage } from '@/lib/rbac';
 
-import { ResetPasswordCard } from "./_components/reset-password-card";
-import { SetTemporaryPasswordCard } from "./_components/set-temporary-password-card";
+import { ResetPasswordCard } from './_components/reset-password-card';
+import { SetTemporaryPasswordCard } from './_components/set-temporary-password-card';
 
 type Params = Promise<{ userId: number }>;
 
 export default async function UserActionsPage(props: { params: Params }) {
-  await protectPage({ permission: "admin:all" });
+  await protectPage({ permission: 'admin:all' });
 
   const params = await props.params;
   const userId = Number(params.userId);

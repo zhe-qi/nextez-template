@@ -1,5 +1,5 @@
-import type { LucideIcon } from "lucide-react";
-import { FilePlus } from "lucide-react";
+import type { LucideIcon } from 'lucide-react';
+import { FilePlus } from 'lucide-react';
 
 type Props = {
   title?: string;
@@ -9,8 +9,8 @@ type Props = {
 };
 
 export default function EmptyState({
-  title = "No data available",
-  description = "You can add new data to get started",
+  title = 'No data available',
+  description = 'You can add new data to get started',
   action,
   icon = FilePlus,
 }: Props) {

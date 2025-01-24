@@ -1,18 +1,18 @@
-import { ApiError, getIdInputOrThrow, parseRequestBody } from "@/lib/api";
+import { ApiError, getIdInputOrThrow, parseRequestBody } from '@/lib/api';
 
-import { withAdmin } from "@/lib/auth";
-import prismadb from "@/lib/prismadb";
+import { withAdmin } from '@/lib/auth';
+import prismadb from '@/lib/prismadb';
 
-import { getZodSchemaFields } from "@/lib/zod/utils";
+import { getZodSchemaFields } from '@/lib/zod/utils';
 import {
   permissionOutputSchema,
   permissionUpdatePartialSchema,
   permissionUpdateSchema,
-} from "@/schemas/permissions";
-import { Prisma } from "@prisma/client";
-import { NextResponse } from "next/server";
+} from '@/schemas/permissions';
+import { Prisma } from '@prisma/client';
+import { NextResponse } from 'next/server';
 
-import { ZodError } from "zod";
+import { ZodError } from 'zod';
 
 const outputFields = getZodSchemaFields(permissionOutputSchema);
 
@@ -22,7 +22,7 @@ export const GET = withAdmin(async ({ context }) => {
 
     if (!permissionId) {
       return NextResponse.json(
-        { message: "Permission ID is required" },
+        { message: 'Permission ID is required' },
         { status: 400 },
       );
     }
@@ -36,7 +36,7 @@ export const GET = withAdmin(async ({ context }) => {
 
     return NextResponse.json(permission, { status: 200 });
   } catch (error) {
-    console.error("Error:", error);
+    console.error('Error:', error);
     if (error instanceof ApiError) {
       return NextResponse.json(
         { message: error.message },
@@ -44,15 +44,15 @@ export const GET = withAdmin(async ({ context }) => {
       );
     }
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      if (error.code === "P2025") {
+      if (error.code === 'P2025') {
         return NextResponse.json(
-          { message: "Permission not found" },
+          { message: 'Permission not found' },
           { status: 404 },
         );
       }
     }
     return NextResponse.json(
-      { message: "Internal Server Error" },
+      { message: 'Internal Server Error' },
       { status: 500 },
     );
   }
@@ -64,7 +64,7 @@ export const DELETE = withAdmin(async ({ context }) => {
 
     if (!permissionId) {
       return NextResponse.json(
-        { message: "Permission ID is required" },
+        { message: 'Permission ID is required' },
         { status: 400 },
       );
     }
@@ -77,7 +77,7 @@ export const DELETE = withAdmin(async ({ context }) => {
 
     return new NextResponse(null, { status: 204 });
   } catch (error) {
-    console.error("Error:", error);
+    console.error('Error:', error);
     if (error instanceof ApiError) {
       return NextResponse.json(
         { message: error.message },
@@ -85,15 +85,15 @@ export const DELETE = withAdmin(async ({ context }) => {
       );
     }
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      if (error.code === "P2025") {
+      if (error.code === 'P2025') {
         return NextResponse.json(
-          { message: "Permission not found" },
+          { message: 'Permission not found' },
           { status: 404 },
         );
       }
     }
     return NextResponse.json(
-      { message: "Internal Server Error" },
+      { message: 'Internal Server Error' },
       { status: 500 },
     );
   }
@@ -106,13 +106,13 @@ export const PUT = withAdmin(async ({ req, context }) => {
 
     if (!permissionId) {
       return NextResponse.json(
-        { message: "Permission ID is required" },
+        { message: 'Permission ID is required' },
         { status: 400 },
       );
     }
 
     const id: number = getIdInputOrThrow(permissionId);
-    const isPartial = req.method === "PATCH";
+    const isPartial = req.method === 'PATCH';
 
     const schema = isPartial
       ? permissionUpdatePartialSchema
@@ -130,7 +130,7 @@ export const PUT = withAdmin(async ({ req, context }) => {
 
     return NextResponse.json(updatedPermission, { status: 200 });
   } catch (error) {
-    console.error("Error:", error);
+    console.error('Error:', error);
     if (error instanceof ApiError) {
       return NextResponse.json(
         { message: error.message },
@@ -142,10 +142,10 @@ export const PUT = withAdmin(async ({ req, context }) => {
       return NextResponse.json({ errors: errorsValidation }, { status: 422 });
     }
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      if (error.code === "P2002" && error.meta) {
+      if (error.code === 'P2002' && error.meta) {
         const meta = error.meta as { target?: string[] };
         const target = meta.target;
-        if (target && target[0] === "name") {
+        if (target && target[0] === 'name') {
           return NextResponse.json(
             {
               message: `A permission with the name already exists.`,
@@ -153,7 +153,7 @@ export const PUT = withAdmin(async ({ req, context }) => {
             { status: 409 },
           );
         }
-        if (target && target[0] === "key") {
+        if (target && target[0] === 'key') {
           return NextResponse.json(
             {
               message: `A permission with the key already exists.`,
@@ -162,15 +162,15 @@ export const PUT = withAdmin(async ({ req, context }) => {
           );
         }
       }
-      if (error.code === "P2025") {
+      if (error.code === 'P2025') {
         return NextResponse.json(
-          { message: "Permission not found" },
+          { message: 'Permission not found' },
           { status: 404 },
         );
       }
     }
     return NextResponse.json(
-      { message: "Internal Server Error" },
+      { message: 'Internal Server Error' },
       { status: 500 },
     );
   }

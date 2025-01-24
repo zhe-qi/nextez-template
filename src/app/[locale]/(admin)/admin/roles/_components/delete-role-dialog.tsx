@@ -1,6 +1,6 @@
-import { deleteRole } from "@/actions/roles";
+import { deleteRole } from '@/actions/roles';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -8,8 +8,8 @@ import {
   FormField,
   FormItem,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 import {
   ResponsiveDialog,
   ResponsiveDialogClose,
@@ -18,15 +18,15 @@ import {
   ResponsiveDialogFooter,
   ResponsiveDialogHeader,
   ResponsiveDialogTitle,
-} from "@/components/ui/responsive-dialog";
-import { zodResolver } from "@hookform/resolvers/zod";
+} from '@/components/ui/responsive-dialog';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Loader2 } from "lucide-react";
+import { Loader2 } from 'lucide-react';
 
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { z } from "zod";
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+import { z } from 'zod';
 
 export default function DeleteRoleDialog({
   roleId,
@@ -43,22 +43,22 @@ export default function DeleteRoleDialog({
 
   const formSchema = z.object({
     confirmString: z.literal(roleKey, {
-      errorMap: () => ({ message: "Incorrect role key" }),
+      errorMap: () => ({ message: 'Incorrect role key' }),
     }),
   });
 
   type FormData = z.infer<typeof formSchema>;
 
   const form = useForm<FormData>({
-    defaultValues: { confirmString: "" },
+    defaultValues: { confirmString: '' },
     resolver: zodResolver(formSchema),
   });
 
   const onSubmit = async () => {
     const result = await deleteRole(roleId);
     if (result.success) {
-      router.push("/admin/roles");
-      toast.success("Role deleted successfully!", { duration: 4000 });
+      router.push('/admin/roles');
+      toast.success('Role deleted successfully!', { duration: 4000 });
       setIsOpen(false);
     } else {
       toast.error(result.message);
@@ -76,7 +76,7 @@ export default function DeleteRoleDialog({
     <ResponsiveDialog open={isOpen} onOpenChange={handleOpenChange}>
       <ResponsiveDialogContent
         className="sm:max-w-[425px]"
-        onCloseAutoFocus={(e) => e.preventDefault()}
+        onCloseAutoFocus={e => e.preventDefault()}
       >
         <ResponsiveDialogHeader className="text-left">
           <ResponsiveDialogTitle>Delete role?</ResponsiveDialogTitle>
@@ -96,7 +96,11 @@ export default function DeleteRoleDialog({
               render={({ field }) => (
                 <FormItem>
                   <FormDescription>
-                    Enter the role key <b>{roleKey}</b> to continue.
+                    Enter the role key
+                    {' '}
+                    <b>{roleKey}</b>
+                    {' '}
+                    to continue.
                   </FormDescription>
                   <FormControl>
                     <Input
@@ -125,7 +129,7 @@ export default function DeleteRoleDialog({
                 {form.formState.isSubmitting && (
                   <Loader2 className="mr-2 size-4 animate-spin" />
                 )}
-                {form.formState.isSubmitting ? "Deleting..." : "Delete"}
+                {form.formState.isSubmitting ? 'Deleting...' : 'Delete'}
               </Button>
             </ResponsiveDialogFooter>
           </form>

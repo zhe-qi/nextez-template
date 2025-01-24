@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import type { ColumnDef } from "@tanstack/react-table";
-import { FEEDBACK_ITEMS } from "@/components/feedback-button";
+import type { ColumnDef } from '@tanstack/react-table';
+import { FEEDBACK_ITEMS } from '@/components/feedback-button';
 
-import { format } from "date-fns";
+import { format } from 'date-fns';
 
-import { DataTableColumnHeader } from "./data-table-column-header";
+import { DataTableColumnHeader } from './data-table-column-header';
 
 export type IColumns = {
   id: number;
@@ -17,7 +17,7 @@ export type IColumns = {
 
 export const columns: ColumnDef<IColumns>[] = [
   {
-    accessorKey: "id",
+    accessorKey: 'id',
     header: ({ column }) => {
       return <DataTableColumnHeader column={column} title="#" />;
     },
@@ -25,7 +25,7 @@ export const columns: ColumnDef<IColumns>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "feedback",
+    accessorKey: 'feedback',
     header: ({ column }) => {
       return <DataTableColumnHeader column={column} title="Feedback" />;
     },
@@ -33,13 +33,13 @@ export const columns: ColumnDef<IColumns>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "nps",
+    accessorKey: 'nps',
     header: ({ column }) => {
       return <DataTableColumnHeader column={column} title="NPS" />;
     },
     cell: ({ row }) => {
       const nps = FEEDBACK_ITEMS.find(
-        (nps) => nps.value === String(row.getValue("nps")),
+        nps => nps.value === String(row.getValue('nps')),
       );
 
       if (!nps) {
@@ -57,18 +57,18 @@ export const columns: ColumnDef<IColumns>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "createdAt",
+    accessorKey: 'createdAt',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Created At" />
     ),
     cell: ({ row }) => {
       const formattedDate = format(
         new Date(row.original.createdAt),
-        "dd-MM-yyyy",
+        'dd-MM-yyyy',
       );
       const formattedTime = format(
         new Date(row.original.createdAt),
-        "HH:mm:ss",
+        'HH:mm:ss',
       );
 
       return (

@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { addRolesToUser } from "@/actions/users/add-roles";
-import { ComboboxMulti } from "@/components/combobox-multi";
+import { addRolesToUser } from '@/actions/users/add-roles';
+import { ComboboxMulti } from '@/components/combobox-multi';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -12,19 +12,19 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { addServerErrors } from "@/lib/utils";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2 } from "lucide-react";
+} from '@/components/ui/form';
+import { addServerErrors } from '@/lib/utils';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Loader2 } from 'lucide-react';
 
-import Link from "next/link";
+import Link from 'next/link';
 
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
 
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 
-import { z } from "zod";
+import { z } from 'zod';
 
 const formSchema = z.object({
   userId: z.number(),
@@ -64,14 +64,14 @@ export default function AddRoleForm({
     const result = await addRolesToUser(data);
     if (result.success) {
       router.push(`/admin/users/${userId}/roles`);
-      toast.success("Roles updated successfully!");
+      toast.success('Roles updated successfully!');
     } else {
       if (result.errors) {
         addServerErrors(result.errors, form.setError);
       } else if (result.message) {
         toast.error(result.message);
       } else {
-        toast.error("Something went wrong");
+        toast.error('Something went wrong');
       }
     }
   };
@@ -113,7 +113,7 @@ export default function AddRoleForm({
             {form.formState.isSubmitting && (
               <Loader2 className="mr-2 size-4 animate-spin" />
             )}
-            {form.formState.isSubmitting ? "Saving..." : "Save"}
+            {form.formState.isSubmitting ? 'Saving...' : 'Save'}
           </Button>
           <Button
             size="sm"

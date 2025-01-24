@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
   Command,
   CommandEmpty,
@@ -9,16 +9,16 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
+} from '@/components/ui/command';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import { Separator } from "@/components/ui/separator";
-import { cn } from "@/lib/utils";
-import { Check, Plus, Trash } from "lucide-react";
-import { useState } from "react";
+} from '@/components/ui/popover';
+import { Separator } from '@/components/ui/separator';
+import { cn } from '@/lib/utils';
+import { Check, Plus, Trash } from 'lucide-react';
+import { useState } from 'react';
 
 type IPros = {
   title: string;
@@ -44,14 +44,14 @@ export function ComboboxMulti({
   field,
 }: IPros) {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger
         asChild
         className={cn(
-          "h-10 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+          'h-10 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
           className,
         )}
       >
@@ -60,26 +60,30 @@ export function ComboboxMulti({
             {selectedValues?.size > 0 && (
               <>
                 <div>
-                  {selectedValues.size > limit ? (
-                    <Badge
-                      variant="secondary"
-                      className="rounded-sm px-1 font-normal"
-                    >
-                      {selectedValues.size} selected
-                    </Badge>
-                  ) : (
-                    options
-                      .filter((option) => selectedValues.has(option.value))
-                      .map((option) => (
+                  {selectedValues.size > limit
+                    ? (
                         <Badge
                           variant="secondary"
-                          key={option.value}
-                          className="m-0.5 rounded-sm px-1 font-normal"
+                          className="rounded-sm px-1 font-normal"
                         >
-                          {option.label}
+                          {selectedValues.size}
+                          {' '}
+                          selected
                         </Badge>
-                      ))
-                  )}
+                      )
+                    : (
+                        options
+                          .filter(option => selectedValues.has(option.value))
+                          .map(option => (
+                            <Badge
+                              variant="secondary"
+                              key={option.value}
+                              className="m-0.5 rounded-sm px-1 font-normal"
+                            >
+                              {option.label}
+                            </Badge>
+                          ))
+                      )}
                 </div>
               </>
             )}
@@ -91,7 +95,7 @@ export function ComboboxMulti({
               size="sm"
               onClick={() => {
                 selectedValues.clear();
-                form.setValue(field || "id", [], {
+                form.setValue(field || 'id', [], {
                   shouldValidate: true,
                   shouldDirty: true,
                 });
@@ -119,7 +123,9 @@ export function ComboboxMulti({
           <CommandInput placeholder={`Search ${title}...`} />
           <CommandEmpty>
             No
-            {title} found.
+            {title}
+            {' '}
+            found.
           </CommandEmpty>
           <CommandList>
             <CommandGroup className="max-h-32 overflow-y-auto p-0">
@@ -129,7 +135,7 @@ export function ComboboxMulti({
                   <CommandItem
                     key={option.value}
                     disabled={option.disabled}
-                    className={option.disabled ? "opacity-50" : ""}
+                    className={option.disabled ? 'opacity-50' : ''}
                     onSelect={(currentValue) => {
                       if (isSelected) {
                         selectedValues.delete(option.value);
@@ -137,20 +143,20 @@ export function ComboboxMulti({
                         selectedValues.add(option.value);
                       }
                       form.setValue(
-                        field || "id",
+                        field || 'id',
                         Array.from(selectedValues).sort(),
                         {
                           shouldValidate: true,
                           shouldDirty: true,
                         },
                       );
-                      setValue(currentValue === value ? "" : currentValue);
+                      setValue(currentValue === value ? '' : currentValue);
                     }}
                   >
                     <Check
                       className={cn(
-                        "mr-2 size-4",
-                        isSelected ? "opacity-100" : "opacity-0",
+                        'mr-2 size-4',
+                        isSelected ? 'opacity-100' : 'opacity-0',
                       )}
                     />
                     {option.label}

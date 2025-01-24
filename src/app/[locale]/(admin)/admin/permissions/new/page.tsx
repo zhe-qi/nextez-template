@@ -1,11 +1,11 @@
-import { PageHeader } from "@/components/page-header";
+import { PageHeader } from '@/components/page-header';
 
-import { protectPage } from "@/lib/rbac";
+import { protectPage } from '@/lib/rbac';
 
-import CreatePermissionForm from "./_components/create-permission-form";
+import CreatePermissionForm from './_components/create-permission-form';
 
 export default async function NewPermissionPage() {
-  await protectPage({ permission: "admin:all" });
+  await protectPage({ permission: 'admin:all' });
 
   return (
     <>

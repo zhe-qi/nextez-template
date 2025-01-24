@@ -1,22 +1,22 @@
-"use client";
+'use client';
 
-import type { INavigation } from "./navbar";
+import type { INavigation } from './navbar';
 import {
   Sheet,
   SheetClose,
   SheetContent,
   SheetTrigger,
-} from "@/components/ui/sheet";
-import { cn } from "@/lib/utils";
-import { Menu, SlashIcon } from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
-import Logo from "../logo";
-import ThemeSwitch from "../theme-switch";
-import LoginButton from "./login-button";
-import ToolSwitcher from "./tool-switcher";
-import UserNav from "./user-nav";
+} from '@/components/ui/sheet';
+import { cn } from '@/lib/utils';
+import { Menu, SlashIcon } from 'lucide-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useState } from 'react';
+import Logo from '../logo';
+import ThemeSwitch from '../theme-switch';
+import LoginButton from './login-button';
+import ToolSwitcher from './tool-switcher';
+import UserNav from './user-nav';
 
 export default function MobileNav({
   navigation,
@@ -27,7 +27,7 @@ export default function MobileNav({
 
   const [openSheet, setOpenSheet] = useState(false);
 
-  const isHome = pathname === "/" || pathname === "/about";
+  const isHome = pathname === '/' || pathname === '/about';
 
   return (
     <nav className="flex h-14 flex-1 items-center justify-between px-6 lg:hidden">
@@ -58,14 +58,14 @@ export default function MobileNav({
               <div className="-my-6 divide-y">
                 {isHome && (
                   <div className="space-y-2 py-6">
-                    {navigation.map((item) => (
+                    {navigation.map(item => (
                       <SheetClose asChild key={item.name}>
                         <Link
                           key={`sheet_close_${item.name}`}
                           href={item.href}
                           className={cn(
-                            "-mx-3 block px-3 py-2 text-sm font-medium transition-colors hover:text-primary",
-                            pathname != item.href && "text-muted-foreground",
+                            '-mx-3 block px-3 py-2 text-sm font-medium transition-colors hover:text-primary',
+                            pathname != item.href && 'text-muted-foreground',
                           )}
                         >
                           {item.name}

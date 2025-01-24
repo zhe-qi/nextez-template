@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { deleteAccount } from "@/actions/users/delete-account";
+import { deleteAccount } from '@/actions/users/delete-account';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 
 import {
   Card,
@@ -10,7 +10,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
 import {
   Dialog,
   DialogContent,
@@ -19,7 +19,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 import {
   Form,
   FormControl,
@@ -27,24 +27,24 @@ import {
   FormField,
   FormItem,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Separator } from '@/components/ui/separator';
 
-import { addServerErrors } from "@/lib/utils";
+import { addServerErrors } from '@/lib/utils';
 
-import { zodResolver } from "@hookform/resolvers/zod";
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Loader2 } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { z } from "zod";
+import { Loader2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+import { z } from 'zod';
 
 const formSchema = z.object({
   userEmail: z.string().email(),
-  confirmString: z.literal("delete my account"),
+  confirmString: z.literal('delete my account'),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -60,12 +60,12 @@ export default function DeleteAccount() {
   const onSubmit = async (data: FormData) => {
     const result = await deleteAccount(data);
     if (result.success) {
-      router.push("/auth/logout");
+      router.push('/auth/logout');
     } else {
       if (result.errors) {
         addServerErrors(result.errors, form.setError);
       } else {
-        toast.error("Something went wrong");
+        toast.error('Something went wrong');
       }
     }
   };
@@ -136,7 +136,11 @@ export default function DeleteAccount() {
                     render={({ field }) => (
                       <FormItem>
                         <FormDescription>
-                          To verify, type <b>delete my account</b> below
+                          To verify, type
+                          {' '}
+                          <b>delete my account</b>
+                          {' '}
+                          below
                         </FormDescription>
                         <FormControl>
                           <Input

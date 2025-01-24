@@ -1,8 +1,8 @@
-import type { Tool } from "@prisma/client";
+import type { Tool } from '@prisma/client';
 
-import type { z } from "zod";
-import { createTool, updateTool } from "@/actions/tools";
-import { Button } from "@/components/ui/button";
+import type { z } from 'zod';
+import { createTool, updateTool } from '@/actions/tools';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -10,8 +10,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 import {
   ResponsiveDialog,
   ResponsiveDialogClose,
@@ -20,18 +20,18 @@ import {
   ResponsiveDialogFooter,
   ResponsiveDialogHeader,
   ResponsiveDialogTitle,
-} from "@/components/ui/responsive-dialog";
+} from '@/components/ui/responsive-dialog';
 
-import { addServerErrors } from "@/lib/utils";
+import { addServerErrors } from '@/lib/utils';
 
-import { toolSchema } from "@/schemas/tools";
+import { toolSchema } from '@/schemas/tools';
 
-import { zodResolver } from "@hookform/resolvers/zod";
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Loader2 } from "lucide-react";
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
+import { Loader2 } from 'lucide-react';
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 
 type FormData = z.infer<typeof toolSchema>;
 
@@ -47,23 +47,23 @@ export default function ToolDialog({
   const form = useForm<FormData>({
     defaultValues: {
       id: tool?.id || undefined,
-      name: tool?.name || "",
-      description: tool?.description || "",
-      href: tool?.href || "",
-      icon: tool?.icon || "",
+      name: tool?.name || '',
+      description: tool?.description || '',
+      href: tool?.href || '',
+      icon: tool?.icon || '',
     },
     resolver: zodResolver(toolSchema),
   });
 
-  const action = tool ? "Update" : "Create";
+  const action = tool ? 'Update' : 'Create';
   const titles = {
-    Create: "Create new tool",
-    Update: "Update tool",
+    Create: 'Create new tool',
+    Update: 'Update tool',
   };
 
   const descriptions = {
-    Create: "Create a tool which can be assigned to your roles.",
-    Update: "Modify the details of an existing tool.",
+    Create: 'Create a tool which can be assigned to your roles.',
+    Update: 'Modify the details of an existing tool.',
   };
 
   const title = titles[action];
@@ -73,14 +73,14 @@ export default function ToolDialog({
     const result = await createTool(data);
     if (result.success) {
       setIsOpen(false);
-      toast.success("Tool created successfully!");
+      toast.success('Tool created successfully!');
     } else {
       if (result.errors) {
         addServerErrors(result.errors, form.setError);
       } else if (result.message) {
         toast.error(result.message);
       } else {
-        toast.error("Something went wrong");
+        toast.error('Something went wrong');
       }
     }
   };
@@ -90,14 +90,14 @@ export default function ToolDialog({
     if (result.success) {
       form.reset({ ...data });
       setIsOpen(false);
-      toast.success("Tool updated successfully!");
+      toast.success('Tool updated successfully!');
     } else {
       if (result.errors) {
         addServerErrors(result.errors, form.setError);
       } else if (result.message) {
         toast.error(result.message);
       } else {
-        toast.error("Something went wrong");
+        toast.error('Something went wrong');
       }
     }
   };
@@ -120,7 +120,7 @@ export default function ToolDialog({
         <Form {...form}>
           <form
             onSubmit={
-              action === "Create"
+              action === 'Create'
                 ? form.handleSubmit(onSubmitCreate)
                 : form.handleSubmit(onSubmitUpdate)
             }
@@ -209,7 +209,9 @@ export default function ToolDialog({
                 {form.formState.isSubmitting && (
                   <Loader2 className="mr-2 size-4 animate-spin" />
                 )}
-                {action} tool
+                {action}
+                {' '}
+                tool
               </Button>
             </ResponsiveDialogFooter>
           </form>

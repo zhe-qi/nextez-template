@@ -1,16 +1,16 @@
-"use server";
+'use server';
 
-import type { DataResult } from "@/types/types";
+import type { DataResult } from '@/types/types';
 
-import type { z } from "zod";
+import type { z } from 'zod';
 
-import prismadb from "@/lib/prismadb";
+import prismadb from '@/lib/prismadb';
 
-import { has } from "@/lib/rbac";
-import { validateSchemaAction } from "@/lib/validate-schema-action";
-import { toolSchema } from "@/schemas/tools";
+import { has } from '@/lib/rbac';
+import { validateSchemaAction } from '@/lib/validate-schema-action';
+import { toolSchema } from '@/schemas/tools';
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath } from 'next/cache';
 
 type FormData = z.infer<typeof toolSchema>;
 
@@ -18,10 +18,10 @@ async function handler(formData: FormData): Promise<DataResult<FormData>> {
   const { name, description, href, icon } = formData;
 
   try {
-    const isAuthorized = await has({ role: "admin" });
+    const isAuthorized = await has({ role: 'admin' });
 
     if (!isAuthorized) {
-      return { success: false, message: "Unauthorized" };
+      return { success: false, message: 'Unauthorized' };
     }
 
     const errors: Record<string, string[]> = {
@@ -43,7 +43,7 @@ async function handler(formData: FormData): Promise<DataResult<FormData>> {
       }
     }
 
-    if (Object.values(errors).some((errorArray) => errorArray.length > 0)) {
+    if (Object.values(errors).some(errorArray => errorArray.length > 0)) {
       return { success: false, errors };
     }
 
@@ -55,8 +55,8 @@ async function handler(formData: FormData): Promise<DataResult<FormData>> {
 
     return { success: true };
   } catch (error) {
-    console.error("Error creating tool:", error);
-    return { success: false, message: "Something went wrong" };
+    console.error('Error creating tool:', error);
+    return { success: false, message: 'Something went wrong' };
   }
 }
 

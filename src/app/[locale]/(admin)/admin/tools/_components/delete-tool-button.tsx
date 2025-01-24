@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
+} from '@/components/ui/tooltip';
 
-import { Trash2 } from "lucide-react";
-import { useState } from "react";
+import { Trash2 } from 'lucide-react';
+import { useState } from 'react';
 
-import DeleteToolDialog from "./delete-tool-dialog";
+import DeleteToolDialog from './delete-tool-dialog';
 
 export default function DeleteToolButton({
   toolId,

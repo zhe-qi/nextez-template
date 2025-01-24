@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Loader2, SearchIcon, XCircleIcon } from "lucide-react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useRef, useTransition } from "react";
-import { useDebouncedCallback } from "use-debounce";
+} from '@/components/ui/tooltip';
+import { Loader2, SearchIcon, XCircleIcon } from 'lucide-react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useRef, useTransition } from 'react';
+import { useDebouncedCallback } from 'use-debounce';
 
 export default function ToolSearch() {
   const searchParams = useSearchParams();
@@ -19,15 +19,15 @@ export default function ToolSearch() {
   const [isSearching, startTransition] = useTransition();
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const q = searchParams.get("q")?.toString();
+  const q = searchParams.get('q')?.toString();
 
   const handleSearch = useDebouncedCallback((query: string) => {
     startTransition(() => {
       const params = new URLSearchParams(searchParams);
       if (query) {
-        params.set("q", query);
+        params.set('q', query);
       } else {
-        params.delete("q");
+        params.delete('q');
       }
       replace(`${pathname}?${params.toString()}`);
     });
@@ -35,18 +35,20 @@ export default function ToolSearch() {
 
   const handleClearInput = () => {
     if (inputRef.current) {
-      inputRef.current.value = "";
-      handleSearch("");
+      inputRef.current.value = '';
+      handleSearch('');
     }
   };
 
   return (
     <div className="relative flex w-full min-w-40 items-center gap-1.5">
-      {isSearching ? (
-        <Loader2 className="absolute left-4 size-5 animate-spin text-muted-foreground" />
-      ) : (
-        <SearchIcon className="absolute left-4 size-5 text-muted-foreground" />
-      )}
+      {isSearching
+        ? (
+            <Loader2 className="absolute left-4 size-5 animate-spin text-muted-foreground" />
+          )
+        : (
+            <SearchIcon className="absolute left-4 size-5 text-muted-foreground" />
+          )}
 
       <Input
         className="w-full p-5 pl-12"
@@ -56,7 +58,7 @@ export default function ToolSearch() {
         }}
         defaultValue={q}
         onKeyDown={(e) => {
-          if (e.key === "Escape") {
+          if (e.key === 'Escape') {
             inputRef?.current?.blur();
           }
         }}

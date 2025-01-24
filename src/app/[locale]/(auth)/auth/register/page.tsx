@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import type { z } from "zod";
-import AuthTemplate from "@/components/auth/auth-template";
+import type { z } from 'zod';
+import AuthTemplate from '@/components/auth/auth-template';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 
 import {
   Form,
@@ -12,21 +12,21 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { registerSchema } from "@/schemas/auth";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2 } from "lucide-react";
-import { signIn } from "next-auth/react";
-import Link from "next/link";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { registerSchema } from '@/schemas/auth';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Loader2 } from 'lucide-react';
+import { signIn } from 'next-auth/react';
+import Link from 'next/link';
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from 'next/navigation';
 
-import { Suspense, useState } from "react";
-import { useForm } from "react-hook-form";
-import { FaGithub, FaGoogle } from "react-icons/fa6";
+import { Suspense, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { FaGithub, FaGoogle } from 'react-icons/fa6';
 
-import { toast } from "sonner";
+import { toast } from 'sonner';
 
 type FormData = z.infer<typeof registerSchema>;
 
@@ -34,17 +34,17 @@ function RegisterForm() {
   const router = useRouter();
 
   const searchParams = useSearchParams();
-  const callbackUrl: string =
-    (searchParams.get("callbackUrl") as string) ?? "/";
+  const callbackUrl: string
+    = (searchParams.get('callbackUrl') as string) ?? '/';
 
   const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<FormData>({
     defaultValues: {
-      username: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
+      username: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
     },
     resolver: zodResolver(registerSchema),
   });
@@ -53,10 +53,10 @@ function RegisterForm() {
     setIsLoading(true);
 
     try {
-      const registerResponse = await fetch("/api/auth/register", {
-        method: "POST",
+      const registerResponse = await fetch('/api/auth/register', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
       });
@@ -65,28 +65,28 @@ function RegisterForm() {
         const errors = await registerResponse.json();
         if (errors) {
           errors.forEach(
-            (errorData: { field: "username" | "email"; message: string }) =>
+            (errorData: { field: 'username' | 'email'; message: string }) =>
               form.setError(errorData.field, {
-                type: "custom",
+                type: 'custom',
                 message: errorData.message,
               }),
           );
         }
-        throw new Error("注册失败");
+        throw new Error('注册失败');
       }
 
-      await fetch("/api/auth/confirm", {
-        method: "POST",
+      await fetch('/api/auth/confirm', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email: data.email }),
       });
 
-      toast.success("User created");
-      router.push("/auth/login");
+      toast.success('User created');
+      router.push('/auth/login');
     } catch {
-      toast.error("Something went wrong");
+      toast.error('Something went wrong');
     } finally {
       setIsLoading(false);
     }
@@ -96,7 +96,8 @@ function RegisterForm() {
     <AuthTemplate>
       <h1 className="text-2xl font-bold tracking-tight md:text-3xl">Sign up</h1>
       <p className="text-sm text-muted-foreground">
-        Already have an account?{" "}
+        Already have an account?
+        {' '}
         <Link
           className="font-semibold leading-6 text-purple-600 hover:text-green-400"
           href="/auth/login"
@@ -200,7 +201,7 @@ function RegisterForm() {
           size="sm"
           className="gap-2"
           disabled={isLoading}
-          onClick={() => signIn("google", { callbackUrl })}
+          onClick={() => signIn('google', { callbackUrl })}
         >
           <FaGoogle className="size-4" />
           <span>Google</span>
@@ -210,7 +211,7 @@ function RegisterForm() {
           size="sm"
           className="gap-2"
           disabled={isLoading}
-          onClick={() => signIn("github", { callbackUrl })}
+          onClick={() => signIn('github', { callbackUrl })}
         >
           <FaGithub className="size-4" />
           <span>GitHub</span>

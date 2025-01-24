@@ -1,11 +1,11 @@
-"use server";
+'use server';
 
-import type { DataResult } from "@/types/types";
+import type { DataResult } from '@/types/types';
 
-import prismadb from "@/lib/prismadb";
+import prismadb from '@/lib/prismadb';
 
-import { has } from "@/lib/rbac";
-import { revalidatePath } from "next/cache";
+import { has } from '@/lib/rbac';
+import { revalidatePath } from 'next/cache';
 
 type Props = {
   roleId: number;
@@ -17,10 +17,10 @@ export async function addToolsToRoles({
   toolsIds,
 }: Props): Promise<DataResult<Props>> {
   try {
-    const isAuthorized = await has({ role: "admin" });
+    const isAuthorized = await has({ role: 'admin' });
 
     if (!isAuthorized) {
-      return { success: false, message: "Unauthorized" };
+      return { success: false, message: 'Unauthorized' };
     }
 
     const currentTools = await prismadb.roleTool.findMany({
@@ -28,14 +28,14 @@ export async function addToolsToRoles({
       select: { toolId: true },
     });
 
-    const currentToolIds = new Set(currentTools.map((tool) => tool.toolId));
-    const newToolIds = new Set(toolsIds?.map((toolId) => toolId) || []);
+    const currentToolIds = new Set(currentTools.map(tool => tool.toolId));
+    const newToolIds = new Set(toolsIds?.map(toolId => toolId) || []);
     const toolsToDelete = currentTools.filter(
-      (tool) => !newToolIds.has(tool.toolId),
+      tool => !newToolIds.has(tool.toolId),
     );
-    const toolsToAdd =
-      toolsIds?.filter((toolId) => !currentToolIds.has(toolId)) || [];
-    const dataToInsert = toolsToAdd.map((toolId) => ({
+    const toolsToAdd
+      = toolsIds?.filter(toolId => !currentToolIds.has(toolId)) || [];
+    const dataToInsert = toolsToAdd.map(toolId => ({
       roleId,
       toolId,
     }));
@@ -44,7 +44,7 @@ export async function addToolsToRoles({
       where: {
         roleId,
         toolId: {
-          in: toolsToDelete.map((tool) => tool.toolId),
+          in: toolsToDelete.map(tool => tool.toolId),
         },
       },
     });
@@ -55,7 +55,7 @@ export async function addToolsToRoles({
 
     return { success: true };
   } catch (error) {
-    console.error("Error adding tools to role:", error);
-    return { success: false, message: "Something went wrong" };
+    console.error('Error adding tools to role:', error);
+    return { success: false, message: 'Something went wrong' };
   }
 }

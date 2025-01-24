@@ -1,16 +1,16 @@
-import { PageSection } from "@/components/page-header";
-import prismadb from "@/lib/prismadb";
+import { PageSection } from '@/components/page-header';
+import prismadb from '@/lib/prismadb';
 
-import { protectPage } from "@/lib/rbac";
+import { protectPage } from '@/lib/rbac';
 
-import AddUserForm from "../_components/add-user-form";
+import AddUserForm from '../_components/add-user-form';
 
 type Params = Promise<{ roleId: number }>;
 
 export default async function RolesAdminAddUsersPage(props: {
   params: Params;
 }) {
-  await protectPage({ permission: "admin:all" });
+  await protectPage({ permission: 'admin:all' });
 
   const params = await props.params;
   const roleId = Number(params.roleId);
@@ -22,13 +22,13 @@ export default async function RolesAdminAddUsersPage(props: {
 
   const users = await prismadb.user.findMany();
 
-  const options = users.map((user) => ({
+  const options = users.map(user => ({
     value: user.id,
     label: user.email,
   }));
 
   const selectedValues = new Set(
-    selectedOptions?.users.map((user) => user.userId),
+    selectedOptions?.users.map(user => user.userId),
   );
 
   return (

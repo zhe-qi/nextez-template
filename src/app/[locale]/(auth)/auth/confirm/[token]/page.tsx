@@ -1,4 +1,4 @@
-import { confirmEmail } from "@/actions/auth/confirm-email";
+import { confirmEmail } from '@/actions/auth/confirm-email';
 
 type Params = Promise<{ token: string }>;
 

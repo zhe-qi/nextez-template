@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import type { ColumnDef, SortingState } from "@tanstack/react-table";
+import type { ColumnDef, SortingState } from '@tanstack/react-table';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 
 import {
   Table,
@@ -11,21 +11,21 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from '@/components/ui/table';
 import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   useReactTable,
-} from "@tanstack/react-table";
-import { SearchX } from "lucide-react";
+} from '@tanstack/react-table';
+import { SearchX } from 'lucide-react';
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
-import { DataTableFiltersSSR } from "./data-filters-ssr";
-import { DataTablePaginationSSR } from "./data-pagination-ssr";
-import EmptyState from "./empty-state";
+import { DataTableFiltersSSR } from './data-filters-ssr';
+import { DataTablePaginationSSR } from './data-pagination-ssr';
+import EmptyState from './empty-state';
 
 type DataTableProps<TData, TValue> = {
   columns: ColumnDef<TData, TValue>[];
@@ -77,11 +77,11 @@ export function DataTableSSR<TData, TValue>({
     if (sort && sort.length > 0) {
       const sortOrder = sort
         .map(({ id, desc }) => (desc ? `-${id}` : id))
-        .join(",");
-      params.set("sort", sortOrder);
-      params.delete("page");
+        .join(',');
+      params.set('sort', sortOrder);
+      params.delete('page');
     } else {
-      params.delete("sort");
+      params.delete('sort');
     }
 
     replace(`${pathname}?${params.toString()}`);
@@ -90,7 +90,7 @@ export function DataTableSSR<TData, TValue>({
   const handleClearSearch = () => {
     const params = new URLSearchParams(searchParams);
 
-    params.delete("q");
+    params.delete('q');
 
     replace(`${pathname}?${params.toString()}`);
   };
@@ -117,7 +117,7 @@ export function DataTableSSR<TData, TValue>({
       <div className="rounded-md border">
         <Table>
           <TableHeader>
-            {table.getHeaderGroups().map((headerGroup) => (
+            {table.getHeaderGroups().map(headerGroup => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
@@ -136,9 +136,9 @@ export function DataTableSSR<TData, TValue>({
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows?.length
-              ? table.getRowModel().rows.map((row) => (
+              ? table.getRowModel().rows.map(row => (
                   <TableRow key={row.id}>
-                    {row.getVisibleCells().map((cell) => (
+                    {row.getVisibleCells().map(cell => (
                       <TableCell key={cell.id}>
                         {flexRender(
                           cell.column.columnDef.cell,
@@ -148,31 +148,31 @@ export function DataTableSSR<TData, TValue>({
                     ))}
                   </TableRow>
                 ))
-              : getFilteredRowModel.length === 0 &&
-                searchValue && (
-                  <TableRow>
-                    <TableCell
-                      colSpan={columns.length}
-                      className="space-y-3 text-center"
-                    >
-                      <EmptyState
-                        title="No results found"
-                        description="Please try again"
-                        icon={SearchX}
-                        action={
-                          <Button
-                            onClick={handleClearSearch}
-                            variant="default"
-                            size="sm"
-                            className="mb-4"
-                          >
-                            Clear search
-                          </Button>
-                        }
-                      />
-                    </TableCell>
-                  </TableRow>
-                )}
+              : getFilteredRowModel.length === 0
+                && searchValue && (
+                <TableRow>
+                  <TableCell
+                    colSpan={columns.length}
+                    className="space-y-3 text-center"
+                  >
+                    <EmptyState
+                      title="No results found"
+                      description="Please try again"
+                      icon={SearchX}
+                      action={(
+                        <Button
+                          onClick={handleClearSearch}
+                          variant="default"
+                          size="sm"
+                          className="mb-4"
+                        >
+                          Clear search
+                        </Button>
+                      )}
+                    />
+                  </TableCell>
+                </TableRow>
+              )}
           </TableBody>
         </Table>
       </div>

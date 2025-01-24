@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import type { z } from "zod";
-import { createRole } from "@/actions/roles";
+import type { z } from 'zod';
+import { createRole } from '@/actions/roles';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -12,25 +12,25 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 import MultipleSelector, {
   type Option,
-} from "@/components/ui/multiple-selector";
-import { Switch } from "@/components/ui/switch";
+} from '@/components/ui/multiple-selector';
+import { Switch } from '@/components/ui/switch';
 
-import { Textarea } from "@/components/ui/textarea";
+import { Textarea } from '@/components/ui/textarea';
 
-import { addServerErrors } from "@/lib/utils";
+import { addServerErrors } from '@/lib/utils';
 
-import { roleServerActionCreateSchema } from "@/schemas/roles";
+import { roleServerActionCreateSchema } from '@/schemas/roles';
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2 } from "lucide-react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Loader2 } from 'lucide-react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 
 type FormData = z.infer<typeof roleServerActionCreateSchema>;
 
@@ -44,28 +44,28 @@ export default function CreateRoleForm() {
 
   const form = useForm<FormData>({
     defaultValues: {
-      name: "",
-      description: "",
-      key: "",
+      name: '',
+      description: '',
+      key: '',
       isActive: false,
       permissions: undefined,
     },
     resolver: zodResolver(roleServerActionCreateSchema),
-    mode: "onChange",
+    mode: 'onChange',
   });
 
   const onSubmitCreate = async (data: FormData) => {
     const result = await createRole(data);
     if (result.success) {
-      router.push("/admin/roles");
-      toast.success("Role created successfully!");
+      router.push('/admin/roles');
+      toast.success('Role created successfully!');
     } else {
       if (result.errors) {
         addServerErrors(result.errors, form.setError);
       } else if (result.message) {
         toast.error(result.message);
       } else {
-        toast.error("Something went wrong");
+        toast.error('Something went wrong');
       }
     }
   };
@@ -162,16 +162,16 @@ export default function CreateRoleForm() {
                   }}
                   triggerSearchOnFocus
                   placeholder="Search permissions..."
-                  loadingIndicator={
+                  loadingIndicator={(
                     <p className="py-2 text-center text-lg leading-10 text-muted-foreground">
                       Loading permissions...
                     </p>
-                  }
-                  emptyIndicator={
+                  )}
+                  emptyIndicator={(
                     <p className="text-center text-lg leading-10 text-gray-600 dark:text-gray-400">
                       No matching permissions found.
                     </p>
-                  }
+                  )}
                 />
               </FormControl>
               <FormDescription>
@@ -191,7 +191,7 @@ export default function CreateRoleForm() {
             {form.formState.isSubmitting && (
               <Loader2 className="mr-2 size-4 animate-spin" />
             )}
-            {form.formState.isSubmitting ? "Creating..." : "Create"}
+            {form.formState.isSubmitting ? 'Creating...' : 'Create'}
           </Button>
           <Button
             size="sm"

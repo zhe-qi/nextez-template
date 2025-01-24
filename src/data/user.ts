@@ -1,6 +1,6 @@
-import prismadb from "@/lib/prismadb";
+import prismadb from '@/lib/prismadb';
 
-import "server-only";
+import 'server-only';
 
 export const getUserByEmail = async (email: string) => {
   try {
@@ -60,22 +60,22 @@ export const getUserTools = async (userId: number, search?: string) => {
       return null;
     }
 
-    const favoritesToolIds = data?.toolsFavorites.map((tool) => tool.toolId);
+    const favoritesToolIds = data?.toolsFavorites.map(tool => tool.toolId);
 
-    const flatTools = data?.roles.map((role) =>
-      role.role.tools.map((tool) => tool.tool),
+    const flatTools = data?.roles.map(role =>
+      role.role.tools.map(tool => tool.tool),
     );
 
     const toolsData = flatTools
       ?.flat()
       .sort((a, b) => a.name.localeCompare(b.name))
-      .map((tool) => ({
+      .map(tool => ({
         ...tool,
         isFavorite: favoritesToolIds.includes(tool.id),
       }));
 
     if (search) {
-      const filteredData = toolsData?.filter((tool) =>
+      const filteredData = toolsData?.filter(tool =>
         tool.name.toLowerCase().includes(search.toLowerCase()),
       );
       return filteredData;

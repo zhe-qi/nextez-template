@@ -1,16 +1,16 @@
-import { PageSection } from "@/components/page-header";
+import { PageSection } from '@/components/page-header';
 
-import prismadb from "@/lib/prismadb";
-import { protectPage } from "@/lib/rbac";
+import prismadb from '@/lib/prismadb';
+import { protectPage } from '@/lib/rbac';
 
-import { notFound } from "next/navigation";
+import { notFound } from 'next/navigation';
 
-import EditRoleForm from "./_components/edit-role-form";
+import EditRoleForm from './_components/edit-role-form';
 
 type Params = Promise<{ roleId: number }>;
 
 export default async function RoleAdminPage(props: { params: Params }) {
-  await protectPage({ permission: "admin:all" });
+  await protectPage({ permission: 'admin:all' });
 
   const params = await props.params;
   const id = Number(params.roleId);
@@ -32,7 +32,7 @@ export default async function RoleAdminPage(props: { params: Params }) {
     return notFound();
   }
 
-  const permissionsSelectedOptions = role.permissions.map((permission) => ({
+  const permissionsSelectedOptions = role.permissions.map(permission => ({
     value: String(permission.permission.id),
     label: permission.permission.name,
   }));

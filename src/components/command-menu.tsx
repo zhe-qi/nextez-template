@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import type { LucideIcon } from "lucide-react";
-import type { IconType } from "react-icons/lib";
+import type { LucideIcon } from 'lucide-react';
+import type { IconType } from 'react-icons/lib';
 import {
   CommandDialog,
   CommandEmpty,
@@ -10,14 +10,14 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from "@/components/ui/command";
-import { useOperatingSystem } from "@/lib/hooks/use-operating-system";
-import { LayoutGrid, LogOut, NotebookPen, Settings, User } from "lucide-react";
-import { useTheme } from "next-themes";
-import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
-import { RxDesktop, RxMoon, RxSun } from "react-icons/rx";
-import { Button } from "./ui/button";
+} from '@/components/ui/command';
+import { useOperatingSystem } from '@/lib/hooks/use-operating-system';
+import { LayoutGrid, LogOut, NotebookPen, Settings, User } from 'lucide-react';
+import { useTheme } from 'next-themes';
+import { useRouter } from 'next/navigation';
+import { useCallback, useEffect, useState } from 'react';
+import { RxDesktop, RxMoon, RxSun } from 'react-icons/rx';
+import { Button } from './ui/button';
 
 type IQuickLinks = {
   icon: LucideIcon;
@@ -32,15 +32,15 @@ type ITheme = {
 };
 
 const quickLinks: IQuickLinks[] = [
-  { icon: User, label: "Profile", href: "/profile" },
-  { icon: Settings, label: "Settings", href: "/settings" },
-  { icon: LogOut, label: "Log out", href: "/auth/logout" },
+  { icon: User, label: 'Profile', href: '/profile' },
+  { icon: Settings, label: 'Settings', href: '/settings' },
+  { icon: LogOut, label: 'Log out', href: '/auth/logout' },
 ];
 
 const themeItems: ITheme[] = [
-  { icon: RxSun, label: "Light", action: "light" },
-  { icon: RxMoon, label: "dark", action: "dark" },
-  { icon: RxDesktop, label: "System", action: "system" },
+  { icon: RxSun, label: 'Light', action: 'light' },
+  { icon: RxMoon, label: 'dark', action: 'dark' },
+  { icon: RxDesktop, label: 'System', action: 'system' },
 ];
 
 export function CommandMenu() {
@@ -51,14 +51,14 @@ export function CommandMenu() {
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+      if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
-        setOpen((open) => !open);
+        setOpen(open => !open);
       }
     };
 
-    document.addEventListener("keydown", down);
-    return () => document.removeEventListener("keydown", down);
+    document.addEventListener('keydown', down);
+    return () => document.removeEventListener('keydown', down);
   }, []);
 
   const runCommand = useCallback((command: () => unknown) => {
@@ -76,7 +76,7 @@ export function CommandMenu() {
         <p className="space-x-1 text-sm text-muted-foreground">
           <span>Command menu</span>
           <kbd className="pointer-events-none inline-flex h-5 select-none items-center rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
-            <span className="text-xs">{isMacOS ? "⌘" : "ctrl"}</span>
+            <span className="text-xs">{isMacOS ? '⌘' : 'ctrl'}</span>
           </kbd>
           <kbd className="pointer-events-none inline-flex h-5 select-none items-center rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
             <span className="text-xs">K</span>
@@ -90,7 +90,7 @@ export function CommandMenu() {
           <CommandGroup heading="Suggestions">
             <CommandItem
               onSelect={() => {
-                runCommand(() => router.push("/tools"));
+                runCommand(() => router.push('/tools'));
               }}
             >
               <LayoutGrid className="mr-2 size-4" />
@@ -98,7 +98,7 @@ export function CommandMenu() {
             </CommandItem>
             <CommandItem
               onSelect={() => {
-                runCommand(() => router.push("/tools/blog"));
+                runCommand(() => router.push('/tools/blog'));
               }}
             >
               <NotebookPen className="mr-2 size-4" />

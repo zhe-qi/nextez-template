@@ -1,11 +1,11 @@
-import type { SortingState } from "@tanstack/react-table";
-import { getFeedbacksSSR } from "@/data/feedback";
+import type { SortingState } from '@tanstack/react-table';
+import { getFeedbacksSSR } from '@/data/feedback';
 
-import { MessageSquareHeart } from "lucide-react";
+import { MessageSquareHeart } from 'lucide-react';
 
-import { columns } from "./columns";
-import { DataTableSSR } from "./data-table-ssr";
-import EmptyState from "./empty-state";
+import { columns } from './columns';
+import { DataTableSSR } from './data-table-ssr';
+import EmptyState from './empty-state';
 
 type DataTableProps = {
   currentPage: number;
@@ -44,12 +44,12 @@ export default async function FeedbacksDataTableSSR({
       currentPage={currentPage}
       pageSize={limit}
       sortState={sortState}
-      emptyState={
+      emptyState={(
         <EmptyState
           description="No feedback sent by users"
           icon={MessageSquareHeart}
         />
-      }
+      )}
     />
   );
 }

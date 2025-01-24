@@ -1,7 +1,7 @@
-import { type ClassValue, clsx } from "clsx";
-import { formatDistanceToNow } from "date-fns";
-import { format, formatInTimeZone, toZonedTime } from "date-fns-tz";
-import { twMerge } from "tailwind-merge";
+import { type ClassValue, clsx } from 'clsx';
+import { formatDistanceToNow } from 'date-fns';
+import { format, formatInTimeZone, toZonedTime } from 'date-fns-tz';
+import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -18,15 +18,15 @@ export function addServerErrors<T>(
     const errorMessages = errors[key as keyof T];
     if (errorMessages && errorMessages.length > 0) {
       setError(key as keyof T, {
-        type: "server",
-        message: errors[key as keyof T]!.join(". "),
+        type: 'server',
+        message: errors[key as keyof T]!.join('. '),
       });
     }
   });
 }
 
 export async function delay(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 export const getSearchParams = (url: string) => {
@@ -45,15 +45,15 @@ export const formatDate = (date: Date) => {
 
   const utcDateTime = formatInTimeZone(
     new Date(date.toISOString()),
-    "UTC",
-    "MMMM d, yyyy HH:mm:ss",
+    'UTC',
+    'MMMM d, yyyy HH:mm:ss',
   );
 
-  const localDateTime = format(localDate, "MMMM d, yyyy HH:mm:ss", {
+  const localDateTime = format(localDate, 'MMMM d, yyyy HH:mm:ss', {
     timeZone: userTimeZone,
   });
 
-  const gmtOffset = format(localDate, "zzz", {
+  const gmtOffset = format(localDate, 'zzz', {
     timeZone: userTimeZone,
   });
 

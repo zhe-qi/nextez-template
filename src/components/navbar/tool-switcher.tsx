@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import type { ITool } from "@/types/types";
-import { Button } from "@/components/ui/button";
+import type { ITool } from '@/types/types';
+import { Button } from '@/components/ui/button';
 
 import {
   Command,
@@ -11,25 +11,25 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from "@/components/ui/command";
+} from '@/components/ui/command';
 
-import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
+import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
 
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
+} from '@/components/ui/popover';
 
-import { Skeleton } from "@/components/ui/skeleton";
-import { useMediaQuery } from "@/lib/hooks/use-media-query";
-import useTools from "@/lib/swr/use-tools";
+import { Skeleton } from '@/components/ui/skeleton';
+import { useMediaQuery } from '@/lib/hooks/use-media-query';
+import useTools from '@/lib/swr/use-tools';
 
-import { cn } from "@/lib/utils";
-import { Check, ChevronsUpDown, LayoutGrid, PlusCircle } from "lucide-react";
-import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
+import { cn } from '@/lib/utils';
+import { Check, ChevronsUpDown, LayoutGrid, PlusCircle } from 'lucide-react';
+import Image from 'next/image';
+import { usePathname, useRouter } from 'next/navigation';
+import { useMemo, useState } from 'react';
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<
   typeof PopoverTrigger
@@ -46,7 +46,7 @@ export default function ToolSwitcher({ className }: ToolSwitcherProps) {
   const { tools, isLoading } = useTools();
 
   const selected = useMemo(() => {
-    const selectTool = tools?.find((tool) => pathname.startsWith(tool.href));
+    const selectTool = tools?.find(tool => pathname.startsWith(tool.href));
 
     if (selectTool) {
       return { ...selectTool };
@@ -54,9 +54,9 @@ export default function ToolSwitcher({ className }: ToolSwitcherProps) {
 
     return {
       id: -1,
-      name: "Select a tool",
-      href: "/tools",
-      icon: "layout-grid",
+      name: 'Select a tool',
+      href: '/tools',
+      icon: 'layout-grid',
     };
   }, [pathname, tools]);
 
@@ -73,7 +73,7 @@ export default function ToolSwitcher({ className }: ToolSwitcherProps) {
             role="combobox"
             aria-expanded={open}
             aria-label="Select a tool"
-            className={cn("w-40 justify-between md:w-48", className)}
+            className={cn('w-40 justify-between md:w-48', className)}
           >
             <Image
               src={`/icons/${selected.icon}-light.svg`}
@@ -108,7 +108,7 @@ export default function ToolSwitcher({ className }: ToolSwitcherProps) {
           role="combobox"
           aria-expanded={open}
           aria-label="Select a tool"
-          className={cn("w-40 justify-between md:w-48", className)}
+          className={cn('w-40 justify-between md:w-48', className)}
         >
           <Image
             src={`/icons/${selected.icon}-light.svg`}
@@ -156,7 +156,7 @@ function ToolsList({
         <CommandInput placeholder="Search tool..." />
         <CommandEmpty>No tool found.</CommandEmpty>
         <CommandGroup key="Tools" heading="Tools">
-          {tools.map((tool) => (
+          {tools.map(tool => (
             <CommandItem
               key={tool.id}
               onSelect={() => {
@@ -182,8 +182,8 @@ function ToolsList({
               <span>{tool.name}</span>
               <Check
                 className={cn(
-                  "ml-auto size-4",
-                  selected.name === tool.name ? "opacity-100" : "opacity-0",
+                  'ml-auto size-4',
+                  selected.name === tool.name ? 'opacity-100' : 'opacity-0',
                 )}
               />
             </CommandItem>
@@ -194,15 +194,15 @@ function ToolsList({
           <CommandItem
             onSelect={() => {
               setOpen(false);
-              router.push("/tools");
+              router.push('/tools');
             }}
           >
             <LayoutGrid className="mr-2 size-4" />
             <span>My tools</span>
             <Check
               className={cn(
-                "ml-auto size-4",
-                pathname === "/tools" ? "opacity-100" : "opacity-0",
+                'ml-auto size-4',
+                pathname === '/tools' ? 'opacity-100' : 'opacity-0',
               )}
             />
           </CommandItem>

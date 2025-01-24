@@ -1,11 +1,11 @@
-import type { ZodSchema } from "zod";
+import type { ZodSchema } from 'zod';
 
 type ZodSchemaFields = { [K: string]: ZodSchemaFields | true };
 type DirtyZodSchemaFields = { [K: string]: DirtyZodSchemaFields };
 
 const _proxyHandler = {
   get(fields: DirtyZodSchemaFields, key: string | symbol) {
-    if (key === "then" || typeof key !== "string") {
+    if (key === 'then' || typeof key !== 'string') {
       return;
     }
     if (!fields[key]) {

@@ -1,14 +1,14 @@
-import { PageSection } from "@/components/page-header";
-import prismadb from "@/lib/prismadb";
+import { PageSection } from '@/components/page-header';
+import prismadb from '@/lib/prismadb';
 
-import { protectPage } from "@/lib/rbac";
+import { protectPage } from '@/lib/rbac';
 
-import ToolsSelect from "./_components/tools-select";
+import ToolsSelect from './_components/tools-select';
 
 type Params = Promise<{ roleId: number }>;
 
 export default async function RolesAdminToolsPage(props: { params: Params }) {
-  await protectPage({ permission: "admin:all" });
+  await protectPage({ permission: 'admin:all' });
 
   const params = await props.params;
   const roleId = Number(params.roleId);

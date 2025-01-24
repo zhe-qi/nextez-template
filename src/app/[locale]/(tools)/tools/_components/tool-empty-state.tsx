@@ -1,5 +1,5 @@
-import EmptyState from "@/components/ui/data-tables/empty-state";
-import { LayoutGrid } from "lucide-react";
+import EmptyState from '@/components/ui/data-tables/empty-state';
+import { LayoutGrid } from 'lucide-react';
 
 export default function ToolEmptyState() {
   return (

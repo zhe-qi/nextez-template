@@ -1,76 +1,76 @@
-import type { ZodOpenApiOperationObject } from "zod-openapi";
+import type { ZodOpenApiOperationObject } from 'zod-openapi';
 
 import {
   permissionCreateSchema,
   permissionOutputSchema,
-} from "@/schemas/permissions";
+} from '@/schemas/permissions';
 
 import {
   conflictErrorSchema,
   internalServerErrorSchema,
   unauthorizedErrorSchema,
   validationErrorSchema,
-} from "../responses";
+} from '../responses';
 
 export const createPermission: ZodOpenApiOperationObject = {
-  operationId: "createPermission",
-  summary: "Create a permission",
-  description: "Create a new permission in the system.",
+  operationId: 'createPermission',
+  summary: 'Create a permission',
+  description: 'Create a new permission in the system.',
   requestBody: {
     content: {
-      "application/json": {
+      'application/json': {
         schema: permissionCreateSchema,
       },
     },
   },
   responses: {
     201: {
-      description: "Permission created",
-      content: { "application/json": { schema: permissionOutputSchema } },
+      description: 'Permission created',
+      content: { 'application/json': { schema: permissionOutputSchema } },
     },
     401: {
-      description: "Unauthorized Error",
+      description: 'Unauthorized Error',
       content: {
-        "application/json": {
+        'application/json': {
           schema: unauthorizedErrorSchema,
         },
       },
     },
     409: {
-      description: "Conflict Error",
+      description: 'Conflict Error',
       content: {
-        "application/json": {
+        'application/json': {
           schema: conflictErrorSchema,
           examples: {
             nameConflict: {
-              summary: "Name conflict",
-              value: { message: "A permission with that name already exists." },
+              summary: 'Name conflict',
+              value: { message: 'A permission with that name already exists.' },
             },
             keyConflict: {
-              summary: "Key conflict",
-              value: { message: "A permission with that key already exists." },
+              summary: 'Key conflict',
+              value: { message: 'A permission with that key already exists.' },
             },
           },
         },
       },
     },
     422: {
-      description: "Validation Error",
+      description: 'Validation Error',
       content: {
-        "application/json": {
+        'application/json': {
           schema: validationErrorSchema,
         },
       },
     },
     500: {
-      description: "Internal Server Error",
+      description: 'Internal Server Error',
       content: {
-        "application/json": {
+        'application/json': {
           schema: internalServerErrorSchema,
         },
       },
     },
   },
-  tags: ["Permissions"],
+  tags: ['Permissions'],
   security: [{ BearerAuth: [] }],
 };

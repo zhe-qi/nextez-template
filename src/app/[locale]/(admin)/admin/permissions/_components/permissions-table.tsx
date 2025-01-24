@@ -1,9 +1,9 @@
-import { DataTable } from "@/components/ui/data-tables/data-table";
+import { DataTable } from '@/components/ui/data-tables/data-table';
 
-import { getAllPermissions } from "@/data/permission";
+import { getAllPermissions } from '@/data/permission';
 
-import { columns } from "./columns";
-import PermissionsEmptyStateTable from "./permissions-empty-state-table";
+import { columns } from './columns';
+import PermissionsEmptyStateTable from './permissions-empty-state-table';
 
 export default async function PermissionsTable() {
   const data = await getAllPermissions();
@@ -14,7 +14,7 @@ export default async function PermissionsTable() {
       data={data}
       searchFieldLabel="permissions"
       emptyState={<PermissionsEmptyStateTable />}
-      hiddenColumns={{ ID: false, "Created At": false }}
+      hiddenColumns={{ 'ID': false, 'Created At': false }}
     />
   );
 }

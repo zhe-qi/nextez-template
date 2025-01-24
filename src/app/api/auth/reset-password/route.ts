@@ -1,13 +1,13 @@
-import { getUserByEmail } from "@/data/user";
+import { getUserByEmail } from '@/data/user';
 
-import ResetPasswordEmail from "@/emails/reset-email";
-import { env } from "@/env";
-import { generateUserToken } from "@/lib/jwt";
+import ResetPasswordEmail from '@/emails/reset-email';
+import { env } from '@/env';
+import { generateUserToken } from '@/lib/jwt';
 
-import { sendMail } from "@/lib/mail";
-import { render } from "@react-email/render";
+import { sendMail } from '@/lib/mail';
+import { render } from '@react-email/render';
 
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
   try {
@@ -19,7 +19,7 @@ export async function POST(req: Request) {
 
     if (!existingUser) {
       return NextResponse.json(
-        { error: "Email does not exists" },
+        { error: 'Email does not exists' },
         { status: 404 },
       );
     }
@@ -30,9 +30,9 @@ export async function POST(req: Request) {
 
     const emailHtml = await render(ResetPasswordEmail({ url }));
 
-    await sendMail(email, "Reset password", emailHtml);
+    await sendMail(email, 'Reset password', emailHtml);
 
-    return NextResponse.json({ message: "Email sent" }, { status: 201 });
+    return NextResponse.json({ message: 'Email sent' }, { status: 201 });
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }

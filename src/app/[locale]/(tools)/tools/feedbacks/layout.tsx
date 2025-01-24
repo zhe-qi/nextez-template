@@ -1,4 +1,4 @@
-import MaxWidthWrapper from "@/components/max-width-wrapper";
+import MaxWidthWrapper from '@/components/max-width-wrapper';
 
 export default function FeedbackLayout({
   children,

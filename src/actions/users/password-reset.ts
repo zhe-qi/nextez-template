@@ -1,17 +1,17 @@
-"use server";
+'use server';
 
-import prismadb from "@/lib/prismadb";
+import prismadb from '@/lib/prismadb';
 
-import { has } from "@/lib/rbac";
-import { hash } from "bcrypt";
+import { has } from '@/lib/rbac';
+import { hash } from 'bcrypt';
 
 export async function checkUserPassword(userId: number): Promise<boolean> {
   try {
-    const isAuthorized = await has({ role: "admin" });
+    const isAuthorized = await has({ role: 'admin' });
 
     if (!isAuthorized) {
       throw new Error(
-        "Unauthorized: You do not have permission to perform this action.",
+        'Unauthorized: You do not have permission to perform this action.',
       );
     }
     const user = await prismadb.user.findUnique({
@@ -20,18 +20,18 @@ export async function checkUserPassword(userId: number): Promise<boolean> {
     });
     return !!user?.password;
   } catch (error) {
-    console.error("Authorization error:", error);
-    throw new Error("Failed to authorize user for password reset.");
+    console.error('Authorization error:', error);
+    throw new Error('Failed to authorize user for password reset.');
   }
 }
 
 export async function resetUserPassword(userId: number): Promise<void> {
   try {
-    const isAuthorized = await has({ role: "admin" });
+    const isAuthorized = await has({ role: 'admin' });
 
     if (!isAuthorized) {
       throw new Error(
-        "Unauthorized: You do not have permission to perform this action.",
+        'Unauthorized: You do not have permission to perform this action.',
       );
     }
 
@@ -40,8 +40,8 @@ export async function resetUserPassword(userId: number): Promise<void> {
       data: { password: null },
     });
   } catch (error) {
-    console.error("Error resetting password:", error);
-    throw new Error("Failed to reset password.");
+    console.error('Error resetting password:', error);
+    throw new Error('Failed to reset password.');
   }
 }
 
@@ -50,11 +50,11 @@ export async function setTemporaryPassword(
   temporaryPassword: string,
 ): Promise<void> {
   try {
-    const isAuthorized = await has({ role: "admin" });
+    const isAuthorized = await has({ role: 'admin' });
 
     if (!isAuthorized) {
       throw new Error(
-        "Unauthorized: You do not have permission to perform this action.",
+        'Unauthorized: You do not have permission to perform this action.',
       );
     }
 
@@ -64,7 +64,7 @@ export async function setTemporaryPassword(
       data: { password: hashedPassword },
     });
   } catch (error) {
-    console.error("Error setting temporary password:", error);
-    throw new Error("Failed to set temporary password.");
+    console.error('Error setting temporary password:', error);
+    throw new Error('Failed to set temporary password.');
   }
 }

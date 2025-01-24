@@ -1,10 +1,10 @@
-import { Button } from "@react-email/button";
-import { Column } from "@react-email/column";
-import { Img } from "@react-email/img";
-import { Row } from "@react-email/row";
-import { Section } from "@react-email/section";
-import { Tailwind } from "@react-email/tailwind";
-import { Text } from "@react-email/text";
+import { Button } from '@react-email/button';
+import { Column } from '@react-email/column';
+import { Img } from '@react-email/img';
+import { Row } from '@react-email/row';
+import { Section } from '@react-email/section';
+import { Tailwind } from '@react-email/tailwind';
+import { Text } from '@react-email/text';
 
 type EmailProps = {
   username: string;
@@ -19,8 +19,8 @@ export default function UpdateEmail({ username, newEmail, url }: EmailProps) {
         theme: {
           extend: {
             colors: {
-              primary: "#18181b",
-              "primary-foreground": "#fafafa",
+              'primary': '#18181b',
+              'primary-foreground': '#fafafa',
             },
           },
         },
@@ -40,11 +40,14 @@ export default function UpdateEmail({ username, newEmail, url }: EmailProps) {
       </Section>
       <Text>
         Hello
-        {username},
+        {username}
+        ,
       </Text>
       <Text>
         To change your email to
-        {newEmail} please click the following link:
+        {newEmail}
+        {' '}
+        please click the following link:
       </Text>
       <Button
         href={url}

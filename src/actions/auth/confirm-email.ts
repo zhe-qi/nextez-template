@@ -1,9 +1,9 @@
-"use server";
+'use server';
 
-import { verifyUserToken } from "@/lib/jwt";
+import { verifyUserToken } from '@/lib/jwt';
 
-import prismadb from "@/lib/prismadb";
-import { redirect } from "next/navigation";
+import prismadb from '@/lib/prismadb';
+import { redirect } from 'next/navigation';
 
 type IPros = {
   token: string;
@@ -33,9 +33,9 @@ export async function confirmEmail({ token }: IPros) {
     redirect(`/auth/error`);
   } finally {
     if (result.success) {
-      redirect("/auth/login?activated=1");
+      redirect('/auth/login?activated=1');
     } else {
-      redirect("/auth/confirm?error=1");
+      redirect('/auth/confirm?error=1');
     }
   }
 }

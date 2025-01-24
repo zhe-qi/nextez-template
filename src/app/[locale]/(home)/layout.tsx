@@ -1,5 +1,5 @@
-import MaxWidthWrapper from "@/components/max-width-wrapper";
-import Navbar from "@/components/navbar/navbar";
+import MaxWidthWrapper from '@/components/max-width-wrapper';
+import Navbar from '@/components/navbar/navbar';
 
 export default function HomeLayout({
   children,

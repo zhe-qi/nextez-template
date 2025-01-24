@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import type { Tool } from "@prisma/client";
-import type { z } from "zod";
+import type { Tool } from '@prisma/client';
+import type { z } from 'zod';
 
-import { createTool, updateTool } from "@/actions/tools";
-import { Button } from "@/components/ui/button";
+import { createTool, updateTool } from '@/actions/tools';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -12,20 +12,20 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { addServerErrors } from "@/lib/utils";
-import { toolSchema } from "@/schemas/tools";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { addServerErrors } from '@/lib/utils';
+import { toolSchema } from '@/schemas/tools';
 
-import { zodResolver } from "@hookform/resolvers/zod";
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Loader2 } from "lucide-react";
+import { Loader2 } from 'lucide-react';
 
-import Link from "next/link";
+import Link from 'next/link';
 
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 
 type FormData = z.infer<typeof toolSchema>;
 
@@ -35,28 +35,28 @@ export default function ToolForm({ tool }: { tool?: Tool }) {
   const form = useForm<FormData>({
     defaultValues: {
       id: tool?.id || undefined,
-      name: tool?.name || "",
-      description: tool?.description || "",
-      href: tool?.href || "",
-      icon: tool?.icon || "",
+      name: tool?.name || '',
+      description: tool?.description || '',
+      href: tool?.href || '',
+      icon: tool?.icon || '',
     },
     resolver: zodResolver(toolSchema),
   });
 
-  const action = tool ? "Update" : "Create";
+  const action = tool ? 'Update' : 'Create';
 
   const onSubmitCreate = async (data: FormData) => {
     const result = await createTool(data);
     if (result.success) {
-      router.push("/admin/tools");
-      toast.success("Tool created successfully!");
+      router.push('/admin/tools');
+      toast.success('Tool created successfully!');
     } else {
       if (result.errors) {
         addServerErrors(result.errors, form.setError);
       } else if (result.message) {
         toast.error(result.message);
       } else {
-        toast.error("Something went wrong");
+        toast.error('Something went wrong');
       }
     }
   };
@@ -66,14 +66,14 @@ export default function ToolForm({ tool }: { tool?: Tool }) {
     if (result.success) {
       form.reset({ ...data });
       router.refresh();
-      toast.success("Tool updated successfully!");
+      toast.success('Tool updated successfully!');
     } else {
       if (result.errors) {
         addServerErrors(result.errors, form.setError);
       } else if (result.message) {
         toast.error(result.message);
       } else {
-        toast.error("Something went wrong");
+        toast.error('Something went wrong');
       }
     }
   };
@@ -82,7 +82,7 @@ export default function ToolForm({ tool }: { tool?: Tool }) {
     <Form {...form}>
       <form
         onSubmit={
-          action === "Create"
+          action === 'Create'
             ? form.handleSubmit(onSubmitCreate)
             : form.handleSubmit(onSubmitUpdate)
         }

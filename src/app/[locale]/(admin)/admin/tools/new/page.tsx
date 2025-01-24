@@ -1,11 +1,11 @@
-import { PageHeader } from "@/components/page-header";
+import { PageHeader } from '@/components/page-header';
 
-import { protectPage } from "@/lib/rbac";
+import { protectPage } from '@/lib/rbac';
 
-import ToolForm from "../_components/tool-form";
+import ToolForm from '../_components/tool-form';
 
 export default async function NewToolPage() {
-  await protectPage({ permission: "admin:all" });
+  await protectPage({ permission: 'admin:all' });
 
   return (
     <>

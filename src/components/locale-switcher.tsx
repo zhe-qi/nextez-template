@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { Label } from "@/components/ui/label";
+import { Label } from '@/components/ui/label';
 import {
   Select,
   SelectContent,
@@ -8,15 +8,15 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { routing, usePathname } from "@/lib/i18n-navigation";
-import { useLocale } from "next-intl";
-import { useRouter } from "next/navigation";
+} from '@/components/ui/select';
+import { routing, usePathname } from '@/lib/i18n-navigation';
+import { useLocale } from 'next-intl';
+import { useRouter } from 'next/navigation';
 
 // 语言配置
 const languages = {
-  en: "English",
-  zh: "中文",
+  en: 'English',
+  zh: '中文',
 };
 
 export const LocaleSwitcher = () => {
@@ -46,7 +46,7 @@ export const LocaleSwitcher = () => {
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            {routing.locales.map((elt) => (
+            {routing.locales.map(elt => (
               <SelectItem key={elt} value={elt}>
                 {languages[elt as keyof typeof languages]}
               </SelectItem>

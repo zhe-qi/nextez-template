@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { SessionProvider } from "next-auth/react";
-import { type AbstractIntlMessages, NextIntlClientProvider } from "next-intl";
-import { ThemeProvider } from "next-themes";
-import { TooltipProvider } from "./ui/tooltip";
+import { SessionProvider } from 'next-auth/react';
+import { type AbstractIntlMessages, NextIntlClientProvider } from 'next-intl';
+import { ThemeProvider } from 'next-themes';
+import { TooltipProvider } from './ui/tooltip';
 
 export default function Providers({
   children,

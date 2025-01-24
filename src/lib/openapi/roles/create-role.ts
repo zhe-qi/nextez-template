@@ -1,6 +1,6 @@
-import type { ZodOpenApiOperationObject } from "zod-openapi";
+import type { ZodOpenApiOperationObject } from 'zod-openapi';
 
-import { roleCreateSchema, roleOutputSchema } from "@/schemas/roles";
+import { roleCreateSchema, roleOutputSchema } from '@/schemas/roles';
 
 import {
   conflictErrorSchema,
@@ -8,85 +8,85 @@ import {
   notFoundErrorSchema,
   unauthorizedErrorSchema,
   validationErrorSchema,
-} from "../responses";
+} from '../responses';
 
 export const createRole: ZodOpenApiOperationObject = {
-  operationId: "createRole",
-  summary: "Create a role",
-  description: "Create a new role in the system.",
+  operationId: 'createRole',
+  summary: 'Create a role',
+  description: 'Create a new role in the system.',
   requestBody: {
     content: {
-      "application/json": {
+      'application/json': {
         schema: roleCreateSchema,
       },
     },
   },
   responses: {
     201: {
-      description: "Role created",
-      content: { "application/json": { schema: roleOutputSchema } },
+      description: 'Role created',
+      content: { 'application/json': { schema: roleOutputSchema } },
     },
     401: {
-      description: "Unauthorized Error",
+      description: 'Unauthorized Error',
       content: {
-        "application/json": {
+        'application/json': {
           schema: unauthorizedErrorSchema,
         },
       },
     },
     404: {
-      description: "Not Found",
+      description: 'Not Found',
       content: {
-        "application/json": {
+        'application/json': {
           schema: notFoundErrorSchema,
           examples: {
             permissionsNotFound: {
-              summary: "Permissions not found",
-              value: { message: "One or more Permissions not found." },
+              summary: 'Permissions not found',
+              value: { message: 'One or more Permissions not found.' },
             },
             toolsNotFound: {
-              summary: "Tools not found",
-              value: { message: "One or more Tools not found." },
+              summary: 'Tools not found',
+              value: { message: 'One or more Tools not found.' },
             },
           },
         },
       },
     },
     409: {
-      description: "Conflict Error",
+      description: 'Conflict Error',
       content: {
-        "application/json": {
+        'application/json': {
           schema: conflictErrorSchema,
           examples: {
             nameConflict: {
-              summary: "Name conflict",
-              value: { message: "A role with that name already exists." },
+              summary: 'Name conflict',
+              value: { message: 'A role with that name already exists.' },
             },
             keyConflict: {
-              summary: "Key conflict",
-              value: { message: "A role with that key already exists." },
+              summary: 'Key conflict',
+              value: { message: 'A role with that key already exists.' },
             },
           },
         },
       },
     },
     422: {
-      description: "Validation Error",
+      description: 'Validation Error',
       content: {
-        "application/json": {
+        'application/json': {
           schema: validationErrorSchema,
         },
       },
     },
     500: {
-      description: "Internal Server Error",
+      description: 'Internal Server Error',
       content: {
-        "application/json": {
+        'application/json': {
           schema: internalServerErrorSchema,
         },
       },
     },
   },
-  tags: ["Roles"],
+  tags: ['Roles'],
   security: [{ BearerAuth: [] }],
 };

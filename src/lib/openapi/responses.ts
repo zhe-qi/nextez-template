@@ -1,15 +1,15 @@
-import { z } from "zod";
-import "zod-openapi/extend";
+import { z } from 'zod';
+import 'zod-openapi/extend';
 
 // 400
 export const badRequestErrorSchema = z.object({
   message: z
     .string()
     .describe(
-      "Error message indicating that the request was invalid or malformed",
+      'Error message indicating that the request was invalid or malformed',
     )
     .openapi({
-      example: "Bad Request",
+      example: 'Bad Request',
     }),
 });
 
@@ -17,9 +17,9 @@ export const badRequestErrorSchema = z.object({
 export const unauthorizedErrorSchema = z.object({
   message: z
     .string()
-    .describe("Error message for unauthorized access")
+    .describe('Error message for unauthorized access')
     .openapi({
-      example: "Unauthorized",
+      example: 'Unauthorized',
     }),
 });
 
@@ -27,15 +27,15 @@ export const unauthorizedErrorSchema = z.object({
 export const notFoundErrorSchema = z.object({
   message: z
     .string()
-    .describe("Error message indicating that the resource was not found")
+    .describe('Error message indicating that the resource was not found')
     .openapi({
-      example: "Resource not found",
+      example: 'Resource not found',
     }),
 });
 
 // 409
 export const conflictErrorSchema = z.object({
-  message: z.string().describe("Error message"),
+  message: z.string().describe('Error message'),
 });
 
 // 422
@@ -43,20 +43,20 @@ export const validationErrorSchema = z
   .object({
     errors: z
       .record(z.array(z.string()))
-      .describe("Validation errors for fields"),
+      .describe('Validation errors for fields'),
   })
   .openapi({
     example: {
       errors: {
-        fieldName1: ["Error message 1"],
-        fieldName2: ["Error message 2", "Another error message"],
+        fieldName1: ['Error message 1'],
+        fieldName2: ['Error message 2', 'Another error message'],
       },
     },
   });
 
 // 500
 export const internalServerErrorSchema = z.object({
-  message: z.string().describe("Internal server error message").openapi({
-    example: "Internal Server Error",
+  message: z.string().describe('Internal server error message').openapi({
+    example: 'Internal Server Error',
   }),
 });

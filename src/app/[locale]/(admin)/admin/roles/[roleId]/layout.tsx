@@ -1,37 +1,37 @@
-import type { NavItem } from "@/types/types";
+import type { NavItem } from '@/types/types';
 
-import { SidebarNav } from "@/components/admin/sidebar-nav";
+import { SidebarNav } from '@/components/admin/sidebar-nav';
 
-import { PageHeader } from "@/components/page-header";
+import { PageHeader } from '@/components/page-header';
 
-import prismadb from "@/lib/prismadb";
-import { notFound } from "next/navigation";
+import prismadb from '@/lib/prismadb';
+import { notFound } from 'next/navigation';
 
-import DeleteRoleButton from "./_components/delete-role-button";
+import DeleteRoleButton from './_components/delete-role-button';
 
 const getSideBarNavItems = (id: number): NavItem[] => {
   const baseHref = `/admin/roles/${id}`;
 
   return [
     {
-      title: "Settings",
+      title: 'Settings',
       href: baseHref,
-      type: "parent",
+      type: 'parent',
     },
     {
-      title: "Permissions",
+      title: 'Permissions',
       href: `${baseHref}/permissions`,
-      type: "child",
+      type: 'child',
     },
     {
-      title: "Users",
+      title: 'Users',
       href: `${baseHref}/users`,
-      type: "child",
+      type: 'child',
     },
     {
-      title: "Tools",
+      title: 'Tools',
       href: `${baseHref}/tools`,
-      type: "child",
+      type: 'child',
     },
   ];
 };

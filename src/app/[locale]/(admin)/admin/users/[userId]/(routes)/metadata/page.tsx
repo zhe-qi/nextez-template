@@ -1,16 +1,16 @@
-import { PageSection } from "@/components/page-header";
+import { PageSection } from '@/components/page-header';
 
-import prismadb from "@/lib/prismadb";
-import { protectPage } from "@/lib/rbac";
+import prismadb from '@/lib/prismadb';
+import { protectPage } from '@/lib/rbac';
 
-import { notFound } from "next/navigation";
+import { notFound } from 'next/navigation';
 
-import { MetadataEditor } from "./_components/metadata-editor";
+import { MetadataEditor } from './_components/metadata-editor';
 
 type Params = Promise<{ userId: number }>;
 
 export default async function UserMetadataPage(props: { params: Params }) {
-  await protectPage({ permission: "admin:all" });
+  await protectPage({ permission: 'admin:all' });
 
   const params = await props.params;
   const userId = Number(params.userId);

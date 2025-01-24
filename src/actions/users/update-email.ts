@@ -1,15 +1,15 @@
-"use server";
+'use server';
 
-import type { DataResult } from "@/types/types";
-import { auth } from "@/auth";
-import UpdateEmail from "@/emails/update-email";
-import { env } from "@/env";
+import type { DataResult } from '@/types/types';
+import { auth } from '@/auth';
+import UpdateEmail from '@/emails/update-email';
+import { env } from '@/env';
 
-import { generateUserToken } from "@/lib/jwt";
+import { generateUserToken } from '@/lib/jwt';
 
-import { sendMail } from "@/lib/mail";
-import prismadb from "@/lib/prismadb";
-import { render } from "@react-email/render";
+import { sendMail } from '@/lib/mail';
+import prismadb from '@/lib/prismadb';
+import { render } from '@react-email/render';
 
 type FormDataNewEmail = {
   newEmail: string;
@@ -44,7 +44,7 @@ export async function updateEmail({
 
         const requestPending = await prismadb.changeEmailRequest.findFirst({
           where: { userId: user.id, isUsed: false },
-          orderBy: { createdAt: "desc" },
+          orderBy: { createdAt: 'desc' },
         });
 
         if (requestPending) {
@@ -83,11 +83,11 @@ export async function updateEmail({
           UpdateEmail({ username: user.username, newEmail, url }),
         );
 
-        await sendMail(email, "Change email account", emailHtml);
+        await sendMail(email, 'Change email account', emailHtml);
 
         return {
           success: true,
-          message: "Check your email to confirm the change",
+          message: 'Check your email to confirm the change',
         };
       }
     }

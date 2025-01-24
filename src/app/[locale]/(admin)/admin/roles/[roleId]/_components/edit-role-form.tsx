@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import type { Role } from "@prisma/client";
-import type { z } from "zod";
+import type { Role } from '@prisma/client';
+import type { z } from 'zod';
 
-import { updateRole } from "@/actions/roles";
-import { Button } from "@/components/ui/button";
+import { updateRole } from '@/actions/roles';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -12,22 +12,22 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Switch } from "@/components/ui/switch";
-import { Textarea } from "@/components/ui/textarea";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Switch } from '@/components/ui/switch';
+import { Textarea } from '@/components/ui/textarea';
 
-import { addServerErrors } from "@/lib/utils";
+import { addServerErrors } from '@/lib/utils';
 
-import { roleServerActionUpdateSchema } from "@/schemas/roles";
+import { roleServerActionUpdateSchema } from '@/schemas/roles';
 
-import { zodResolver } from "@hookform/resolvers/zod";
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Loader2 } from "lucide-react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
+import { Loader2 } from 'lucide-react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 
 type FormData = z.infer<typeof roleServerActionUpdateSchema>;
 
@@ -43,7 +43,7 @@ export default function EditRoleForm({ role }: { role: Role }) {
       isActive: role.isActive,
     },
     resolver: zodResolver(roleServerActionUpdateSchema),
-    mode: "onChange",
+    mode: 'onChange',
   });
 
   const onSubmitUpdate = async (data: FormData) => {
@@ -51,14 +51,14 @@ export default function EditRoleForm({ role }: { role: Role }) {
     if (result.success) {
       form.reset({ ...data });
       router.refresh();
-      toast.success("Role updated successfully!");
+      toast.success('Role updated successfully!');
     } else {
       if (result.errors) {
         addServerErrors(result.errors, form.setError);
       } else if (result.message) {
         toast.error(result.message);
       } else {
-        toast.error("Something went wrong");
+        toast.error('Something went wrong');
       }
     }
   };
@@ -150,7 +150,7 @@ export default function EditRoleForm({ role }: { role: Role }) {
             {form.formState.isSubmitting && (
               <Loader2 className="mr-2 size-4 animate-spin" />
             )}
-            {form.formState.isSubmitting ? "Saving..." : "Save"}
+            {form.formState.isSubmitting ? 'Saving...' : 'Save'}
           </Button>
           <Button
             size="sm"

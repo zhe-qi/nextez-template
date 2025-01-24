@@ -1,17 +1,17 @@
-"use server";
+'use server';
 
-import type { DataResult } from "@/types/types";
+import type { DataResult } from '@/types/types';
 
-import type { z } from "zod";
+import type { z } from 'zod';
 
-import prismadb from "@/lib/prismadb";
+import prismadb from '@/lib/prismadb';
 
-import { validateSchemaAction } from "@/lib/validate-schema-action";
-import { feedbackSchema } from "@/schemas/feedbacks";
+import { validateSchemaAction } from '@/lib/validate-schema-action';
+import { feedbackSchema } from '@/schemas/feedbacks';
 
-import { redirect } from "next/navigation";
+import { redirect } from 'next/navigation';
 
-import { getCurrentUser } from "./users/get-current-user";
+import { getCurrentUser } from './users/get-current-user';
 
 type FormData = z.infer<typeof feedbackSchema>;
 
@@ -19,7 +19,7 @@ async function handler(formData: FormData): Promise<DataResult<FormData>> {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
-    redirect("/auth/error");
+    redirect('/auth/error');
   }
   try {
     const feedback = formData.feedback;
@@ -32,8 +32,8 @@ async function handler(formData: FormData): Promise<DataResult<FormData>> {
 
     return { success: true };
   } catch (error) {
-    console.error("Error creating feedback:", error);
-    return { success: false, message: "Something went wrong" };
+    console.error('Error creating feedback:', error);
+    return { success: false, message: 'Something went wrong' };
   }
 }
 

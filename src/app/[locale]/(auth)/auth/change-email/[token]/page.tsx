@@ -1,4 +1,4 @@
-import { changeEmail } from "@/actions/auth/change-email";
+import { changeEmail } from '@/actions/auth/change-email';
 
 type Params = Promise<{ token: string }>;
 

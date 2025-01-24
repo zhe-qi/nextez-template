@@ -1,20 +1,20 @@
-import { PageSection } from "@/components/page-header";
-import { DataTable } from "@/components/ui/data-tables/data-table";
+import { PageSection } from '@/components/page-header';
+import { DataTable } from '@/components/ui/data-tables/data-table';
 
-import prismadb from "@/lib/prismadb";
+import prismadb from '@/lib/prismadb';
 
-import { protectPage } from "@/lib/rbac";
+import { protectPage } from '@/lib/rbac';
 
-import AddPermissionButton from "./_components/add-permission-button";
-import { columns } from "./_components/columns";
-import AddPermissionsEmptyStateTable from "./_components/permissions-empty-state-table";
+import AddPermissionButton from './_components/add-permission-button';
+import { columns } from './_components/columns';
+import AddPermissionsEmptyStateTable from './_components/permissions-empty-state-table';
 
 type Params = Promise<{ roleId: number }>;
 
 export default async function RolesAdminPermissionsPage(props: {
   params: Params;
 }) {
-  await protectPage({ permission: "admin:all" });
+  await protectPage({ permission: 'admin:all' });
 
   const params = await props.params;
   const roleId = Number(params.roleId);

@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 
 import {
   Form,
@@ -9,20 +9,20 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Textarea } from "@/components/ui/textarea";
+} from '@/components/ui/form';
+import { Textarea } from '@/components/ui/textarea';
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Code, Copy, Loader2 } from "lucide-react";
+} from '@/components/ui/tooltip';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Code, Copy, Loader2 } from 'lucide-react';
 
-import { useCallback, useState } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { z } from "zod";
+import { useCallback, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+import { z } from 'zod';
 
 type MetadataEditorProps = {
   userId: number;
@@ -36,7 +36,7 @@ const formSchema = z.object({
     } catch (error) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
-        message: error instanceof Error ? error.message : "Invalid JSON format",
+        message: error instanceof Error ? error.message : 'Invalid JSON format',
       });
     }
   }),
@@ -49,10 +49,10 @@ export function MetadataEditor({ userId, userMetadata }: MetadataEditorProps) {
 
   const form = useForm<FormData>({
     defaultValues: {
-      metadata: userMetadata ?? "",
+      metadata: userMetadata ?? '',
     },
     resolver: zodResolver(formSchema),
-    mode: "onChange",
+    mode: 'onChange',
   });
 
   const handleFormatWithError = useCallback(
@@ -60,10 +60,10 @@ export function MetadataEditor({ userId, userMetadata }: MetadataEditorProps) {
       try {
         return JSON.stringify(JSON.parse(json), null, 2);
       } catch (error) {
-        form.setError("metadata", {
-          type: "manual",
+        form.setError('metadata', {
+          type: 'manual',
           message:
-            error instanceof Error ? error.message : "Invalid JSON format",
+            error instanceof Error ? error.message : 'Invalid JSON format',
         });
         return json;
       }
@@ -73,8 +73,8 @@ export function MetadataEditor({ userId, userMetadata }: MetadataEditorProps) {
 
   const handlePaste = (e: React.ClipboardEvent<HTMLTextAreaElement>) => {
     e.preventDefault();
-    const pastedText = e.clipboardData.getData("text");
-    form.setValue("metadata", handleFormatWithError(pastedText), {
+    const pastedText = e.clipboardData.getData('text');
+    form.setValue('metadata', handleFormatWithError(pastedText), {
       shouldValidate: true,
     });
   };
@@ -82,39 +82,39 @@ export function MetadataEditor({ userId, userMetadata }: MetadataEditorProps) {
   const handleFormat = async () => {
     setIsFormatting(true);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 100));
-      const formatted = handleFormatWithError(form.getValues("metadata"));
-      form.setValue("metadata", formatted, { shouldValidate: true });
+      await new Promise(resolve => setTimeout(resolve, 100));
+      const formatted = handleFormatWithError(form.getValues('metadata'));
+      form.setValue('metadata', formatted, { shouldValidate: true });
     } finally {
       setIsFormatting(false);
     }
   };
 
   const handleCopy = useCallback(() => {
-    navigator.clipboard.writeText(form.getValues("metadata")).then(() => {
-      toast.success("Metadata copied to clipboard");
+    navigator.clipboard.writeText(form.getValues('metadata')).then(() => {
+      toast.success('Metadata copied to clipboard');
     });
   }, [form]);
 
   const onSubmit = async (data: FormData) => {
     try {
       const response = await fetch(`/api/v1/users/${userId}/metadata`, {
-        method: "PUT",
+        method: 'PUT',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({ metadata: JSON.parse(data.metadata) }),
       });
 
       if (!response.ok) {
-        throw new Error("Failed to save metadata");
+        throw new Error('Failed to save metadata');
       }
 
       handleFormat();
-      toast.success("Metadata saved successfully");
+      toast.success('Metadata saved successfully');
     } catch (error) {
       toast.error(
-        error instanceof Error ? error.message : "Failed to save metadata",
+        error instanceof Error ? error.message : 'Failed to save metadata',
       );
     }
   };
@@ -152,11 +152,13 @@ export function MetadataEditor({ userId, userMetadata }: MetadataEditorProps) {
                   className="size-7"
                   disabled={isFormatting}
                 >
-                  {isFormatting ? (
-                    <Loader2 className="size-4 animate-spin" />
-                  ) : (
-                    <Code className="size-4" />
-                  )}
+                  {isFormatting
+                    ? (
+                        <Loader2 className="size-4 animate-spin" />
+                      )
+                    : (
+                        <Code className="size-4" />
+                      )}
                   <span className="sr-only">Format JSON</span>
                 </Button>
               </TooltipTrigger>
@@ -193,7 +195,7 @@ export function MetadataEditor({ userId, userMetadata }: MetadataEditorProps) {
           {form.formState.isSubmitting && (
             <Loader2 className="mr-2 size-4 animate-spin" />
           )}
-          {form.formState.isSubmitting ? "Saving..." : "Save"}
+          {form.formState.isSubmitting ? 'Saving...' : 'Save'}
         </Button>
       </form>
     </Form>

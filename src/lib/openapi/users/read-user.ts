@@ -1,63 +1,63 @@
-import type { ZodOpenApiOperationObject } from "zod-openapi";
+import type { ZodOpenApiOperationObject } from 'zod-openapi';
 
-import { userOutputSchema, userPathParamSchema } from "@/schemas/users";
+import { userOutputSchema, userPathParamSchema } from '@/schemas/users';
 
 import {
   badRequestErrorSchema,
   internalServerErrorSchema,
   notFoundErrorSchema,
   unauthorizedErrorSchema,
-} from "../responses";
+} from '../responses';
 
 export const readUser: ZodOpenApiOperationObject = {
-  operationId: "readUser",
-  summary: "Read a user by ID",
-  description: "Retrieve details of a specific user using its ID.",
+  operationId: 'readUser',
+  summary: 'Read a user by ID',
+  description: 'Retrieve details of a specific user using its ID.',
   requestParams: { path: userPathParamSchema },
   responses: {
     200: {
-      description: "Read User",
-      content: { "application/json": { schema: userOutputSchema } },
+      description: 'Read User',
+      content: { 'application/json': { schema: userOutputSchema } },
     },
     400: {
-      description: "Bad Request",
+      description: 'Bad Request',
       content: {
-        "application/json": {
+        'application/json': {
           schema: badRequestErrorSchema,
           example: {
-            message: "Invalid ID supplied",
+            message: 'Invalid ID supplied',
           },
         },
       },
     },
     401: {
-      description: "Unauthorized Error",
+      description: 'Unauthorized Error',
       content: {
-        "application/json": {
+        'application/json': {
           schema: unauthorizedErrorSchema,
         },
       },
     },
     404: {
-      description: "Not Found",
+      description: 'Not Found',
       content: {
-        "application/json": {
+        'application/json': {
           schema: notFoundErrorSchema,
           example: {
-            message: "User not found.",
+            message: 'User not found.',
           },
         },
       },
     },
     500: {
-      description: "Internal Server Error",
+      description: 'Internal Server Error',
       content: {
-        "application/json": {
+        'application/json': {
           schema: internalServerErrorSchema,
         },
       },
     },
   },
-  tags: ["Users"],
+  tags: ['Users'],
   security: [{ BearerAuth: [] }],
 };

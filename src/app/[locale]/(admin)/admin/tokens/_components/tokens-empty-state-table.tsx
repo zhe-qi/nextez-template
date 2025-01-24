@@ -1,8 +1,8 @@
-import EmptyState from "@/components/ui/data-tables/empty-state";
+import EmptyState from '@/components/ui/data-tables/empty-state';
 
-import { KeySquare } from "lucide-react";
+import { KeySquare } from 'lucide-react';
 
-import CreateTokenButton from "./create-token-button";
+import CreateTokenButton from './create-token-button';
 
 export default function TokensEmptyStateTable() {
   return (

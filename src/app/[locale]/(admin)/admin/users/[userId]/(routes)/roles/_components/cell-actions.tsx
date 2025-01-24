@@ -1,8 +1,8 @@
-import type { IColumns } from "./columns";
+import type { IColumns } from './columns';
 
-import { removeRolToUser } from "@/actions/users/remove-role";
+import { removeRolToUser } from '@/actions/users/remove-role';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -11,7 +11,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 
 import {
   DropdownMenu,
@@ -20,13 +20,13 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from '@/components/ui/dropdown-menu';
 
-import { Copy, Eye, Loader2, MoreHorizontal, Trash } from "lucide-react";
-import Link from "next/link";
-import React, { useState, useTransition } from "react";
+import { Copy, Eye, Loader2, MoreHorizontal, Trash } from 'lucide-react';
+import Link from 'next/link';
+import React, { useState, useTransition } from 'react';
 
-import { toast } from "sonner";
+import { toast } from 'sonner';
 
 export default function CellActions({ row }: { row: IColumns }) {
   const [isPending, startTransition] = useTransition();
@@ -41,7 +41,7 @@ export default function CellActions({ row }: { row: IColumns }) {
       const result = await removeRolToUser({ roleId, userId });
       if (result.success) {
         setIsOpen(false);
-        toast.success("Role removed successfully!");
+        toast.success('Role removed successfully!');
       } else {
         toast.error(result.message);
       }
@@ -87,7 +87,8 @@ export default function CellActions({ row }: { row: IColumns }) {
         <DialogHeader>
           <DialogTitle>Remove role?</DialogTitle>
           <DialogDescription>
-            Are you sure to remove this role:{" "}
+            Are you sure to remove this role:
+            {' '}
             <span className="font-bold">{name}</span>
           </DialogDescription>
         </DialogHeader>
@@ -108,7 +109,7 @@ export default function CellActions({ row }: { row: IColumns }) {
             disabled={isPending}
           >
             {isPending && <Loader2 className="mr-2 size-4 animate-spin" />}
-            {isPending ? "Removing..." : "Remove"}
+            {isPending ? 'Removing...' : 'Remove'}
           </Button>
         </DialogFooter>
       </DialogContent>

@@ -1,6 +1,6 @@
-import type { IColumns } from "./columns";
+import type { IColumns } from './columns';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 
 import {
   DropdownMenu,
@@ -9,14 +9,14 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Copy, MoreHorizontal, Pencil, Trash } from "lucide-react";
+} from '@/components/ui/dropdown-menu';
+import { Copy, MoreHorizontal, Pencil, Trash } from 'lucide-react';
 
-import Link from "next/link";
-import React, { useState } from "react";
+import Link from 'next/link';
+import React, { useState } from 'react';
 
-import { toast } from "sonner";
-import DeleteRoleDialog from "./delete-role-dialog";
+import { toast } from 'sonner';
+import DeleteRoleDialog from './delete-role-dialog';
 
 export default function CellActions({ row }: { row: IColumns }) {
   const [isDropdownMenuOpen, setIsDropdownMenuOpen] = useState(false);
@@ -44,10 +44,10 @@ export default function CellActions({ row }: { row: IColumns }) {
               navigator.clipboard
                 .writeText(String(row.id))
                 .then(() => {
-                  toast.success("Role ID copied!");
+                  toast.success('Role ID copied!');
                 })
                 .catch(() => {
-                  toast.error("Failed to copy user ID");
+                  toast.error('Failed to copy user ID');
                 });
             }}
           >

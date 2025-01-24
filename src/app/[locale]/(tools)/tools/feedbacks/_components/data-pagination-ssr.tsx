@@ -1,7 +1,7 @@
-import type { Table } from "@tanstack/react-table";
+import type { Table } from '@tanstack/react-table';
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 import {
   Select,
@@ -9,14 +9,14 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from '@/components/ui/select';
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
   ChevronsLeft,
   ChevronsRight,
-} from "lucide-react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+} from 'lucide-react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 type DataTablePaginationProps<TData> = {
   table: Table<TData>;
@@ -36,9 +36,9 @@ export function DataTablePaginationSSR<TData>({
   const handleGotoPage = (page: string) => {
     const params = new URLSearchParams(searchParams);
     if (page) {
-      params.set("page", page);
+      params.set('page', page);
     } else {
-      params.delete("page");
+      params.delete('page');
     }
     replace(`${pathname}?${params.toString()}`);
   };
@@ -46,9 +46,9 @@ export function DataTablePaginationSSR<TData>({
   const handlePageSize = (per_page: string) => {
     const params = new URLSearchParams(searchParams);
     if (per_page) {
-      params.set("per_page", per_page);
+      params.set('per_page', per_page);
     } else {
-      params.delete("per_page");
+      params.delete('per_page');
     }
     replace(`${pathname}?${params.toString()}`);
   };
@@ -57,7 +57,12 @@ export function DataTablePaginationSSR<TData>({
     <div className="flex items-center justify-between px-2">
       <div className="flex items-center space-x-2">
         <div className="flex w-[100px] items-center justify-start text-sm font-medium">
-          Page {table.getState().pagination.pageIndex + 1} of{" "}
+          Page
+          {' '}
+          {table.getState().pagination.pageIndex + 1}
+          {' '}
+          of
+          {' '}
           {table.getPageCount()}
         </div>
         <span className="hidden items-center justify-start gap-1 text-sm font-medium sm:flex">
@@ -94,7 +99,7 @@ export function DataTablePaginationSSR<TData>({
               <SelectValue placeholder={table.getState().pagination.pageSize} />
             </SelectTrigger>
             <SelectContent side="top">
-              {[10, 25, 50, 100].map((pageSize) => (
+              {[10, 25, 50, 100].map(pageSize => (
                 <SelectItem key={pageSize} value={`${pageSize}`}>
                   {pageSize}
                 </SelectItem>
@@ -106,7 +111,7 @@ export function DataTablePaginationSSR<TData>({
           <Button
             variant="outline"
             className="hidden size-8 p-0 lg:flex"
-            onClick={() => handleGotoPage("1")}
+            onClick={() => handleGotoPage('1')}
             disabled={!table.getCanPreviousPage()}
           >
             <span className="sr-only">Go to first page</span>

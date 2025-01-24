@@ -1,32 +1,32 @@
-"use client";
+'use client';
 
-import type { Token } from "@prisma/client";
+import type { Token } from '@prisma/client';
 
-import type { ColumnDef } from "@tanstack/react-table";
-import { Badge } from "@/components/ui/badge";
-import { DataTableColumnHeader } from "@/components/ui/data-tables/data-table-column-header";
+import type { ColumnDef } from '@tanstack/react-table';
+import { Badge } from '@/components/ui/badge';
+import { DataTableColumnHeader } from '@/components/ui/data-tables/data-table-column-header';
 
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { format, formatDistanceToNow } from "date-fns";
-import Link from "next/link";
+} from '@/components/ui/tooltip';
+import { format, formatDistanceToNow } from 'date-fns';
+import Link from 'next/link';
 
-import CellActions from "./cell-actions";
+import CellActions from './cell-actions';
 
 export type IColumns = {
   user: { username: string; id: number };
 } & Pick<
   Token,
-  "id" | "name" | "partialToken" | "lastUsed" | "createdAt" | "updatedAt"
+  'id' | 'name' | 'partialToken' | 'lastUsed' | 'createdAt' | 'updatedAt'
 >;
 
 export const columns: ColumnDef<IColumns>[] = [
   {
-    id: "username",
-    accessorKey: "user.username",
+    id: 'username',
+    accessorKey: 'user.username',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Username" />
     ),
@@ -41,14 +41,14 @@ export const columns: ColumnDef<IColumns>[] = [
     },
   },
   {
-    accessorKey: "name",
+    accessorKey: 'name',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Name" />
     ),
     enableGlobalFilter: true,
   },
   {
-    accessorKey: "partialToken",
+    accessorKey: 'partialToken',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Partial Token" />
     ),
@@ -58,7 +58,7 @@ export const columns: ColumnDef<IColumns>[] = [
     enableGlobalFilter: true,
   },
   {
-    accessorKey: "lastUsed",
+    accessorKey: 'lastUsed',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Last used" />
     ),
@@ -68,22 +68,22 @@ export const columns: ColumnDef<IColumns>[] = [
         : null;
       const relativeTime = lastUsed
         ? formatDistanceToNow(lastUsed, { addSuffix: true })
-        : "Never";
+        : 'Never';
 
       return <div className="text-xs">{relativeTime}</div>;
     },
     enableGlobalFilter: false,
   },
   {
-    id: "Created At",
-    accessorKey: "createdAt",
+    id: 'Created At',
+    accessorKey: 'createdAt',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Created At" />
     ),
     cell: ({ row }) => {
       const createdAt = new Date(row.original.createdAt);
-      const formattedDate = format(createdAt, "dd-MM-yyyy");
-      const formattedTime = format(createdAt, "HH:mm:ss");
+      const formattedDate = format(createdAt, 'dd-MM-yyyy');
+      const formattedTime = format(createdAt, 'HH:mm:ss');
       const timeAgo = formatDistanceToNow(createdAt, { addSuffix: true });
 
       return (
@@ -99,15 +99,15 @@ export const columns: ColumnDef<IColumns>[] = [
     },
   },
   {
-    id: "Updated At",
-    accessorKey: "updatedAt",
+    id: 'Updated At',
+    accessorKey: 'updatedAt',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Updated At" />
     ),
     cell: ({ row }) => {
       const updatedAt = new Date(row.original.updatedAt);
-      const formattedDate = format(updatedAt, "dd-MM-yyyy");
-      const formattedTime = format(updatedAt, "HH:mm:ss");
+      const formattedDate = format(updatedAt, 'dd-MM-yyyy');
+      const formattedTime = format(updatedAt, 'HH:mm:ss');
       const timeAgo = formatDistanceToNow(updatedAt, { addSuffix: true });
 
       return (
@@ -123,7 +123,7 @@ export const columns: ColumnDef<IColumns>[] = [
     },
   },
   {
-    id: "actions",
+    id: 'actions',
     cell: ({ row }) => {
       return <CellActions row={row.original} />;
     },

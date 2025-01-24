@@ -1,12 +1,12 @@
-import ConfirmEmail from "@/emails/confirm-email";
+import ConfirmEmail from '@/emails/confirm-email';
 
-import { env } from "@/env";
-import { generateUserToken } from "@/lib/jwt";
-import { sendMail } from "@/lib/mail";
+import { env } from '@/env';
+import { generateUserToken } from '@/lib/jwt';
+import { sendMail } from '@/lib/mail';
 
-import prismadb from "@/lib/prismadb";
-import { render } from "@react-email/render";
-import { NextResponse } from "next/server";
+import prismadb from '@/lib/prismadb';
+import { render } from '@react-email/render';
+import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
   try {
@@ -17,12 +17,12 @@ export async function POST(req: Request) {
     const userExist = await prismadb.user.findFirst({ where: { email } });
 
     if (!userExist) {
-      return NextResponse.json({ message: "Email not found" }, { status: 404 });
+      return NextResponse.json({ message: 'Email not found' }, { status: 404 });
     }
 
     if (!userExist.isActive) {
       return NextResponse.json(
-        { message: "Something went wrong" },
+        { message: 'Something went wrong' },
         { status: 404 },
       );
     }
@@ -33,9 +33,9 @@ export async function POST(req: Request) {
 
     const emailHtml = await render(ConfirmEmail({ url }));
 
-    await sendMail(email, "Active account", emailHtml);
+    await sendMail(email, 'Active account', emailHtml);
 
-    return NextResponse.json({ message: "Email sent" }, { status: 200 });
+    return NextResponse.json({ message: 'Email sent' }, { status: 200 });
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }

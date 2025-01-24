@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import type { ButtonProps } from "@/components/ui/button";
+import type { ButtonProps } from '@/components/ui/button';
 
-import { useTheme } from "next-themes";
+import { useTheme } from 'next-themes';
 
-import { cloneElement } from "react";
+import { cloneElement } from 'react';
 
 type ThemeTogglerProps = {
   children: React.ReactNode;
@@ -19,7 +19,7 @@ export function ThemeToggler({
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     // 使用 resolvedTheme 来判断当前实际的主题状态
-    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
     onClick?.(e);
   };
 

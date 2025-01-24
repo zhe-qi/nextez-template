@@ -1,29 +1,29 @@
-import { auth } from "@/auth";
-import TableLoading from "@/components/admin/table-loading";
+import { auth } from '@/auth';
+import TableLoading from '@/components/admin/table-loading';
 
-import { PageHeader } from "@/components/page-header";
+import { PageHeader } from '@/components/page-header';
 
-import { Button } from "@/components/ui/button";
-import { protectPage } from "@/lib/rbac";
+import { Button } from '@/components/ui/button';
+import { protectPage } from '@/lib/rbac';
 
-import { ExternalLink } from "lucide-react";
+import { ExternalLink } from 'lucide-react';
 
-import Link from "next/link";
+import Link from 'next/link';
 
-import { redirect } from "next/navigation";
-import { Suspense } from "react";
+import { redirect } from 'next/navigation';
+import { Suspense } from 'react';
 
-import CreateTokenButton from "./_components/create-token-button";
-import TokensTable from "./_components/tokens-table";
+import CreateTokenButton from './_components/create-token-button';
+import TokensTable from './_components/tokens-table';
 
 export default async function TokensAdminPage() {
   const session = await auth();
 
   if (!session) {
-    redirect("/auth/login?callbackUrl=/admin/users");
+    redirect('/auth/login?callbackUrl=/admin/users');
   }
 
-  await protectPage({ permission: "admin:all" });
+  await protectPage({ permission: 'admin:all' });
 
   return (
     <>

@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import { routing } from "@/lib/i18n-navigation";
-import { cn } from "@/lib/utils";
-import { ThemeProvider } from "next-themes";
-import NextError from "next/error";
+import { routing } from '@/lib/i18n-navigation';
+import { cn } from '@/lib/utils';
+import { ThemeProvider } from 'next-themes';
+import NextError from 'next/error';
 
 export default function GlobalError() {
   return (
     <html lang={routing.defaultLocale} suppressHydrationWarning>
       <body
-        className={cn("min-h-screen antialiased scheme-light dark:scheme-dark")}
+        className={cn('min-h-screen antialiased scheme-light dark:scheme-dark')}
       >
         <ThemeProvider
           attribute="class"

@@ -1,5 +1,5 @@
-import { env } from "@/env";
-import jwt from "jsonwebtoken";
+import { env } from '@/env';
+import jwt from 'jsonwebtoken';
 
 type UserToken = {
   email: string;

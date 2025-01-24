@@ -1,16 +1,16 @@
-import type { ITool } from "@/types/types";
-import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import type { ITool } from '@/types/types';
+import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Skeleton } from "@/components/ui/skeleton";
-import { MoreHorizontalIcon, Star } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+} from '@/components/ui/dropdown-menu';
+import { Skeleton } from '@/components/ui/skeleton';
+import { MoreHorizontalIcon, Star } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 type Props = {
   tool: ITool;
@@ -60,17 +60,19 @@ export default function GridCard({ tool, handleFavorite }: Props) {
                     asChild
                     onSelect={() => handleFavorite({ ...tool })}
                   >
-                    {tool.isFavorite ? (
-                      <div className="flex flex-1 items-center justify-between">
-                        <span>Remove Favorite</span>
-                        <Star className="ml-2 size-4 fill-primary text-primary" />
-                      </div>
-                    ) : (
-                      <div className="flex flex-1 items-center justify-between">
-                        <span>Add Favorite</span>
-                        <Star className="ml-2 size-4" />
-                      </div>
-                    )}
+                    {tool.isFavorite
+                      ? (
+                          <div className="flex flex-1 items-center justify-between">
+                            <span>Remove Favorite</span>
+                            <Star className="ml-2 size-4 fill-primary text-primary" />
+                          </div>
+                        )
+                      : (
+                          <div className="flex flex-1 items-center justify-between">
+                            <span>Add Favorite</span>
+                            <Star className="ml-2 size-4" />
+                          </div>
+                        )}
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
                     <Link href={tool.href}>Open</Link>

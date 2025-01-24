@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import { cn } from "@/lib/utils";
-import { motion, useMotionValueEvent, useScroll } from "motion/react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useMemo, useState } from "react";
+import { cn } from '@/lib/utils';
+import { motion, useMotionValueEvent, useScroll } from 'motion/react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useMemo, useState } from 'react';
 
 type NavProps = {
   items: {
     href: string;
     title: string;
-    type: "parent" | "child";
+    type: 'parent' | 'child';
   }[];
 } & React.HTMLAttributes<HTMLElement>;
 
@@ -20,7 +20,7 @@ export default function NavTabs({ items }: NavProps) {
   const { scrollY } = useScroll();
   const [y, setY] = useState(0);
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
+  useMotionValueEvent(scrollY, 'change', (latest) => {
     setY(latest);
   });
 
@@ -32,8 +32,8 @@ export default function NavTabs({ items }: NavProps) {
     outMax: number,
   ) => {
     const mappedValue = useMemo(() => {
-      const newValue =
-        ((num - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
+      const newValue
+        = ((num - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
       const largest = Math.max(outMin, outMax);
       const smallest = Math.min(outMin, outMax);
       return Math.min(Math.max(newValue, smallest), largest);
@@ -51,7 +51,7 @@ export default function NavTabs({ items }: NavProps) {
       id="nav-tabs"
       className="sticky -top-1 z-40 mb-[-3px] flex h-[46px] items-center justify-start space-x-1 overflow-x-auto border-b bg-background/95 px-4 backdrop-blur supports-[backdrop-filter]:bg-background/60"
     >
-      {items.map((item) => (
+      {items.map(item => (
         <Link
           key={item.href}
           href={item.href}
@@ -64,17 +64,17 @@ export default function NavTabs({ items }: NavProps) {
           <div className="m-1 rounded-md px-3 py-2 transition-all duration-75 hover:bg-muted">
             <p
               className={cn(
-                "text-sm font-normal text-muted-foreground hover:text-primary",
-                ((item.type === "parent" && pathname === item.href) ||
-                  (item.type === "child" && pathname.includes(item.href))) &&
-                  "text-primary",
+                'text-sm font-normal text-muted-foreground hover:text-primary',
+                ((item.type === 'parent' && pathname === item.href)
+                  || (item.type === 'child' && pathname.includes(item.href)))
+                && 'text-primary',
               )}
             >
               {item.title}
             </p>
           </div>
-          {((item.type === "parent" && pathname === item.href) ||
-            (item.type === "child" && pathname.includes(item.href))) && (
+          {((item.type === 'parent' && pathname === item.href)
+            || (item.type === 'child' && pathname.includes(item.href))) && (
             <motion.div
               layoutId="indicator"
               transition={{
