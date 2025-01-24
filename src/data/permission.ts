@@ -1,7 +1,5 @@
 import type { Option } from '@/components/ui/multiple-selector';
-
 import prismadb from '@/lib/prismadb';
-
 import 'server-only';
 
 export const getPermissionById = async (id: number) => {

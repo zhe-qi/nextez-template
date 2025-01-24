@@ -1,11 +1,7 @@
 import { PageHeader } from '@/components/page-header';
-
 import { getPermissionById } from '@/data/permission';
-
 import { protectPage } from '@/lib/rbac';
-
 import { notFound } from 'next/navigation';
-
 import DeletePermissionButton from './_components/delete-permission-button';
 import EditPermissionForm from './_components/edit-permission-form';
 

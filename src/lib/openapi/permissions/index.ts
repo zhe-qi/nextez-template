@@ -1,5 +1,4 @@
 import type { ZodOpenApiPathsObject } from 'zod-openapi';
-
 import { createPermission } from './create-permission';
 import { deletePermission } from './delete-permission';
 import { listPermissions } from './list-permissions';

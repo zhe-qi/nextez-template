@@ -1,16 +1,12 @@
 'use server';
 
 import type { DataResult } from '@/types/types';
-
 import type { z } from 'zod';
-
 import { createTokenApi } from '@/lib/auth';
-
 import prismadb from '@/lib/prismadb';
 import { has } from '@/lib/rbac';
 import { validateSchemaAction } from '@/lib/validate-schema-action';
 import { tokenCreateServerActionSchema } from '@/schemas/tokens';
-
 import { revalidatePath } from 'next/cache';
 
 type FormData = z.infer<typeof tokenCreateServerActionSchema>;

@@ -1,7 +1,5 @@
 import { PageHeader } from '@/components/page-header';
-
 import { protectPage } from '@/lib/rbac';
-
 import CreateUserForm from './_components/create-user-form';
 
 export default async function NewUserPage() {

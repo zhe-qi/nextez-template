@@ -1,11 +1,8 @@
 import Logo from '@/components/logo';
 import MaxWidthWrapper from '@/components/max-width-wrapper';
 import { Button } from '@/components/ui/button';
-
 import { ArrowLeft } from 'lucide-react';
-
 import Image from 'next/image';
-
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 

@@ -1,7 +1,5 @@
 import type { IColumns } from './columns';
-
 import { Button } from '@/components/ui/button';
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,10 +9,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Copy, MoreHorizontal, Pencil, Trash } from 'lucide-react';
-
 import Link from 'next/link';
 import React, { useState } from 'react';
-
 import { toast } from 'sonner';
 import DeleteUserDialog from './delete-user-dialog';
 

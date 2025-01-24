@@ -1,13 +1,10 @@
 import { ApiError, getIdInputOrThrow, parseRequestBody } from '@/lib/api';
 import { withAdmin } from '@/lib/auth';
-
 import prismadb from '@/lib/prismadb';
 import { userUpdateMetadataSchema } from '@/schemas/users';
-
 import { Prisma } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
 import { NextResponse } from 'next/server';
-
 import { ZodError } from 'zod';
 
 export const PUT = withAdmin(async ({ req, context }) => {

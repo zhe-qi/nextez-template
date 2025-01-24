@@ -1,5 +1,4 @@
 import type { ZodOpenApiOperationObject } from 'zod-openapi';
-
 import { rolePathParamSchema } from '@/schemas/roles';
 import {
   badRequestErrorSchema,

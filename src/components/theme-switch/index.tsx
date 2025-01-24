@@ -1,9 +1,6 @@
 import { Button } from '@/components/ui/button';
-
 import { Moon, Sun } from 'lucide-react';
-
 import * as React from 'react';
-
 import { ThemeToggler } from './theme-toggler';
 
 export default function ThemeSwitch() {

@@ -1,9 +1,7 @@
 'use client';
 
 import { signOut } from 'next-auth/react';
-
 import { useRouter, useSearchParams } from 'next/navigation';
-
 import { Suspense, useEffect } from 'react';
 
 function Logout() {

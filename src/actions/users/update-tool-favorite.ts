@@ -1,9 +1,7 @@
 'use server';
 
 import prismadb from '@/lib/prismadb';
-
 import { revalidatePath } from 'next/cache';
-
 import { getCurrentUser } from './get-current-user';
 
 export async function AddFavTool({ toolId }: { toolId: number }) {

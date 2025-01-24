@@ -1,6 +1,5 @@
 import { nanoid } from 'nanoid';
 import { hashToken } from './hash-token';
-
 import 'server-only';
 
 const PREFIX_TOKEN = 'qrk_';

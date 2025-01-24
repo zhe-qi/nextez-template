@@ -1,7 +1,5 @@
 import EmptyState from '@/components/ui/data-tables/empty-state';
-
 import { LayoutGrid } from 'lucide-react';
-
 import CreateToolButton from './create-tool-button';
 
 export default function PermissionsEmptyStateTable() {

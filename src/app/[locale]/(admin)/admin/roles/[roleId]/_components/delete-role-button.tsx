@@ -1,16 +1,13 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-
 import { Trash2 } from 'lucide-react';
 import { useState } from 'react';
-
 import DeleteRoleDialog from '../../_components/delete-role-dialog';
 
 export default function DeleteRoleButton({

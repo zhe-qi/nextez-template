@@ -2,9 +2,7 @@
 
 import type { User } from '@prisma/client';
 import { DataTable } from '@/components/ui/data-tables/data-table';
-
 import { CheckCircle, Clock, Verified, XCircle } from 'lucide-react';
-
 import { columns } from './columns';
 import UsersEmptyStateTable from './users-empty-state-table';
 

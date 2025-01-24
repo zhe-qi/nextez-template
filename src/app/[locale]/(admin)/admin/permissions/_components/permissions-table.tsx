@@ -1,7 +1,5 @@
 import { DataTable } from '@/components/ui/data-tables/data-table';
-
 import { getAllPermissions } from '@/data/permission';
-
 import { columns } from './columns';
 import PermissionsEmptyStateTable from './permissions-empty-state-table';
 

@@ -1,8 +1,6 @@
 import type { SortingState } from '@tanstack/react-table';
 import { getFeedbacksSSR } from '@/data/feedback';
-
 import { MessageSquareHeart } from 'lucide-react';
-
 import { columns } from './columns';
 import { DataTableSSR } from './data-table-ssr';
 import EmptyState from './empty-state';

@@ -2,7 +2,6 @@
 
 import type { z } from 'zod';
 import { createPermission } from '@/actions/permissions';
-
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -15,13 +14,9 @@ import {
 import { Input } from '@/components/ui/input';
 import { Switch } from '@/components/ui/switch';
 import { Textarea } from '@/components/ui/textarea';
-
 import { addServerErrors } from '@/lib/utils';
-
 import { permissionCreateSchema } from '@/schemas/permissions';
-
 import { zodResolver } from '@hookform/resolvers/zod';
-
 import { Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';

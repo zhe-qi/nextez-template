@@ -1,5 +1,4 @@
 import type { ZodOpenApiPathsObject } from 'zod-openapi';
-
 import { createUser } from './create-user';
 import { deleteUser } from './delete-user';
 import { listUsers } from './list-users';

@@ -1,5 +1,4 @@
 import { deletePermission } from '@/actions/permissions';
-
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -20,9 +19,7 @@ import {
   ResponsiveDialogTitle,
 } from '@/components/ui/responsive-dialog';
 import { zodResolver } from '@hookform/resolvers/zod';
-
 import { Loader2 } from 'lucide-react';
-
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';

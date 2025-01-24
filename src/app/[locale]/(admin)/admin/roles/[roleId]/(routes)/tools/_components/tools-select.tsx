@@ -1,9 +1,7 @@
 'use client';
 
 import type { Tool } from '@prisma/client';
-
 import { addToolsToRoles } from '@/actions/roles/add-tools';
-
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -24,9 +22,7 @@ import {
 import { Skeleton } from '@/components/ui/skeleton';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader2, Trash } from 'lucide-react';
-
 import Link from 'next/link';
-
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';

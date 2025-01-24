@@ -1,12 +1,10 @@
 import type { ZodOpenApiOperationObject } from 'zod-openapi';
-
 import {
   userOutputSchema,
   userPathParamSchema,
   userUpdatePartialSchema,
   userUpdateSchema,
 } from '@/schemas/users';
-
 import {
   badRequestErrorSchema,
   conflictErrorSchema,

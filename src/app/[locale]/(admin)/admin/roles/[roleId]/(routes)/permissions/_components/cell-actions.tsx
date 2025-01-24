@@ -1,7 +1,5 @@
 import type { IColumns } from './columns';
-
 import { removePermission } from '@/actions/roles';
-
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -12,7 +10,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,11 +18,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-
 import { Loader2, MoreHorizontal } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import React, { useState, useTransition } from 'react';
-
 import { toast } from 'sonner';
 
 export default function CellActions({ row }: { row: IColumns }) {

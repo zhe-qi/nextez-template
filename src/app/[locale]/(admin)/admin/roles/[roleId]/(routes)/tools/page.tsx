@@ -1,8 +1,6 @@
 import { PageSection } from '@/components/page-header';
 import prismadb from '@/lib/prismadb';
-
 import { protectPage } from '@/lib/rbac';
-
 import ToolsSelect from './_components/tools-select';
 
 type Params = Promise<{ roleId: number }>;

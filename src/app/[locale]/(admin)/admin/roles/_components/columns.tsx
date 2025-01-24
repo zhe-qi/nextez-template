@@ -1,7 +1,6 @@
 'use client';
 
 import type { Role } from '@prisma/client';
-
 import type { ColumnDef } from '@tanstack/react-table';
 import { Badge } from '@/components/ui/badge';
 import { DataTableColumnHeader } from '@/components/ui/data-tables/data-table-column-header';
@@ -10,11 +9,9 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-
 import { format, formatDistanceToNow } from 'date-fns';
 import { CheckCircle, XCircle } from 'lucide-react';
 import Link from 'next/link';
-
 import CellActions from './cell-actions';
 
 export type IColumns = {} & Role;

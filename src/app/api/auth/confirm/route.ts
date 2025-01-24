@@ -1,9 +1,7 @@
 import ConfirmEmail from '@/emails/confirm-email';
-
 import { env } from '@/env';
 import { generateUserToken } from '@/lib/jwt';
 import { sendMail } from '@/lib/mail';
-
 import prismadb from '@/lib/prismadb';
 import { render } from '@react-email/render';
 import { NextResponse } from 'next/server';

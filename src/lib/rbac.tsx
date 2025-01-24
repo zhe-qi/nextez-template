@@ -2,9 +2,7 @@
 'use server';
 
 import { auth } from '@/auth';
-
 import prismadb from '@/lib/prismadb';
-
 import { redirect } from 'next/navigation';
 
 type RolesCheck = { role: string; permission?: never };

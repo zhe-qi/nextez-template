@@ -1,9 +1,7 @@
 'use client';
 
 import type { ColumnDef, SortingState } from '@tanstack/react-table';
-
 import { Button } from '@/components/ui/button';
-
 import {
   Table,
   TableBody,
@@ -19,10 +17,8 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import { SearchX } from 'lucide-react';
-
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-
 import { DataTableFiltersSSR } from './data-filters-ssr';
 import { DataTablePaginationSSR } from './data-pagination-ssr';
 import EmptyState from './empty-state';

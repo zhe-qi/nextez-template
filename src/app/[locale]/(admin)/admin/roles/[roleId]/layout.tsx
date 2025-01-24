@@ -1,12 +1,8 @@
 import type { NavItem } from '@/types/types';
-
 import { SidebarNav } from '@/components/admin/sidebar-nav';
-
 import { PageHeader } from '@/components/page-header';
-
 import prismadb from '@/lib/prismadb';
 import { notFound } from 'next/navigation';
-
 import DeleteRoleButton from './_components/delete-role-button';
 
 const getSideBarNavItems = (id: number): NavItem[] => {

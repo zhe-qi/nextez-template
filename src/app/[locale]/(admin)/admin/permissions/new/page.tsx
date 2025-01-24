@@ -1,7 +1,5 @@
 import { PageHeader } from '@/components/page-header';
-
 import { protectPage } from '@/lib/rbac';
-
 import CreatePermissionForm from './_components/create-permission-form';
 
 export default async function NewPermissionPage() {

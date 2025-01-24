@@ -1,11 +1,9 @@
 'use client';
 
 import type { User } from '@prisma/client';
-
 import type { ColumnDef } from '@tanstack/react-table';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
-
 import { DataTableColumnHeader } from '@/components/ui/data-tables/data-table-column-header';
 
 import {

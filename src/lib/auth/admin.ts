@@ -1,11 +1,8 @@
 import type { User } from '@prisma/client';
-
 import { auth } from '@/auth';
 import { has, userHasRequiredRole } from '@/lib/rbac';
 import { NextResponse } from 'next/server';
-
 import prismadb from '../prismadb';
-
 import { hashToken } from './hash-token';
 import 'server-only';
 

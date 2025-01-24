@@ -1,7 +1,5 @@
 import type { ZodOpenApiOperationObject } from 'zod-openapi';
-
 import { roleCreateSchema, roleOutputSchema } from '@/schemas/roles';
-
 import {
   conflictErrorSchema,
   internalServerErrorSchema,

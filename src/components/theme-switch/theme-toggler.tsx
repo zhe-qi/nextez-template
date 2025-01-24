@@ -1,9 +1,7 @@
 'use client';
 
 import type { ButtonProps } from '@/components/ui/button';
-
 import { useTheme } from 'next-themes';
-
 import { cloneElement } from 'react';
 
 type ThemeTogglerProps = {

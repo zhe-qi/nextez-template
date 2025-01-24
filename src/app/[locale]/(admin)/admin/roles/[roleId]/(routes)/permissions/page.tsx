@@ -1,10 +1,7 @@
 import { PageSection } from '@/components/page-header';
 import { DataTable } from '@/components/ui/data-tables/data-table';
-
 import prismadb from '@/lib/prismadb';
-
 import { protectPage } from '@/lib/rbac';
-
 import AddPermissionButton from './_components/add-permission-button';
 import { columns } from './_components/columns';
 import AddPermissionsEmptyStateTable from './_components/permissions-empty-state-table';

@@ -1,7 +1,5 @@
 import Logo from '@/components/logo';
-
 import MaxWidthWrapper from '@/components/max-width-wrapper';
-
 import { Loader2 } from 'lucide-react';
 import Image from 'next/image';
 

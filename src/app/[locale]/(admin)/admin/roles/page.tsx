@@ -1,14 +1,9 @@
 import { auth } from '@/auth';
-
 import TableLoading from '@/components/admin/table-loading';
-
 import { PageHeader } from '@/components/page-header';
-
 import { protectPage } from '@/lib/rbac';
-
 import { redirect } from 'next/navigation';
 import { Suspense } from 'react';
-
 import CreateRoleButton from './_components/create-role-button';
 import RolesTable from './_components/roles-table';
 

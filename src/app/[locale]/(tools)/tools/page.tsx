@@ -1,11 +1,7 @@
 import { auth } from '@/auth';
-
 import MaxWidthWrapper from '@/components/max-width-wrapper';
-
 import { redirect } from 'next/navigation';
-
 import { Suspense } from 'react';
-
 import AddToolButton from './_components/add-tool-button';
 import CardSkeleton from './_components/card-skeleton';
 import ToolSearch from './_components/tool-search';

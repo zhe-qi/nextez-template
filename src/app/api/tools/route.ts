@@ -1,7 +1,5 @@
 import { getCurrentUser } from '@/actions/users/get-current-user';
-
 import { getUserTools } from '@/data/user';
-
 import { NextResponse } from 'next/server';
 
 export async function GET() {

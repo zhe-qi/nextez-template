@@ -1,7 +1,6 @@
 'use server';
 
 import { verifyUserToken } from '@/lib/jwt';
-
 import prismadb from '@/lib/prismadb';
 import { redirect } from 'next/navigation';
 

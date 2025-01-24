@@ -2,7 +2,6 @@
 
 import type { User } from '@prisma/client';
 import type { z } from 'zod';
-
 import { updateUser } from '@/actions/users/update-user';
 import { Button } from '@/components/ui/button';
 import {
@@ -17,13 +16,9 @@ import {
 import { Input } from '@/components/ui/input';
 import { Switch } from '@/components/ui/switch';
 import { addServerErrors } from '@/lib/utils';
-
 import { userEditServerActionSchema } from '@/schemas/users';
-
 import { zodResolver } from '@hookform/resolvers/zod';
-
 import { Loader2 } from 'lucide-react';
-
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';

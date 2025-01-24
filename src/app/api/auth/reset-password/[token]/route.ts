@@ -1,10 +1,7 @@
 import { getUserByEmail } from '@/data/user';
-
 import { verifyUserToken } from '@/lib/jwt';
-
 import prismadb from '@/lib/prismadb';
 import bcrypt from 'bcrypt';
-
 import { NextResponse } from 'next/server';
 
 type Params = Promise<{ token: string }>;

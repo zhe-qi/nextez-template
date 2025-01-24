@@ -5,7 +5,6 @@ import {
   permissionUpdatePartialSchema,
   permissionUpdateSchema,
 } from '@/schemas/permissions';
-
 import {
   roleCreateSchema,
   roleOutputSchema,
@@ -19,7 +18,6 @@ import {
   userUpdateSchema,
 } from '@/schemas/users';
 import { createDocument } from 'zod-openapi';
-
 import { permissionsPaths } from './permissions';
 import { rolesPaths } from './roles';
 import { usersPaths } from './users';

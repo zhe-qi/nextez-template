@@ -1,12 +1,8 @@
 import type { NavItem } from '@/types/types';
-
 import { SidebarNav } from '@/components/admin/sidebar-nav';
-
 import { PageHeader } from '@/components/page-header';
-
 import { getUserById } from '@/data/user';
 import { notFound } from 'next/navigation';
-
 import DeleteUserButton from './_components/delete-user-button';
 
 const getSideBarNavItems = (id: number): NavItem[] => {

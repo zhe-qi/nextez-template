@@ -1,14 +1,12 @@
 import type { ITool } from '@/types/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
-
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-
 import { Skeleton } from '@/components/ui/skeleton';
 import { MoreHorizontalIcon, Star } from 'lucide-react';
 import Image from 'next/image';

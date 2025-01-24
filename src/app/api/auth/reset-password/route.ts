@@ -1,12 +1,9 @@
 import { getUserByEmail } from '@/data/user';
-
 import ResetPasswordEmail from '@/emails/reset-email';
 import { env } from '@/env';
 import { generateUserToken } from '@/lib/jwt';
-
 import { sendMail } from '@/lib/mail';
 import { render } from '@react-email/render';
-
 import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {

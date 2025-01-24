@@ -2,7 +2,6 @@
 
 import type { z } from 'zod';
 import AuthTemplate from '@/components/auth/auth-template';
-
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -16,11 +15,9 @@ import { Input } from '@/components/ui/input';
 import { resetPasswordRequestSchema } from '@/schemas/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader2 } from 'lucide-react';
-
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
-
 import { toast } from 'sonner';
 
 type FormData = z.infer<typeof resetPasswordRequestSchema>;

@@ -1,7 +1,5 @@
 import type { ZodOpenApiOperationObject } from 'zod-openapi';
-
 import { userCreateSchema, userOutputSchema } from '@/schemas/users';
-
 import {
   conflictErrorSchema,
   internalServerErrorSchema,

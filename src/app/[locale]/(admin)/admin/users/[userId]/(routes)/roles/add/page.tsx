@@ -1,8 +1,6 @@
 import { PageSection } from '@/components/page-header';
 import prismadb from '@/lib/prismadb';
-
 import { protectPage } from '@/lib/rbac';
-
 import AddRoleForm from '../_components/add-role-form';
 
 type Params = Promise<{ userId: number }>;

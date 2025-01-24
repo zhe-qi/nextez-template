@@ -1,15 +1,9 @@
 import { auth } from '@/auth';
-
 import { PageHeader } from '@/components/page-header';
-
 import { Skeleton } from '@/components/ui/skeleton';
-
 import { protectPage } from '@/lib/rbac';
-
 import { redirect } from 'next/navigation';
-
 import { Suspense } from 'react';
-
 import { getSearchParamsSSR } from './_components/data-table-utils-ssr';
 import FeedbacksDataTableSSR from './_components/feedbacks-table';
 

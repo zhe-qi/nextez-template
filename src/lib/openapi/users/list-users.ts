@@ -1,8 +1,6 @@
 import type { ZodOpenApiOperationObject } from 'zod-openapi';
 import { userListQuerySchema, userOutputSchema } from '@/schemas/users';
-
 import { z } from 'zod';
-
 import {
   internalServerErrorSchema,
   unauthorizedErrorSchema,

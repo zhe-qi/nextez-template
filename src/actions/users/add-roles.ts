@@ -1,9 +1,7 @@
 'use server';
 
 import type { DataResult } from '@/types/types';
-
 import prismadb from '@/lib/prismadb';
-
 import { has } from '@/lib/rbac';
 import { revalidatePath } from 'next/cache';
 

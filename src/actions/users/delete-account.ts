@@ -1,9 +1,7 @@
 'use server';
 
 import type { DataResult } from '@/types/types';
-
 import { auth } from '@/auth';
-
 import prismadb from '@/lib/prismadb';
 
 type FormDataDeleteAccount = {

@@ -2,9 +2,7 @@
 
 import type { ColumnDef } from '@tanstack/react-table';
 import { FEEDBACK_ITEMS } from '@/components/feedback-button';
-
 import { format } from 'date-fns';
-
 import { DataTableColumnHeader } from './data-table-column-header';
 
 export type IColumns = {

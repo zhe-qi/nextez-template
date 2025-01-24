@@ -1,5 +1,4 @@
 import type { z } from 'zod';
-
 import { updateToken } from '@/actions/tokens';
 import { Button } from '@/components/ui/button';
 import {
@@ -20,11 +19,8 @@ import {
   ResponsiveDialogHeader,
   ResponsiveDialogTitle,
 } from '@/components/ui/responsive-dialog';
-
 import { tokenUpdateServerActionSchema } from '@/schemas/tokens';
-
 import { zodResolver } from '@hookform/resolvers/zod';
-
 import { Loader2 } from 'lucide-react';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';

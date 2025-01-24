@@ -1,9 +1,7 @@
 'use client';
 
 import { deleteAccount } from '@/actions/users/delete-account';
-
 import { Button } from '@/components/ui/button';
-
 import {
   Card,
   CardDescription,
@@ -30,11 +28,8 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
-
 import { addServerErrors } from '@/lib/utils';
-
 import { zodResolver } from '@hookform/resolvers/zod';
-
 import { Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';

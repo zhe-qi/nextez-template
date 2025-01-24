@@ -1,13 +1,10 @@
 'use client';
 
 import type { Permission, RolePermission } from '@prisma/client';
-
 import type { ColumnDef } from '@tanstack/react-table';
 import { Badge } from '@/components/ui/badge';
-
 import { DataTableColumnHeader } from '@/components/ui/data-tables/data-table-column-header';
 import Link from 'next/link';
-
 import CellActions from './cell-actions';
 
 export type IColumns = {

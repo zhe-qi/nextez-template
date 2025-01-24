@@ -1,5 +1,4 @@
 import type { NextConfig } from 'next';
-
 import withBundleAnalyzer from '@next/bundle-analyzer';
 import createNextIntlPlugin from 'next-intl/plugin';
 import './src/env';

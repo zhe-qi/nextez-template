@@ -1,10 +1,7 @@
 import { PageSection } from '@/components/page-header';
-
 import prismadb from '@/lib/prismadb';
 import { protectPage } from '@/lib/rbac';
-
 import { notFound } from 'next/navigation';
-
 import EditRoleForm from './_components/edit-role-form';
 
 type Params = Promise<{ roleId: number }>;

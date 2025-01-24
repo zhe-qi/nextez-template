@@ -2,9 +2,7 @@
 
 import type { z } from 'zod';
 import AuthTemplate from '@/components/auth/auth-template';
-
 import { Button } from '@/components/ui/button';
-
 import {
   Form,
   FormControl,
@@ -19,13 +17,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader2 } from 'lucide-react';
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
-
 import { useRouter, useSearchParams } from 'next/navigation';
-
 import { Suspense, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaGithub, FaGoogle } from 'react-icons/fa6';
-
 import { toast } from 'sonner';
 
 type FormData = z.infer<typeof registerSchema>;

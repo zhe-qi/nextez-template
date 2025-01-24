@@ -1,15 +1,11 @@
 'use server';
 
 import type { DataResult } from '@/types/types';
-
 import type { z } from 'zod';
-
 import prismadb from '@/lib/prismadb';
-
 import { has } from '@/lib/rbac';
 import { validateSchemaAction } from '@/lib/validate-schema-action';
 import { permissionServerActionSchema } from '@/schemas/permissions';
-
 import { revalidatePath } from 'next/cache';
 
 type FormData = z.infer<typeof permissionServerActionSchema>;

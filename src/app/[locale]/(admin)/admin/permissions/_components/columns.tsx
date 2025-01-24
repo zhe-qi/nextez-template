@@ -4,7 +4,6 @@ import type { Permission } from '@prisma/client';
 import type { ColumnDef } from '@tanstack/react-table';
 import { Badge } from '@/components/ui/badge';
 import { DataTableColumnHeader } from '@/components/ui/data-tables/data-table-column-header';
-
 import {
   Tooltip,
   TooltipContent,
@@ -12,7 +11,6 @@ import {
 } from '@/components/ui/tooltip';
 import { format, formatDistanceToNow } from 'date-fns';
 import { CheckCircle, XCircle } from 'lucide-react';
-
 import CellActions from './cell-actions';
 
 export type IColumns = {} & Permission;

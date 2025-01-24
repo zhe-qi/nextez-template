@@ -1,7 +1,5 @@
 import EmptyState from '@/components/ui/data-tables/empty-state';
-
 import { FilePlus } from 'lucide-react';
-
 import CreateUserButton from './create-user-button';
 
 export default function UsersEmptyStateTable() {

@@ -4,9 +4,7 @@ import type { DataResult } from '@/types/types';
 import { auth } from '@/auth';
 import UpdateEmail from '@/emails/update-email';
 import { env } from '@/env';
-
 import { generateUserToken } from '@/lib/jwt';
-
 import { sendMail } from '@/lib/mail';
 import prismadb from '@/lib/prismadb';
 import { render } from '@react-email/render';

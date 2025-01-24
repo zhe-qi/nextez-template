@@ -1,9 +1,7 @@
 'use server';
 
 import { auth } from '@/auth';
-
 import prismadb from '@/lib/prismadb';
-
 import { redirect } from 'next/navigation';
 
 export async function getCurrentUser(redirectPage?: string) {

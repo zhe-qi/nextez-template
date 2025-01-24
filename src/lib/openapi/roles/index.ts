@@ -1,5 +1,4 @@
 import type { ZodOpenApiPathsObject } from 'zod-openapi';
-
 import { createRole } from './create-role';
 import { deleteRole } from './delete-role';
 import { listRoles } from './list-roles';

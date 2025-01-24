@@ -2,7 +2,6 @@
 
 import type { Role } from '@prisma/client';
 import type { z } from 'zod';
-
 import { updateRole } from '@/actions/roles';
 import { Button } from '@/components/ui/button';
 import {
@@ -16,13 +15,9 @@ import {
 import { Input } from '@/components/ui/input';
 import { Switch } from '@/components/ui/switch';
 import { Textarea } from '@/components/ui/textarea';
-
 import { addServerErrors } from '@/lib/utils';
-
 import { roleServerActionUpdateSchema } from '@/schemas/roles';
-
 import { zodResolver } from '@hookform/resolvers/zod';
-
 import { Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';

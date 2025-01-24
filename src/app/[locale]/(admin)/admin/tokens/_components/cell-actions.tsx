@@ -1,7 +1,5 @@
 import type { IColumns } from './columns';
-
 import { Button } from '@/components/ui/button';
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,7 +8,6 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { MoreHorizontal, Pencil, Trash } from 'lucide-react';
-
 import { useState } from 'react';
 import DeleteTokenDialog from './delete-token-dialog';
 import EditTokenDialog from './edit-token-dialog';

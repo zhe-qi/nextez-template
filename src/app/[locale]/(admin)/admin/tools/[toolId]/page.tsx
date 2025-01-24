@@ -1,11 +1,7 @@
 import { PageHeader } from '@/components/page-header';
-
 import { getToolById } from '@/data/tools';
-
 import { protectPage } from '@/lib/rbac';
-
 import { notFound } from 'next/navigation';
-
 import DeleteToolButton from '../_components/delete-tool-button';
 import ToolForm from '../_components/tool-form';
 

@@ -1,9 +1,7 @@
 import type { ZodOpenApiOperationObject } from 'zod-openapi';
 import { listQuerySchema } from '@/schemas/api';
-
 import { roleOutputSchema } from '@/schemas/roles';
 import { z } from 'zod';
-
 import {
   internalServerErrorSchema,
   unauthorizedErrorSchema,

@@ -2,7 +2,6 @@
 
 import type { Dispatch, SetStateAction } from 'react';
 import type { z } from 'zod';
-
 import { createToken } from '@/actions/tokens';
 import { CopyButtonData } from '@/components/copy-clipboard-button';
 import { Button } from '@/components/ui/button';
@@ -15,9 +14,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-
 import { Label } from '@/components/ui/label';
-
 import {
   ResponsiveDialog,
   ResponsiveDialogClose,
@@ -27,7 +24,6 @@ import {
   ResponsiveDialogHeader,
   ResponsiveDialogTitle,
 } from '@/components/ui/responsive-dialog';
-
 import {
   Select,
   SelectContent,
@@ -45,7 +41,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader2, Plus } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-
 import { toast } from 'sonner';
 
 type FormData = z.infer<typeof tokenCreateServerActionSchema>;

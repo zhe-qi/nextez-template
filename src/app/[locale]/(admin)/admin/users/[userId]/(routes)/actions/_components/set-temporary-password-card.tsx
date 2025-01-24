@@ -1,9 +1,7 @@
 'use client';
 
 import { setTemporaryPassword } from '@/actions/users/password-reset';
-
 import { Button } from '@/components/ui/button';
-
 import {
   Card,
   CardContent,
@@ -19,9 +17,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-
 import { Input } from '@/components/ui/input';
-
 import { Label } from '@/components/ui/label';
 import { Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';

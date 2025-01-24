@@ -1,7 +1,5 @@
 import EmptyState from '@/components/ui/data-tables/empty-state';
-
 import { FilePlus } from 'lucide-react';
-
 import CreatePermissionButton from './create-permission-button';
 
 export default function PermissionsEmptyStateTable() {

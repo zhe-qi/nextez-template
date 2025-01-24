@@ -1,11 +1,9 @@
 'use client';
 
 import type { Token } from '@prisma/client';
-
 import type { ColumnDef } from '@tanstack/react-table';
 import { Badge } from '@/components/ui/badge';
 import { DataTableColumnHeader } from '@/components/ui/data-tables/data-table-column-header';
-
 import {
   Tooltip,
   TooltipContent,
@@ -13,7 +11,6 @@ import {
 } from '@/components/ui/tooltip';
 import { format, formatDistanceToNow } from 'date-fns';
 import Link from 'next/link';
-
 import CellActions from './cell-actions';
 
 export type IColumns = {

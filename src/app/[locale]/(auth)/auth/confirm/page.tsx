@@ -2,9 +2,7 @@
 
 import type { z } from 'zod';
 import AuthTemplate from '@/components/auth/auth-template';
-
 import { Button } from '@/components/ui/button';
-
 import {
   Form,
   FormControl,
@@ -17,13 +15,10 @@ import { Input } from '@/components/ui/input';
 import { confirmEmailRequestSchema } from '@/schemas/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader2 } from 'lucide-react';
-
 import Link from 'next/link';
-
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-
 import { toast } from 'sonner';
 
 type FormData = z.infer<typeof confirmEmailRequestSchema>;

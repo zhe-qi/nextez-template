@@ -1,12 +1,8 @@
 import { auth } from '@/auth';
-
 import { PageHeader } from '@/components/page-header';
-
 import prismadb from '@/lib/prismadb';
 import { protectPage } from '@/lib/rbac';
-
 import { redirect } from 'next/navigation';
-
 import CreateUserButton from './_components/create-user-button';
 import UsersTable from './_components/users-table';
 

@@ -1,11 +1,7 @@
 import { PageSection } from '@/components/page-header';
-
 import { getUserById } from '@/data/user';
-
 import { protectPage } from '@/lib/rbac';
-
 import { notFound } from 'next/navigation';
-
 import EditUserForm from './_components/edit-user-form';
 
 type Params = Promise<{ userId: number }>;

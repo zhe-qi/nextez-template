@@ -1,7 +1,5 @@
 import type { ZodOpenApiOperationObject } from 'zod-openapi';
-
 import { userOutputSchema, userPathParamSchema } from '@/schemas/users';
-
 import {
   badRequestErrorSchema,
   internalServerErrorSchema,

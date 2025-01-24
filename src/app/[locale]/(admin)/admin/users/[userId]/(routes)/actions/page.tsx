@@ -1,7 +1,5 @@
 import { PageSection } from '@/components/page-header';
-
 import { protectPage } from '@/lib/rbac';
-
 import { ResetPasswordCard } from './_components/reset-password-card';
 import { SetTemporaryPasswordCard } from './_components/set-temporary-password-card';
 

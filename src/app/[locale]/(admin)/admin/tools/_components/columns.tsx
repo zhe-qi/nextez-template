@@ -1,13 +1,10 @@
 'use client';
 
 import type { Tool } from '@prisma/client';
-
 import type { ColumnDef } from '@tanstack/react-table';
 import { DataTableColumnHeader } from '@/components/ui/data-tables/data-table-column-header';
 import { format } from 'date-fns';
-
 import Link from 'next/link';
-
 import CellActions from './cell-actions';
 
 export type IColumns = {} & Tool;

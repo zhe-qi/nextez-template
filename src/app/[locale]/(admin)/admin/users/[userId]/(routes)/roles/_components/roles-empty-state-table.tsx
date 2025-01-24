@@ -1,7 +1,5 @@
 import EmptyState from '@/components/ui/data-tables/empty-state';
-
 import { FilePlus } from 'lucide-react';
-
 import AddRoleButton from './add-role-button';
 
 export default function AddRolesEmptyStateTable({ id }: { id: string }) {

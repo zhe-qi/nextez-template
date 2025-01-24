@@ -1,7 +1,5 @@
 import { DataTable } from '@/components/ui/data-tables/data-table';
-
 import prismadb from '@/lib/prismadb';
-
 import { columns } from './columns';
 import ToolsEmptyStateTable from './tools-empty-state-table';
 

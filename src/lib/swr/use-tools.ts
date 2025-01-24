@@ -1,7 +1,5 @@
 import type { ITool } from '@/types/types';
-
 import useSWR from 'swr';
-
 import { fetcher } from './fetcher';
 
 export default function useTools() {

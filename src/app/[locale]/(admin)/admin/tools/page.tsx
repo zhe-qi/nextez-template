@@ -1,14 +1,9 @@
 import { auth } from '@/auth';
-
 import TableLoading from '@/components/admin/table-loading';
-
 import { PageHeader } from '@/components/page-header';
-
 import { protectPage } from '@/lib/rbac';
-
 import { redirect } from 'next/navigation';
 import { Suspense } from 'react';
-
 import CreateToolButton from './_components/create-tool-button';
 import ToolsTable from './_components/tools-table';
 

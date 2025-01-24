@@ -7,18 +7,14 @@ export default antfu(
   {
     react: true,
     typescript: true,
-
     lessOpinionated: true,
     isInEditor: false,
-
     stylistic: {
       semi: true,
     },
-
     formatters: {
       css: true,
     },
-
     ignores: [
       'next-env.d.ts',
       'src/components/ui/**/*',

@@ -1,9 +1,7 @@
 import type { ZodOpenApiOperationObject } from 'zod-openapi';
 import { listQuerySchema } from '@/schemas/api';
-
 import { permissionOutputSchema } from '@/schemas/permissions';
 import { z } from 'zod';
-
 import {
   internalServerErrorSchema,
   unauthorizedErrorSchema,

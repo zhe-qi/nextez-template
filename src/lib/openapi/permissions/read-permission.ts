@@ -1,10 +1,8 @@
 import type { ZodOpenApiOperationObject } from 'zod-openapi';
-
 import {
   permissionOutputSchema,
   permissionPathParamSchema,
 } from '@/schemas/permissions';
-
 import {
   badRequestErrorSchema,
   internalServerErrorSchema,

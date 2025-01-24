@@ -1,8 +1,6 @@
 import { ApiError, getIdInputOrThrow, parseRequestBody } from '@/lib/api';
-
 import { withAdmin } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
-
 import { getZodSchemaFields } from '@/lib/zod/utils';
 import {
   userOutputSchema,
@@ -11,7 +9,6 @@ import {
 } from '@/schemas/users';
 import { Prisma } from '@prisma/client';
 import { NextResponse } from 'next/server';
-
 import { ZodError } from 'zod';
 
 const outputFields = getZodSchemaFields(userOutputSchema);

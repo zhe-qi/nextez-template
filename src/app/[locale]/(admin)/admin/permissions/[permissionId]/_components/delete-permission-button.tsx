@@ -1,16 +1,13 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-
 import { Trash2 } from 'lucide-react';
 import { useState } from 'react';
-
 import DeletePermissionDialog from '../../_components/delete-permission-dialog';
 
 export default function DeletePermissionButton({

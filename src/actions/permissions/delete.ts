@@ -1,7 +1,6 @@
 'use server';
 
 import prismadb from '@/lib/prismadb';
-
 import { has } from '@/lib/rbac';
 import { revalidatePath } from 'next/cache';
 

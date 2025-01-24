@@ -1,18 +1,12 @@
 import { auth } from '@/auth';
 import TableLoading from '@/components/admin/table-loading';
-
 import { PageHeader } from '@/components/page-header';
-
 import { Button } from '@/components/ui/button';
 import { protectPage } from '@/lib/rbac';
-
 import { ExternalLink } from 'lucide-react';
-
 import Link from 'next/link';
-
 import { redirect } from 'next/navigation';
 import { Suspense } from 'react';
-
 import CreateTokenButton from './_components/create-token-button';
 import TokensTable from './_components/tokens-table';
 
