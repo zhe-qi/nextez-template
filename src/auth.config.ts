@@ -1,38 +1,38 @@
-import type { DefaultSession, NextAuthConfig } from "next-auth";
-import { getUserByEmail, getUserByUsername } from "@/data/user";
-import prismadb from "@/lib/prismadb";
-import { PrismaAdapter } from "@auth/prisma-adapter";
+import type { DefaultSession, NextAuthConfig } from 'next-auth';
+import { getUserByEmail, getUserByUsername } from '@/data/user';
+import prismadb from '@/lib/prismadb';
+import { PrismaAdapter } from '@auth/prisma-adapter';
 
-declare module "next-auth" {
+declare module 'next-auth' {
   // eslint-disable-next-line ts/consistent-type-definitions
   interface Session extends DefaultSession {
     user: {
       userId: string;
       isActive: boolean;
-      role: "admin" | "user";
-    } & DefaultSession["user"];
+      role: 'admin' | 'user';
+    } & DefaultSession['user'];
   }
 }
 
 export const authConfig = {
   pages: {
-    signIn: "/auth/login",
-    signOut: "/auth/logout",
-    error: "/auth/error",
-    newUser: "/auth/register",
+    signIn: '/auth/login',
+    signOut: '/auth/logout',
+    error: '/auth/error',
+    newUser: '/auth/register',
   },
   session: {
-    strategy: "jwt",
+    strategy: 'jwt',
     maxAge: 30 * 24 * 60 * 60, // 30 days
     updateAge: 24 * 60 * 60, // 24 hours
   },
   callbacks: {
     async signIn({ user, account, profile }) {
-      if (account?.type === "credentials") {
+      if (account?.type === 'credentials') {
         const userExists = await getUserByEmail(user?.email as string);
 
         if (userExists && userExists.emailVerified === false) {
-          throw new Error("ConfirmEmail");
+          throw new Error('ConfirmEmail');
         }
 
         if (userExists && userExists.isActive === false) {
@@ -40,11 +40,11 @@ export const authConfig = {
         }
       }
 
-      if (account?.provider === "google" || account?.provider === "github") {
+      if (account?.provider === 'google' || account?.provider === 'github') {
         const userExists = await getUserByEmail(profile?.email as string);
 
         if (userExists && userExists.emailVerified === false) {
-          throw new Error("ConfirmEmail");
+          throw new Error('ConfirmEmail');
         }
 
         if (userExists && userExists.isActive === false) {
@@ -52,7 +52,7 @@ export const authConfig = {
         }
 
         if (!userExists) {
-          let username: string = (profile?.name as string).replace(" ", ".");
+          let username: string = (profile?.name as string).replace(' ', '.');
 
           while (true) {
             const usernameExists = await getUserByUsername(username);
@@ -91,7 +91,7 @@ export const authConfig = {
         if (userExists) {
           token.userId = userExists.id;
           token.isActive = userExists.isActive;
-          token.role = userExists.isAdmin ? "admin" : "user";
+          token.role = userExists.isAdmin ? 'admin' : 'user';
         }
       }
       return token;
@@ -100,7 +100,7 @@ export const authConfig = {
       if (token) {
         session.user.userId = token.userId as string;
         session.user.isActive = token.isActive as boolean;
-        session.user.role = token.role as "admin" | "user";
+        session.user.role = token.role as 'admin' | 'user';
       }
       return session;
     },

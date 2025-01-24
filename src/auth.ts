@@ -1,14 +1,14 @@
-import { getUserByEmail } from "@/data/user";
-import { env } from "@/env";
-import bcrypt from "bcrypt";
-import NextAuth from "next-auth";
-import Credentials from "next-auth/providers/credentials";
-import GitHub from "next-auth/providers/github";
+import { getUserByEmail } from '@/data/user';
+import { env } from '@/env';
+import bcrypt from 'bcrypt';
+import NextAuth from 'next-auth';
+import Credentials from 'next-auth/providers/credentials';
+import GitHub from 'next-auth/providers/github';
 
-import Google from "next-auth/providers/google";
+import Google from 'next-auth/providers/google';
 
-import { authConfig } from "./auth.config";
-import { loginSchema } from "./schemas/auth";
+import { authConfig } from './auth.config';
+import { loginSchema } from './schemas/auth';
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
   ...authConfig,
@@ -22,10 +22,10 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       clientSecret: env.AUTH_GITHUB_SECRET,
     }),
     Credentials({
-      name: "credentials",
+      name: 'credentials',
       credentials: {
-        email: { label: "email", type: "email" },
-        password: { label: "password", type: "password" },
+        email: { label: 'email', type: 'email' },
+        password: { label: 'password', type: 'password' },
       },
       async authorize(credentials): Promise<any> {
         try {
