@@ -2,6 +2,7 @@
 
 import { routing } from '@/lib/i18n-navigation';
 import { cn } from '@/lib/utils';
+import { GeistSans } from 'geist/font/sans';
 import { ThemeProvider } from 'next-themes';
 import NextError from 'next/error';
 
@@ -9,7 +10,10 @@ export default function GlobalError() {
   return (
     <html lang={routing.defaultLocale} suppressHydrationWarning>
       <body
-        className={cn('min-h-screen antialiased scheme-light dark:scheme-dark')}
+        className={cn(
+          'min-h-screen bg-background antialiased',
+          GeistSans.className,
+        )}
       >
         <ThemeProvider
           attribute="class"
