@@ -8,4 +8,5 @@ export const AppConfig = {
   locales: ['zh', 'en'],
   defaultLocale: 'zh',
   localePrefix,
+  timeZone: 'Asia/Shanghai',
 };

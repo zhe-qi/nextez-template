@@ -1,7 +1,9 @@
 'use client';
 
+import type { AbstractIntlMessages } from 'next-intl';
+import { AppConfig } from '@/lib/app-config';
 import { SessionProvider } from 'next-auth/react';
-import { type AbstractIntlMessages, NextIntlClientProvider } from 'next-intl';
+import { NextIntlClientProvider } from 'next-intl';
 import { ThemeProvider } from 'next-themes';
 import { TooltipProvider } from './ui/tooltip';
 
@@ -16,7 +18,7 @@ export default function Providers({
 }) {
   return (
     <>
-      <NextIntlClientProvider messages={messages} locale={locale}>
+      <NextIntlClientProvider timeZone={AppConfig.timeZone} messages={messages} locale={locale}>
         <SessionProvider>
           <ThemeProvider
             attribute="class"
