@@ -1,5 +1,6 @@
 'use client';
 
+import type { Option } from '@/components/ui/multiple-selector';
 import type { z } from 'zod';
 import { createRole } from '@/actions/roles';
 import { Button } from '@/components/ui/button';
@@ -13,9 +14,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import MultipleSelector, {
-  type Option,
-} from '@/components/ui/multiple-selector';
+import MultipleSelector from '@/components/ui/multiple-selector';
 import { Switch } from '@/components/ui/switch';
 import { Textarea } from '@/components/ui/textarea';
 import { addServerErrors } from '@/lib/utils';

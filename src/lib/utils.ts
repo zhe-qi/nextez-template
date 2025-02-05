@@ -1,4 +1,5 @@
-import { type ClassValue, clsx } from 'clsx';
+import type { ClassValue } from 'clsx';
+import { clsx } from 'clsx';
 import { formatDistanceToNow } from 'date-fns';
 import { format, formatInTimeZone, toZonedTime } from 'date-fns-tz';
 import { twMerge } from 'tailwind-merge';
