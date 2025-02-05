@@ -2,14 +2,15 @@
   "name": "nextez",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@10.2.0",
+  "packageManager": "pnpm@9.15.4",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "prepare": "husky"
+    "prepare": "husky",
+    "preinstall": "npx prisma generate"
   },
   "dependencies": {
     "@auth/prisma-adapter": "2.7.4",
